@@ -86,12 +86,22 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    border: 0;
 }
 
 .project-section img {
     width: 100%;
     height: auto;
     padding: 0;
+}
+
+.project-section img:hover {
+    transform: scale(1.1);
+    transition-property: transform;
+    transition-duration: 500ms;
 }
 
 .project-text {
@@ -181,7 +191,7 @@ nav button h3 {
     }
 }
 
-@media only screen and (min-device-width: 1500px) {
+@media only screen and (min-device-width: 1350px) {
     /*Conteúdo*/
     main {
         grid-template-columns: repeat(5, 1fr);
