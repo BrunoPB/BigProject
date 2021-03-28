@@ -8,10 +8,7 @@
 
 body {
     background-color: rgba(0, 0, 0, 0.75);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+    display: block;
     overflow-y: scroll;
 }
 
@@ -45,12 +42,13 @@ header {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
     width: 40%;
     min-width: auto;
+    justify-content: center;
 }
 
 .search-input {
+    display: none;
     height: 30px;
     width: 100%;
     background-color: white;
@@ -64,6 +62,7 @@ header {
     border-radius: 0 2px 2px 0;
     padding: 2px 12px;
     background-color: transparent;
+    width: 30%;
 }
 
 .user-button {
@@ -75,6 +74,52 @@ header {
 
 
 /*CONTEÚDO*/
+
+main {
+    padding: 70px 30px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+}
+
+.project-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.project-section img {
+    width: 100%;
+    height: auto;
+    padding: 0;
+}
+
+.project-text {
+    font-family: sans-serif;
+    background-color: rgba(255, 255, 255, 0.75);
+    padding: 3px;
+    position: absolute;
+}
+
+.psa {
+    grid-area: span 2 / span 2;
+}
+
+.psh {
+    grid-column: span 2;
+}
+
+.psv {
+    grid-row: span 2;
+}
+
+.project-text h1 {
+    font-size: 14px;
+}
+
+.project-section h2 {
+    font-size: 10px;
+}
 
 
 /*MENU*/
@@ -112,15 +157,33 @@ nav button h3 {
 
 /*MEDIA QUERIES*/
 
-@media only screen and (max-device-width: 550px) {
+@media only screen and (min-device-width: 550px) {
     /*Cabeçalho*/
     .search-form {
-        justify-content: center;
+        justify-content: space-between;
     }
     .search-input {
-        display: none;
+        display: block;
     }
     .search-button {
-        width: 30%;
+        width: auto;
+    }
+    /*Conteúdo*/
+    main {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media only screen and (min-device-width: 1000px) {
+    /*Conteúdo*/
+    main {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media only screen and (min-device-width: 1500px) {
+    /*Conteúdo*/
+    main {
+        grid-template-columns: repeat(5, 1fr);
     }
 }
