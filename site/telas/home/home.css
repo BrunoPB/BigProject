@@ -4,6 +4,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: sans-serif;
 }
 
 body {
@@ -109,7 +110,6 @@ main {
 }
 
 .project-text {
-    font-family: sans-serif;
     background-color: rgba(255, 255, 255, 0.75);
     padding: 3px;
     position: absolute;
@@ -152,7 +152,6 @@ nav {
 }
 
 nav button {
-    background-color: transparent;
     padding: 8px;
     width: 30%;
     min-width: auto;
@@ -162,7 +161,6 @@ nav button {
 }
 
 nav button h3 {
-    font-family: sans-serif;
     color: #9f0000;
     font-size: 20px;
     font-weight: bolder;

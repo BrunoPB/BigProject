@@ -1,0 +1,125 @@
+/*BODY*/
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-image: url("./background-image.jpg");
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+
+/*FORMULÁRIO*/
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: white;
+    padding: 30px;
+    border: none;
+    border-radius: 20px;
+    margin-top: 100px;
+    width: 80%;
+    height: 80%;
+}
+
+.logo-button {
+    background-color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 2px;
+    margin-bottom: 20px;
+}
+
+.logo-button img {
+    width: 350px;
+    height: auto;
+}
+
+.user-div,
+.password-div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin: 10px 0;
+    width: 80%;
+}
+
+.user-label,
+.password-label {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.user-input,
+.password-input {
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 6px;
+    font-size: 14px;
+    width: 100%;
+}
+
+.manter-login-div {
+    width: 80%;
+    margin: 20px 0;
+}
+
+.login-button {
+    width: 150px;
+    height: 40px;
+    background-color: #9f0000;
+    border: none;
+    border-radius: 15px;
+    color: white;
+    font-size: 20px;
+    font-weight: bolder;
+    margin-bottom: 30px;
+}
+
+.register-div {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+h2 {
+    font-size: 12px;
+    font-weight: 300;
+    margin-right: 8px;
+}
+
+a {
+    font-size: 12px;
+    font-weight: bold;
+    color: blue;
+}
+
+a:hover {
+    color: purple;
+}
+
+
+/*MEDIA QUERIES*/
+
+@media only screen and (min-device-width: 550px) {
+    form {
+        width: auto;
+    }
+}
