@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>BigProject - Registrar</title>
+    <link href="./register.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <!--FORMULÁRIO-->
+    <form>
+        <!--Logo-->
+        <button class="logo-button" type="button" href="#">
+            <img class="logo-image" src="./BigProject-logo.png">
+        </button>
+        <h1>Registrar</h1>
+        <!--Nome de Usuário-->
+        <div class="user-div">
+            <label class="user-label" for="user-input">Nome de Usuário</label>
+            <input class="user-input" id="user-input" required>
+        </div>
+        <!--Senha-->
+        <div class="password-div">
+            <label class="password-label" for="password-input">Senha</label>
+            <input class="password-input" id="password-input" type="password" required>
+        </div>
+        <!--Confirmação de Senha-->
+        <div class="c-password-div">
+            <label class="c-password-label" for="c-password-input">Confirmação de Senha</label>
+            <input class="c-password-input" id="c-password-input" type="password" required>
+        </div>
+        <!--Email-->
+        <div class="email-div">
+            <label class="email-label" for="email-input">Email</label>
+            <input class="email-input" id="email-input" type="email" required>
+        </div>
+        <!--Opção de ser pessoal-->
+        <div class="personal-div">
+            <label class="personal-label" for="personal-input">Conta pessoal</label>
+            <input class="personal-input" id="personal-input" type="checkbox">
+        </div>
+        <!--Opção de ser empresarial-->
+        <div class="business-div">
+            <label class="business-label" for="business-input">Conta empresarial</label>
+            <input class="business-input" id="business-input" type="checkbox">
+        </div>
+        <!--CPF ou CNPJ-->
+        <div class="cpfcnpj-div">
+            <label class="cpfcnpj-label" for="cpfcnpj-input">CPF ou CNPJ</label>
+            <input class="cpfcnpj-input" id="cpfcnpj-input" type="number" required>
+        </div>
+        <!--Comprovante-->
+        <div class="comprovante-div">
+            <label class="comprovante-label" for="comprovante-input">Comprovante curricular</label>
+            <input class="comprovante-input" id="comprovante-input" type="file">
+        </div>
+        <!--Registrar-->
+        <div class="register-div">
+            <button class="register-button" type="submit">Registrar</button>
+        </div>
+    </form>
+</body>
+
+</html>
