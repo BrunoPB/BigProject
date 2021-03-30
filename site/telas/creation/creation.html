@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>BigProject - Novo projeto</title>
-    <link href="./register.css" rel="stylesheet" type="text/css">
+    <link href="./creation.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -14,6 +14,8 @@
         <button class="logo-button" type="button">
             <img class="logo-image" src="./BigProject-logo.png">
         </button>
+        <!--Título da página-->
+        <h1>Novo Projeto</h1>
         <!--Icone de usuário-->
         <button class="user-button" type="button">
             <svg class="user-icon" width="20" height="20" viewBox="0 0 20 20">
@@ -28,7 +30,7 @@
         <form>
             <!--Divisão de cima-->
             <div class="top-div">
-                <!--Título-->
+                <!--Título do projeto-->
                 <div class="title-div">
                     <label class="title-label" for="title-input">Título do projeto</label>
                     <input class="title-input" id="title-input" type="text" required>
@@ -54,7 +56,7 @@
                 <!--Requisito curricular-->
                 <div class="requirement-div">
                     <label class="requirement-label" for="requirement-input">Requisito curricular</label>
-                    <input class="requirement-input" id="requirement-input" type="text" list="requirement-list">
+                    <input class="requirement-input" id="requirement-input" type="text" list="requirement-list" value="Nenhum">
                     <datalist id="requirement-list">
                         <option>Nenhum</option>
                         <option>Graduação</option>
@@ -66,16 +68,21 @@
             </div>
             <!--Divisão de baixo-->
             <div class="bottom-div">
+                <!--Descrição-->
                 <label class="description-label" for="description-input">Descrição do projeto</label>
-                <textarea class="description-input" id="description-input"></textarea>
+                <textarea class="description-input" id="description-input" rows="20"></textarea>
+                <!--Imagens-->
                 <label class="images-label" for="images-input">Imagens</label>
                 <input class="images-input" id="images-input" type="file">
             </div>
+            <!--RODAPÉ-->
             <footer>
+                <!--Calcular custo-->
                 <div class="cost-div">
                     <button class="cost-button" type="button">Calcular custo</button>
-                    <h2 class="cost-text"></h2>
+                    <h2 class="cost-text">Custo: R$ 9.000,00</h2>
                 </div>
+                <!--Botão para criar projeto-->
                 <button class="create-button" type="submit">Criar projeto</button>
             </footer>
         </form>
