@@ -11,7 +11,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
+    overflow-y: scroll;
     background-image: url("./background-image.jpg");
 }
 
@@ -20,7 +20,7 @@ button:hover {
 }
 
 
-/*FORMULÁRIO*/
+/*FOMRULÁRIO*/
 
 form {
     display: flex;
@@ -31,7 +31,7 @@ form {
     padding: 30px;
     border: none;
     border-radius: 20px;
-    margin-top: 100px;
+    margin-top: 40px;
     width: 80%;
     height: 80%;
 }
@@ -41,7 +41,6 @@ form {
     border: none;
     border-radius: 10px;
     padding: 2px;
-    margin-bottom: 20px;
 }
 
 .logo-button img {
@@ -49,8 +48,12 @@ form {
     height: auto;
 }
 
-.user-div,
-.password-div {
+h1 {
+    font-size: 32px;
+    margin: 20px 0;
+}
+
+.rdiv {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -59,14 +62,12 @@ form {
     width: 80%;
 }
 
-.user-label,
-.password-label {
+.rdiv label {
     font-size: 16px;
     font-weight: bold;
 }
 
-.user-input,
-.password-input {
+.rdiv input {
     border: 1px solid black;
     border-radius: 5px;
     padding: 6px;
@@ -74,12 +75,25 @@ form {
     width: 100%;
 }
 
-.manter-login-div {
-    width: 80%;
-    margin: 20px 0;
+.personal-div,
+.business-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
 }
 
-.login-button {
+.personal-div input,
+.business-div input {
+    width: auto;
+    margin-right: 6px;
+}
+
+.register-div {
+    margin: 30px 0;
+}
+
+.register-button {
     width: 150px;
     height: 40px;
     background-color: #9f0000;
@@ -88,38 +102,8 @@ form {
     color: white;
     font-size: 20px;
     font-weight: bolder;
-    margin-bottom: 30px;
 }
 
-.register-div {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-
-h2 {
-    font-size: 12px;
-    font-weight: 300;
-    margin-right: 8px;
-}
-
-a {
-    font-size: 12px;
-    font-weight: bold;
-    color: blue;
-}
-
-a:hover {
-    color: purple;
-}
-
-
-/*MEDIA QUERIES*/
-
-@media only screen and (min-device-width: 550px) {
-    form {
-        width: auto;
-    }
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
 }

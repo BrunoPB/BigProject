@@ -4,12 +4,17 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: sans-serif;
 }
 
 body {
     background-color: rgba(0, 0, 0, 0.75);
     display: block;
     overflow-y: scroll;
+}
+
+button:hover {
+    cursor: pointer;
 }
 
 
@@ -86,6 +91,10 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    border: 0;
 }
 
 .project-section img {
@@ -94,8 +103,13 @@ main {
     padding: 0;
 }
 
+.project-section img:hover {
+    transform: scale(1.1);
+    transition-property: transform;
+    transition-duration: 500ms;
+}
+
 .project-text {
-    font-family: sans-serif;
     background-color: rgba(255, 255, 255, 0.75);
     padding: 3px;
     position: absolute;
@@ -138,7 +152,6 @@ nav {
 }
 
 nav button {
-    background-color: transparent;
     padding: 8px;
     width: 30%;
     min-width: auto;
@@ -148,7 +161,6 @@ nav button {
 }
 
 nav button h3 {
-    font-family: sans-serif;
     color: #9f0000;
     font-size: 20px;
     font-weight: bolder;
@@ -181,7 +193,7 @@ nav button h3 {
     }
 }
 
-@media only screen and (min-device-width: 1500px) {
+@media only screen and (min-device-width: 1350px) {
     /*Conteúdo*/
     main {
         grid-template-columns: repeat(5, 1fr);
