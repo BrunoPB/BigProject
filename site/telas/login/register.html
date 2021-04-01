@@ -15,9 +15,9 @@
             <img class="logo-image" src="./BigProject-logo.png">
         </button>
         <h1>Bem-Vindo ao BigProject</h1>
-        <!--Nome de Usuário-->
+        <!--Nome-->
         <div class="user-div rdiv">
-            <label class="user-label" for="user-input">Nome de Usuário</label>
+            <label class="user-label" for="user-input">Nome</label>
             <input class="user-input" id="user-input" type="text" required>
         </div>
         <!--Senha-->
@@ -49,6 +49,18 @@
         <div class="cpfcnpj-div rdiv">
             <label class="cpfcnpj-label" for="cpfcnpj-input">CPF ou CNPJ</label>
             <input class="cpfcnpj-input" id="cpfcnpj-input" type="number" required>
+        </div>
+        <div class="tag-div rdiv">
+            <label class="tag-label" for="tag-input">Escolha uma Tag</label>
+            <input class="tag-input" id="tag-input" type="text" list="tag-list" required>
+            <datalist id="tag-list">
+                <option>Administração</option>
+                <option>Engenharia</option>
+                <option>Entretenimento</option>
+                <option>Saúde</option>
+                <option>Tecnologia</option>
+                <option>Outro</option>
+            </datalist>
         </div>
         <!--Comprovante-->
         <div class="comprovante-div rdiv">
