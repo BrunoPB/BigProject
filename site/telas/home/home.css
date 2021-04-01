@@ -109,7 +109,7 @@ filter button {
 /*CONTEÚDO*/
 
 main {
-    padding: 100px 30px;
+    padding: 105px 30px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 10px;
