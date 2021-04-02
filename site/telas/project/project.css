@@ -1,0 +1,294 @@
+/*BODY*/
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body {
+    background-color: rgba(0, 0, 0, 0.75);
+    display: block;
+    overflow-y: scroll;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+
+/*CABEÇALHO*/
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    background-color: #9f0000;
+    width: 100%;
+    height: 60px;
+    padding: 20px;
+}
+
+.logo-button {
+    background-color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 2px;
+}
+
+.logo-image {
+    height: 40px;
+}
+
+h1 {
+    font-size: 35px;
+    font-weight: bold;
+    color: white;
+}
+
+.user-button {
+    background-color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+
+/*PROJETO*/
+
+main {
+    width: 100%;
+    padding: 60px 12% 0 12%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    color: whitesmoke;
+}
+
+.main-img {
+    height: 50%;
+    width: auto;
+    max-width: 80%;
+    padding: 10px 0;
+}
+
+.author-div {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.from {
+    font-size: 14px;
+    font-weight: normal;
+    margin-right: 5px;
+}
+
+.author-button {
+    color: #9f0000;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: whitesmoke;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+.description-div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin: 20px 0;
+    width: 100%;
+}
+
+.description-text {
+    font-size: 16px;
+    font-weight: 400;
+    text-align: justify;
+}
+
+.description-imgs {
+    display: grid;
+    grid-template: 1fr 1fr / 1fr 1fr;
+    width: 100%;
+    gap: 10px;
+    padding: 10px 0 30px 0;
+    border-bottom: 2px solid rgba(100, 100, 100, 0.75);
+}
+
+.pimg {
+    width: 100%;
+}
+
+
+/*COMENTÁRIOS*/
+
+.comments {
+    width: 100%;
+    padding: 0 12%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    color: whitesmoke;
+}
+
+.comment-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 60px;
+}
+
+h3 {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.comment-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    margin-bottom: 50px;
+    padding-left: 5px;
+    border-left: 5px solid rgba(255, 255, 255, 0.75);
+}
+
+.comment-text p {
+    font-size: 16px;
+    font-weight: 400;
+    text-align: justify;
+}
+
+.comment-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px 15px 0 0;
+}
+
+.like-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    background-color: transparent;
+    border: none;
+}
+
+.like-button svg {
+    margin-right: 6px;
+    fill: #AAAAAA;
+}
+
+.likes-text {
+    font-size: 16px;
+    color: whitesmoke;
+    font-weight: bold;
+}
+
+.comment-author {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+
+/*SEÇÃO DE COMENTAR*/
+
+.comment {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 12% 0 12%;
+    border: none;
+    border-radius: 10% 10% 0 0;
+    background-color: #9f0000;
+    margin-bottom: 60px;
+    /*Adicionar com o javascript
+    position: fixed;
+    bottom: 0;
+    */
+}
+
+.comment textarea {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+.cimgs-div {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+    color: whitesmoke;
+}
+
+.cimgs-label {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.cimgs-input {
+    border: 1px solid whitesmoke;
+    padding: 8px 10px;
+    border-radius: 10px;
+}
+
+
+/*RODAPÉ*/
+
+footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    background-color: #9f0000;
+    width: 100%;
+    height: 60px;
+    padding: 20px;
+    bottom: 0;
+}
+
+.show-comment-button {
+    font-size: 18px;
+    font-weight: bold;
+    color: #9f0000;
+    padding: 8px;
+    background-color: whitesmoke;
+    border: none;
+    border-radius: 5px;
+    margin-right: 15px;
+}
+
+.post-comment-button {
+    font-size: 18px;
+    font-weight: bold;
+    color: #9f0000;
+    padding: 8px;
+    background-color: whitesmoke;
+    border: none;
+    border-radius: 5px;
+    margin-right: 15px;
+}
