@@ -81,17 +81,169 @@ header {
 
 /*MAIN*/
 
+main {
+    padding: 70px 5% 0 5px;
+    width: 100%;
+}
+
 
 /*MEUS PROJETOS*/
+
+nav {
+    background-color: whitesmoke;
+    border: none;
+    border-radius: 15px;
+    padding: 10px;
+    position: fixed;
+    margin-right: 75%;
+}
+
+h1 {
+    color: #9f0000;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 5px;
+}
+
+.projects-div {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 5px;
+}
+
+.project-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: transparent;
+    border: 1px solid lightgray;
+}
+
+.project-image {
+    width: 60px;
+}
+
+.project-name {
+    padding: 3px;
+}
 
 
 /*CONTEÚDO*/
 
+content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin-left: 30%;
+}
+
 
 /*FILTRO*/
 
+.filter-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+    width: 100%;
+    padding: 20px 0 30px 0;
+    margin-bottom: 30px;
+    border-bottom: 2px solid rgba(100, 100, 100, 0.75);
+}
+
+.filter-text {
+    font-size: 22px;
+    color: whitesmoke;
+}
+
+.filter-input {
+    color: black;
+    padding: 5px 3px;
+    border: none;
+    border-radius: 5px;
+}
+
+.filter-button {
+    font-size: 22px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: white;
+    font-weight: bold;
+    color: #9f0000;
+}
+
 
 /*COMENTÁRIOS*/
+
+.comments-div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    color: whitesmoke;
+}
+
+.comment {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    margin-bottom: 50px;
+    padding-left: 5px;
+    border-left: 5px solid rgba(255, 255, 255, 0.75);
+}
+
+.comment-text p {
+    font-size: 16px;
+    font-weight: 400;
+    text-align: justify;
+}
+
+.comment-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px 15px 0 0;
+}
+
+.like-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    background-color: transparent;
+    border: none;
+}
+
+.like-button svg {
+    margin-right: 6px;
+    fill: #AAAAAA;
+}
+
+.likes-text {
+    font-size: 16px;
+    color: whitesmoke;
+    font-weight: bold;
+}
+
+.comment-author {
+    font-size: 16px;
+    font-weight: bold;
+    color: whitesmoke;
+}
+
+.comment-author:hover {
+    color: lightblue;
+}
 
 
 /*MEDIA QUERIES*/
@@ -106,5 +258,12 @@ header {
     }
     .search-button {
         width: auto;
+    }
+}
+
+@media only screen and (min-width: 725px) {
+    /*Meus projetos*/
+    .projects-div {
+        grid-template-columns: 1fr 1fr;
     }
 }
