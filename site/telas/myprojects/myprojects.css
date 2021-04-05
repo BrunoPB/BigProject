@@ -95,7 +95,7 @@ nav {
     border-radius: 15px;
     padding: 10px;
     position: fixed;
-    margin-right: 75%;
+    margin-right: 85%;
 }
 
 h1 {
@@ -136,7 +136,7 @@ content {
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    margin-left: 30%;
+    margin-left: 20%;
 }
 
 
@@ -261,9 +261,14 @@ content {
     }
 }
 
-@media only screen and (min-width: 725px) {
-    /*Meus projetos*/
+@media only screen and (min-device-width: 725px) {
     .projects-div {
         grid-template-columns: 1fr 1fr;
+    }
+    content {
+        margin-left: 30%;
+    }
+    nav {
+        margin-right: 75%;
     }
 }
