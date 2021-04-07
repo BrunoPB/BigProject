@@ -5,13 +5,14 @@
     <meta charset="utf-8">
     <title>BigProject</title>
     <link href="css/project.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="./js/script.js"></script>
 </head>
 
 <body>
     <!--CABEÇALHO-->
     <header>
         <!--Logo-->
-        <button class="logo-button" type="button">
+        <button class="logo-button" type="button" onclick="Home()">
             <img class="logo-image" src="./imgs/BigProject-logo.png">
         </button>
         <!--Título da página-->
@@ -143,7 +144,7 @@
         </div>
     </section>
     <!--COMENTAR-->
-    <section class="comment">
+    <section class="comment" id="comment">
         <textarea rows="20"></textarea>
         <div class="cimgs-div">
             <label class="cimgs-label" for="cimgs-input">Imagens para o comentário</label>
@@ -152,9 +153,9 @@
     </section>
     <!--RODAPÉ-->
     <footer>
-        <button class="show-comment-button" type="button">Comentar</button>
+        <button class="show-comment-button" id="show-comment-button" type="button" onclick="ShowComment()">Comentar</button>
         <!--Irá se tornar "cancelar ao clicar"-->
-        <button class="post-comment-button" type="button">Postar comentário</button>
+        <button class="post-comment-button" id="post-comment-button" type="button">Postar comentário</button>
         <!--Só aparecerá se o botão de comentar for clicado, desaparece se cancelado-->
     </footer>
 </body>

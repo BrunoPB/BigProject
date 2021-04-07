@@ -134,6 +134,7 @@ main {
 .comments {
     width: 100%;
     padding: 0 12%;
+    margin-bottom: 40px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -217,7 +218,7 @@ h3 {
 
 .comment {
     width: 100%;
-    display: flex;
+    display: none;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
@@ -226,10 +227,8 @@ h3 {
     border-radius: 10% 10% 0 0;
     background-color: #9f0000;
     margin-bottom: 60px;
-    /*Adicionar com o javascript
     position: fixed;
     bottom: 0;
-    */
 }
 
 .comment textarea {
@@ -288,6 +287,7 @@ footer {
 }
 
 .post-comment-button {
+    display: none;
     font-size: 18px;
     font-weight: bold;
     color: #9f0000;
