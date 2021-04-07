@@ -11,8 +11,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow-y: scroll;
-    background-image: url("./background-image.jpg");
+    overflow: hidden;
+    background-image: url("../imgs/background-image.jpg");
 }
 
 button:hover {
@@ -20,7 +20,7 @@ button:hover {
 }
 
 
-/*FOMRULÁRIO*/
+/*FORMULÁRIO*/
 
 form {
     display: flex;
@@ -31,7 +31,7 @@ form {
     padding: 30px;
     border: none;
     border-radius: 20px;
-    margin-top: 40px;
+    margin-top: 100px;
     width: 80%;
     height: 80%;
 }
@@ -41,6 +41,7 @@ form {
     border: none;
     border-radius: 10px;
     padding: 2px;
+    margin-bottom: 20px;
 }
 
 .logo-button img {
@@ -48,12 +49,8 @@ form {
     height: auto;
 }
 
-h1 {
-    font-size: 32px;
-    margin: 20px 0;
-}
-
-.rdiv {
+.user-div,
+.password-div {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -62,12 +59,14 @@ h1 {
     width: 80%;
 }
 
-.rdiv label {
+.user-label,
+.password-label {
     font-size: 16px;
     font-weight: bold;
 }
 
-.rdiv input {
+.user-input,
+.password-input {
     border: 1px solid black;
     border-radius: 5px;
     padding: 6px;
@@ -75,25 +74,12 @@ h1 {
     width: 100%;
 }
 
-.personal-div,
-.business-div {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
+.manter-login-div {
+    width: 80%;
+    margin: 20px 0;
 }
 
-.personal-div input,
-.business-div input {
-    width: auto;
-    margin-right: 6px;
-}
-
-.register-div {
-    margin: 30px 0;
-}
-
-.register-button {
+.login-button {
     width: 150px;
     height: 40px;
     background-color: #9f0000;
@@ -102,8 +88,38 @@ h1 {
     color: white;
     font-size: 20px;
     font-weight: bolder;
+    margin-bottom: 30px;
 }
 
-input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
+.register-div {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+h2 {
+    font-size: 12px;
+    font-weight: 300;
+    margin-right: 8px;
+}
+
+a {
+    font-size: 12px;
+    font-weight: bold;
+    color: blue;
+}
+
+a:hover {
+    color: purple;
+}
+
+
+/*MEDIA QUERIES*/
+
+@media only screen and (min-device-width: 550px) {
+    form {
+        width: auto;
+    }
 }
