@@ -51,8 +51,8 @@
                 </div>
                 <!--Duração da pauta-->
                 <div class="duration-div">
-                    <label class="duration-label" for="title-input">Duração da pauta (em dias)</label>
-                    <input class="duration-input" id="title-input" type="number" required>
+                    <label class="duration-label" for="duration-input">Duração da pauta (em dias)</label>
+                    <input class="duration-input" id="duration-input" type="number" required>
                 </div>
                 <!--Requisito curricular-->
                 <div class="requirement-div">
@@ -80,8 +80,8 @@
             <footer>
                 <!--Calcular custo-->
                 <div class="cost-div">
-                    <button class="cost-button" type="button">Calcular custo</button>
-                    <h2 class="cost-text">Custo: R$ 9.000,00</h2>
+                    <button class="cost-button" type="button" onclick="Calculate()">Calcular custo</button>
+                    <h2 class="cost-text" id="cost-text"></h2>
                 </div>
                 <!--Botão para criar projeto-->
                 <button class="create-button" type="submit">Criar projeto</button>

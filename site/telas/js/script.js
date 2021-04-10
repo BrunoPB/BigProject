@@ -54,7 +54,45 @@ function Register() {
 
 //---------FUNÇÕES DA TELA CREATION-----------------
 
+//FUNÇÃO DE CALCULAR CUSTO DO PROJETO
+function Calculate() {
+    let dur = document.getElementById("duration-input") || 0;
+    let req = document.getElementById("requirement-input");
+    let costText = document.getElementById("cost-text");
+    let valid = true; //Variável para testar se o requisito curricular é válido
+    //Cálculo com base na pauta
+    let cost = dur.value * 20;
 
+    //Cálculo com base no requisto
+    switch (req.value) {
+        case "Nenhum":
+            cost *= 1;
+            break;
+        case "Graduação":
+            cost *= 10;
+            break;
+        case "Pós-Graduação":
+            cost *= 25;
+            break;
+        case "Mestrado":
+            cost *= 50;
+            break;
+        case "Doutorado":
+            cost *= 80;
+            break;
+        default:
+            valid = false;
+            break;
+    }
+
+    costText.style.border = "2px solid whitesmoke";
+    if (valid) {
+        costText.innerHTML = "Custo: R$ " + cost;
+    } else {
+        costText.innerHTML = "Requisito curricular inválido";
+    }
+
+}
 
 
 
