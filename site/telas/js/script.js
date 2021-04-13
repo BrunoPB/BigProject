@@ -45,6 +45,7 @@ function Register() {
 }
 
 
+
 //--------FUNÇÕES DA TELA REGISTER---------------
 
 //FUNÇÃO PARA APARECER A TAG E O COMPROVANTE CURRICULAR SE A CONTA FOR PESSOAL
