@@ -107,3 +107,8 @@ h1 {
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
 }
+
+.tag-div,
+.comprovante-div {
+    display: none;
+}
