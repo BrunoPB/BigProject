@@ -45,11 +45,54 @@ function Register() {
 }
 
 
-
 //--------FUNÇÕES DA TELA REGISTER---------------
 
+//FUNÇÃO PARA APARECER A TAG E O COMPROVANTE CURRICULAR SE A CONTA FOR PESSOAL
+function isPersonal() {
+    let personal = document.getElementById("personal-input");
+    let business = document.getElementById("business-input");
+    let tag = document.getElementById("tag-div");
+    let comprovante = document.getElementById("comprovante-div");
+    let comprovanteLabel = document.getElementById("comprovante-label");
 
+    //Desmarcar opção empresarial
+    if (business.checked) {
+        business.checked = false;
+    }
 
+    //Caso o usuário esteja marcando a opção de conta pessoal
+    if (personal.checked) {
+        tag.style.display = "block";
+        comprovante.style.display = "block";
+        comprovanteLabel.innerHTML = "Comprovante Curricular (se algum)";
+    } else { //Caso o usuário esteja desmarcando a opção de conta pessoal
+        tag.style.display = "none";
+        comprovante.style.display = "none";
+    }
+}
+
+//FUNÇÃO PARA APARECER O COMPROVANTE DE EXISTÊNCIA SE A CONTA FOR EMPRESARIAL
+function isBusiness() {
+    let personal = document.getElementById("personal-input");
+    let business = document.getElementById("business-input");
+    let tag = document.getElementById("tag-div");
+    let comprovante = document.getElementById("comprovante-div");
+    let comprovanteLabel = document.getElementById("comprovante-label");
+
+    //Desmarcar opção pessoal
+    if (personal.checked) {
+        personal.checked = false;
+    }
+
+    //Caso o usuário esteja marcando a opção de conta empresarial
+    if (business.checked) {
+        tag.style.display = "none";
+        comprovante.style.display = "block";
+        comprovanteLabel.innerHTML = "Comprovante de Existência";
+    } else { //Caso o usuário esteja desmarcando a opção de conta empresarial
+        comprovante.style.display = "none";
+    }
+}
 
 
 //---------FUNÇÕES DA TELA CREATION-----------------
@@ -60,6 +103,7 @@ function Calculate() {
     let req = document.getElementById("requirement-input");
     let costText = document.getElementById("cost-text");
     let valid = true; //Variável para testar se o requisito curricular é válido
+
     //Cálculo com base na pauta
     let cost = dur.value * 20;
 
