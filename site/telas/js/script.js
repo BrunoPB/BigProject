@@ -2,13 +2,13 @@
 
 //FUNÇÃO PARA RETORNAR A HOMEPAGE
 function Home() {
-    window.location.href = "http://127.0.0.1:5500/home.html";
+    window.location.href = "/home.html";
 }
 
 
 //FUNÇÃO PARA IR A TELA DE LOGIN
 function Login() {
-    window.location.href = "http://127.0.0.1:5500/login.html";
+    window.location.href = "/login.html";
 }
 
 
@@ -18,20 +18,20 @@ function Login() {
 
 //FUNÇÃO PARA IR A TELA DE MYPROJECTS
 function MyProjects() {
-    window.location.href = "http://127.0.0.1:5500/myprojects.html";
+    window.location.href = "/myprojects.html";
 }
 
 
 //FUNÇÃO PARA IR A TELA DE CREATION
 function Creation() {
-    window.location.href = "http://127.0.0.1:5500/creation.html";
+    window.location.href = "/creation.html";
 }
 
 
 //FUNÇÃO PARA IR A TELA DO PROJETO
 function Project( /*let x*/ ) {
-    //Por enquanto apenas teremos um projeto place holder, portanto, a variável x não será utilizada    
-    window.location.href = "http://127.0.0.1:5500/project.html";
+    //Por enquanto temos apenas um projeto place holder, portanto, a variável x não será utilizada    
+    window.location.href = "/project.html";
 }
 
 
@@ -41,7 +41,7 @@ function Project( /*let x*/ ) {
 
 //FUNÇÃO PARA IR A TELA DE REGISTER
 function Register() {
-    window.location.href = "http://127.0.0.1:5500/register.html";
+    window.location.href = "/register.html";
 }
 
 
