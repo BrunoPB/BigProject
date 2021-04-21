@@ -1,0 +1,34 @@
+	Geral:
+Deve apresentar ao usuário uma interface agradável e intuitiva
+
+
+	Homepage:
+Deve apresentar ao usuario os projetos mais relevantes para ele com base em suas pesquisas anteriores
+Também deve ter um filtro de tags para restringir os projetos apresentados com base na tag escolhida
+
+
+	Login:
+Deve possibilitar o usuário fazer login com seu nome de usuário e senha
+O usuário pode escolher se manter logado no site
+
+
+	Register:
+Deve possibilitar pessoas fisicas ou juridicas que não tem uma conta no site criar uma, ela deverá especificar se a conta será pessoal ou empresarial
+
+
+	Creation
+Deve possibilitar a empresa postar um projeto no site com um título, uma descrição, imagens, uma tag, um requisito curricular e a duração da pauta
+Também deve prover a empresa um calculo ao vivo do preço do projeto com base na pauta e no requisito curricular
+
+
+	MyProjects:
+Deve possibilitar a empresa ver e filtrar os comentários de cada projeto seu no site
+
+
+	Project:
+Deve possibilitar ao usuário uma visão geral do que é tal projeto, com imagens e textos
+Também deve possibilitar ao usuário fazer comentarios no projeto, o comentario tera um texto e poderá conter imagens
+
+
+	MyComments:
+Deve possibilitar o usuário ter uma visão geral de todos os seus comentários, vendo o "ranking" dele
