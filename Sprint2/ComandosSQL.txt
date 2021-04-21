@@ -1,0 +1,84 @@
+
+
+
+CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
+USE `mydb` ;
+
+-- -----------------------------------------------------
+-- Table `mydb`.`USUARIO`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`USUARIO` (
+  `ID_Usuario` INT NOT NULL,
+  `Nome` VARCHAR(45) NOT NULL,
+  `Senha` VARCHAR(45) NOT NULL,
+  `e-mail` VARCHAR(45) NOT NULL,
+  `Reputação` INT NOT NULL,
+  `Curriculo` VARCHAR(45) NULL,
+  `Tag` VARCHAR(45) NULL,
+  PRIMARY KEY (`ID_Usuario`))
+
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`EMPRESA`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`EMPRESA` (
+  `ID_empresa` INT NOT NULL,
+  `Nome` VARCHAR(45) NULL,
+  `e-mail` VARCHAR(45) NULL,
+  `Senha` VARCHAR(45) NULL,
+  PRIMARY KEY (`ID_empresa`))
+
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`PROJETOS`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`PROJETOS` (
+  `ID_Projetos` INT NOT NULL,
+  `Nome` VARCHAR(45) NOT NULL,
+  `Data_inicio` DATE NOT NULL,
+  `Descrição` VARCHAR(400) NOT NULL,
+  `Data_fim` DATE NOT NULL,
+  `Valor` INT NOT NULL,
+  `EMPRESA_CNPJ` INT NOT NULL,
+  `Tag` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`ID_Projetos`),
+  INDEX `fk_PROJETOS_EMPRESA1_idx` (`EMPRESA_CNPJ` ASC) VISIBLE,
+  CONSTRAINT `fk_PROJETOS_EMPRESA1`
+    FOREIGN KEY (`EMPRESA_CNPJ`)
+    REFERENCES `mydb`.`EMPRESA` (`ID_empresa`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`COMENTARIOS`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`COMENTARIOS` (
+  `ID_Comentarios` INT NOT NULL,
+  `Comentario` VARCHAR(200) NOT NULL,
+  `Reputação` INT NOT NULL,
+  `Likes` INT NOT NULL,
+  `Data` DATE NOT NULL,
+  `PROJETOS_ID_Projetos` INT NOT NULL,
+  `USUARIO_ID_Usuario` INT NOT NULL,
+  PRIMARY KEY (`ID_Comentarios`),
+  INDEX `fk_COMENTARIOS_PROJETOS1_idx` (`PROJETOS_ID_Projetos` ASC) VISIBLE,
+  INDEX `fk_COMENTARIOS_USUARIO1_idx` (`USUARIO_ID_Usuario` ASC) VISIBLE,
+  CONSTRAINT `fk_COMENTARIOS_PROJETOS1`
+    FOREIGN KEY (`PROJETOS_ID_Projetos`)
+    REFERENCES `mydb`.`PROJETOS` (`ID_Projetos`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_COMENTARIOS_USUARIO1`
+    FOREIGN KEY (`USUARIO_ID_Usuario`)
+    REFERENCES `mydb`.`USUARIO` (`ID_Usuario`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+
+
+
+
+
