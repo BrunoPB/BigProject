@@ -1,12 +1,11 @@
 package Comentarios;
 
-public class Comentarios {
+class AlocaComentarios {
 	private int idComentario;
 	private int Ganhador;
 	private String Comentario;
 	private int likes;
 	private String dataComentario;
-	/* fim comentarios */
 
 	public int getIdComentario() {
 		return idComentario;
@@ -47,6 +46,10 @@ public class Comentarios {
 	public void setDataComentario(String dataComentario) {
 		this.dataComentario = dataComentario;
 	}
+}
+
+public class Comentarios {
+
 }
 /*
  * comentarios projeto usuario like vencedor

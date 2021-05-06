@@ -1,5 +1,7 @@
 package Usuario;
 
+import Classe.BigProjectA;
+
 class PegarInformacoes {
 	private int idUsuario;
 	private String senhaUsuario;
@@ -60,5 +62,11 @@ class PegarInformacoes {
 }
 
 public class Usuario {
+	public static void main(String[] args) {
+		
+		BigProjectA vai= new BigProjectA();
+		vai.conectarPost();
+		vai.pegarUsuario();
+	}
 
 }

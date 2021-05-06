@@ -38,6 +38,7 @@ class AlocarEmpresa {
 	public void setSenhaEmpresa(String senhaEmpresa) {
 		this.senhaEmpresa = senhaEmpresa;
 	}
+	
 }
 
 public class Empresa {
