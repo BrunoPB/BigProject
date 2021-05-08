@@ -2,14 +2,31 @@ package Usuario;
 
 import Classe.BigProjectA;
 
-class PegarInformacoes {
+public class Usuario {
 	private int idUsuario;
+	private String nome;
 	private String senhaUsuario;
 	private String eMailUsuario;
 	private int reputacaoUsuario;
 	private String curriculoUsuario;
 	private String tagUsuario; // creio que seria melhor fazer uma lista
 	/* Fim usuario */
+
+	public Usuario(int id, String nome, String senha, String email, int reputacao) {
+		this.idUsuario = id;
+		this.nome = nome;
+		this.senhaUsuario = senha;
+		this.eMailUsuario = email;
+		this.reputacaoUsuario = reputacao;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getNome() {
+		return nome;
+	}
 
 	public int getIdUsuario() {
 		return idUsuario;
@@ -59,14 +76,15 @@ class PegarInformacoes {
 		this.tagUsuario = tagUsuario;
 	}
 
-}
-
-public class Usuario {
 	public static void main(String[] args) {
-		
-		BigProjectA vai= new BigProjectA();
-		vai.conectarPost();
-		vai.pegarUsuario();
+		Usuario eric = new Usuario(1, "davi", "456", "quebec@yahoo.com", 4);
+
+		BigProjectA vai = new BigProjectA();
+		vai.conectarPost(); // para conectar 
+		// vai.pegarUsuario(); // para pugar o usuario
+		//vai.inserirUsuario(eric); // colocar um usuario
+		//vai.atualizarUsuario(eric); // mudar usuario
+
 	}
 
 }
