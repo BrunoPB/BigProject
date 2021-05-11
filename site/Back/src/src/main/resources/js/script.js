@@ -2,13 +2,13 @@
 
 //FUNÇÃO PARA RETORNAR A HOMEPAGE
 function Home() {
-    window.location.href = "/home.html";
+    window.location.href = "/";
 }
 
 
 //FUNÇÃO PARA IR A TELA DE LOGIN
 function Login() {
-    window.location.href = "/login.html";
+    window.location.href = "/login";
 }
 
 
@@ -18,20 +18,20 @@ function Login() {
 
 //FUNÇÃO PARA IR A TELA DE MYPROJECTS
 function MyProjects() {
-    window.location.href = "/myprojects.html";
+    window.location.href = "/myprojects";
 }
 
 
 //FUNÇÃO PARA IR A TELA DE CREATION
 function Creation() {
-    window.location.href = "/creation.html";
+    window.location.href = "/creation";
 }
 
 
 //FUNÇÃO PARA IR A TELA DO PROJETO
 function Project( /*let x*/ ) {
     //Por enquanto temos apenas um projeto place holder, portanto, a variável x não será utilizada    
-    window.location.href = "/project.html";
+    window.location.href = "/project";
 }
 
 
@@ -41,7 +41,7 @@ function Project( /*let x*/ ) {
 
 //FUNÇÃO PARA IR A TELA DE REGISTER
 function Register() {
-    window.location.href = "/register.html";
+    window.location.href = "/register";
 }
 
 
@@ -167,7 +167,17 @@ function ShowComment() {
 
 //-----------FUNÇÕES DA TELA MYPROJECTS--------------
 
+ function Testar(){
+        //event.preventDefault();
+        console.log("ola");
+        var pegar= window.document.getElementById("teste").value;
+        var init={
+           method:'GET'
+        };
+        fetch(`http://localhost:4567/pesquisa?query=${pegar}`,init);
+      
 
+ }
 
 
 

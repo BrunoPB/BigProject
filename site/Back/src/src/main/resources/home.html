@@ -16,9 +16,9 @@
             <img class="logo-image" src="./imgs/BigProject-logo.png">
         </button>
         <!--Barra de pesquisa-->
-        <form class="search-form" method="POST">
-            <input class="search-input" type="text" placeholder="Pesquisar">
-            <button class="search-button" type="submit">
+        <form class="search-form" >
+            <input id="teste" class="search-input" type="text" placeholder="Pesquisar" name="email">
+            <button class="search-button"  onclick="Testar()" type="button">
                 <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24">
                     <path
                         d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
@@ -46,28 +46,28 @@
     <main>
         <!--Projetos-->
         <button type="button" class="project-section psa" onclick="Project()">
-            <img src="./imgs/MobyWhale-main.jpg">
+            <img src="/imgs/MobyWhale-main.jpg">
             <div class="project-text">
                 <h1>Moby Whale</h1>
                 <h2>Living Sean</h2>
             </div>
         </button>
         <button class="project-section">
-            <img src="./imgs/IntelliBackpack.jpg">
+            <img src="/imgs/IntelliBackpack.jpg">
             <div class="project-text">
                 <h1>IntelliBackpack</h1>
                 <h2>Johnsons</h2>
             </div>
         </button>
         <button class="project-section">
-            <img src="./imgs/AmazonGo.jpg">
+            <img src="/imgs/AmazonGo.jpg">
             <div class="project-text">
                 <h1>Amazon Go</h1>
                 <h2>Amazon</h2>
             </div>
         </button>
         <button class="project-section">
-            <img src="./imgs/SuperGadget.jpg">
+            <img src="/imgs/SuperGadget.jpg">
             <div class="project-text">
                 <h1>SA.Gadget</h1>
                 <h2>Sonos</h2>
@@ -359,6 +359,7 @@ nav button h3 {
     }
 }
     </style>
+    
     
 </body>
 

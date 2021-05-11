@@ -1,16 +1,15 @@
 package Empresa;
 
+
+
 import static spark.Spark.*;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
-
 import Classe.BigProjectA;
 
 public class Empresa {
@@ -71,9 +70,26 @@ public class Empresa {
 	}
 
 	public static void main(String[] args) {
-		
+		staticFiles.location("src/main/resources");
 		 Teste oia = new Teste();
-		 get("/site", (req, res) -> oia.renderContent("home.html"));
+		 get("/", (req, res) -> oia.renderContent("/home.html")); // funcionando
+		 get("/login", (req, res) -> oia.renderContent("/login.html"));//funcionando
+		 get("/register", (req, res) -> oia.renderContent("/register.html")); // funcionando
+		 get("/myprojects", (req, res) -> oia.renderContent("/myprojects.html")); // funcionando
+		 get("/creation", (req, res) -> oia.renderContent("/creation.html")); // funcionando
+		 get("/project", (req, res) -> oia.renderContent("/project.html"));// funcionando	
+		 get("/mycomments", (req, res) -> oia.renderContent("/mycomments.html"));//funcionando
+
+			 
+		 get("/pesquisa",(req,res)->{ 
+				System.out.println("ola22");
+			 String pegar="";
+			System.out.println(  pegar=req.queryParams("query"));
+			 return 200;
+		 } );
+		 
+		//String pegarT = oia.getParameter("nome");
+		// System.out.println(doPost(site));
 		Scanner ler = new Scanner(System.in);
 		BigProjectA conectar = new BigProjectA();
 		conectar.conectarPost(); // para conectar
@@ -109,6 +125,9 @@ public class Empresa {
 		get("/empresa1", (request, response) -> empresaPhpAdmin.toString());
 
 	}
+	
+	
+
 
 }
 
@@ -119,6 +138,7 @@ class Teste {
 				StandardCharsets.UTF_8);
 	}
 }
+
 
 /*
  * id/empresa senha projetos dinheiro
