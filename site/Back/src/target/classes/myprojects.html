@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>BigProject - Meus projetos</title>
+    <script type="text/javascript" src="./js/script.js"></script>
+    <link href="css/myprojects.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <!--CABEÇALHO-->
+    <header>
+        <!--Logo-->
+        <button class="logo-button" type="button" onclick="Home()">
+            <img class="logo-image" src="./imgs/BigProject-logo.png">
+        </button>
+        <!--Barra de pesquisa-->
+        <form class="search-form" method="POST">
+            <input class="search-input" type="text" placeholder="Pesquisar">
+            <button class="search-button" type="submit">
+                <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24">
+                    <path
+                        d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
+                </svg>
+            </button>
+        </form>
+        <!--Icone de usuário-->
+        <button class="user-button" type="button" onclick="Login()">
+            <svg class="user-icon" width="20" height="20" viewBox="0 0 20 20">
+                <path
+                    d="M12.075,10.812c1.358-0.853,2.242-2.507,2.242-4.037c0-2.181-1.795-4.618-4.198-4.618S5.921,4.594,5.921,6.775c0,1.53,0.884,3.185,2.242,4.037c-3.222,0.865-5.6,3.807-5.6,7.298c0,0.23,0.189,0.42,0.42,0.42h14.273c0.23,0,0.42-0.189,0.42-0.42C17.676,14.619,15.297,11.677,12.075,10.812 M6.761,6.775c0-2.162,1.773-3.778,3.358-3.778s3.359,1.616,3.359,3.778c0,2.162-1.774,3.778-3.359,3.778S6.761,8.937,6.761,6.775 M3.415,17.69c0.218-3.51,3.142-6.297,6.704-6.297c3.562,0,6.486,2.787,6.705,6.297H3.415z">
+                </path>
+            </svg>
+        </button>
+    </header>
+    <main>
+        <!--MEUS PROJETOS-->
+        <nav>
+            <!--Título-->
+            <h1>Meus Projetos</h1>
+            <!--Projetos-->
+            <div class="projects-div">
+                <!--Projeto 1-->
+                <button class="project-button">
+                    <img class="project-image" src="./imgs/MobyWhale-main.jpg">
+                    <p class="project-name">Moby Whale</p>
+                </button>
+                <!--Projeto 2-->
+                <button class="project-button">
+                    <img class="project-image" src="./imgs/MobyWhale-main.jpg">
+                    <p class="project-name">Moby Whale</p>
+                </button>
+                <!--Projeto 3-->
+                <button class="project-button">
+                    <img class="project-image" src="./imgs/MobyWhale-main.jpg">
+                    <p class="project-name">Moby Whale</p>
+                </button>
+                <!--Projeto 4-->
+                <button class="project-button">
+                    <img class="project-image" src="./imgs/MobyWhale-main.jpg">
+                    <p class="project-name">Moby Whale</p>
+                </button>
+            </div>
+        </nav>
+        <!--CONTEÚDO-->
+        <content>
+            <!--Filtro-->
+            <form class="filter-form">
+                <h2 class="filter-text">Filtrar comentários por:</h2>
+                <input class="filter-input" type="text" list="filter-list" placeholder="Escolha um filtro">
+                <datalist id="filter-list">
+                    <option>Qualidade do comentário</option>
+                    <option>Reputação do autor</option>
+                    <option>Qualidade do currículo do autor</option>
+                    <option>Quantidade de curtidas</option>
+                    <option>Data - mais recente</option>
+                    <option>Data - mais antigo</option>
+                    <option>Menor número de caractéres</option>
+                    <option>Maior número de caractéres</option>
+                </datalist>
+                <button class="filter-button" type="button">Filtrar</button>
+            </form>
+            <!--Comentários-->
+            <div class="comments-div">
+                <!--Comentário 1-->
+                <div class="comment">
+                    <div class="comment-text">
+                        <p>
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Numquam explicabo perferendis iure perspiciatis nobis eum maiores quo, esse delectus maxime?
+                        </p>
+                    </div>
+                    <div class="comment-info">
+                        <div class="likes-div">
+                            <button type="button" class="like-button">
+                                <svg width="24" height="24" viewBox="0 0 24 24" class="like-button-svg">
+                                    <path
+                                        d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-1.91l-.01-.01L23 10z">
+                                </svg>
+                                <p class="likes-text">206</p>
+                            </button>
+                        </div>
+                        <a href="#" class="comment-author">Autor X</a>
+                    </div>
+                </div>
+                <!--Comentário 2-->
+                <div class="comment">
+                    <div class="comment-text">
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis voluptas, velit libero optio voluptate consequatur ipsam blanditiis consectetur vero a asperiores veritatis voluptates placeat corporis, doloribus ut magnam quaerat temporibus? Minima, totam
+                            neque voluptas iure placeat velit pariatur excepturi atque?
+                        </p>
+                    </div>
+                    <div class="comment-info">
+                        <div class="likes-div">
+                            <button type="button" class="like-button">
+                                <svg width="24" height="24" viewBox="0 0 24 24" class="like-button-svg">
+                                    <path
+                                        d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-1.91l-.01-.01L23 10z">
+                                </svg>
+                                <p class="likes-text">190</p>
+                            </button>
+                        </div>
+                        <a href="#" class="comment-author">Autor Y</a>
+                    </div>
+                </div>
+                <!--Comentário 3-->
+                <div class="comment">
+                    <div class="comment-text">
+                        <p>
+                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis nihil optio quas est sit amet?
+                        </p>
+                    </div>
+                    <div class="comment-info">
+                        <div class="likes-div">
+                            <button type="button" class="like-button">
+                                <svg width="24" height="24" viewBox="0 0 24 24" class="like-button-svg">
+                                    <path
+                                        d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-1.91l-.01-.01L23 10z">
+                                </svg>
+                                <p class="likes-text">188</p>
+                            </button>
+                        </div>
+                        <a href="#" class="comment-author">Autor Z</a>
+                    </div>
+                </div>
+                <!--Comentário 4-->
+                <div class="comment">
+                    <div class="comment-text">
+                        <p>
+                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum ducimus officia, repudiandae nulla at ipsum deserunt aliquam, modi consectetur nesciunt, vitae sint eos nisi. Vitae, numquam, odio quos tenetur, magnam nemo laboriosam dolores necessitatibus
+                            nobis adipisci illum et quisquam pariatur aliquid ut saepe corporis nesciunt delectus debitis molestiae! Consequuntur reiciendis ipsa unde deserunt, tempore obcaecati cum sint porro alias id eveniet numquam nihil maxime dolore
+                            accusantium quasi modi laboriosam? Aliquid, qui neque.
+                        </p>
+                    </div>
+                    <div class="comment-info">
+                        <div class="likes-div">
+                            <button type="button" class="like-button">
+                                <svg width="24" height="24" viewBox="0 0 24 24" class="like-button-svg">
+                                    <path
+                                        d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-1.91l-.01-.01L23 10z">
+                                </svg>
+                                <p class="likes-text">186</p>
+                            </button>
+                        </div>
+                        <a href="#" class="comment-author">Autor W</a>
+                    </div>
+                </div>
+            </div>
+        </content>
+    </main>
+</body>
+
+</html>
