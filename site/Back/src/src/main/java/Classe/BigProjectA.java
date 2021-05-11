@@ -64,9 +64,10 @@ public class BigProjectA {
 		
 		try {
 			Statement st = conexao.createStatement();
-			st.executeUpdate("INSERT INTO usuario (idusuario,nome,senha,email)" 
+			st.executeUpdate("INSERT INTO usuario (idusuario,nome,senha,email,reputacao,imagem)" 
 					 + "VALUES ("+usuario.getIdUsuario()+ ", '" +  usuario.getNome()+ "', '"  
-				       + usuario.getSenhaUsuario()+ "', '" + usuario.geteMailUsuario() + "');");
+				     + usuario.getSenhaUsuario()+ "', '" + usuario.geteMailUsuario() + "','"
+					 + usuario.getReputacaoUsuario()+ "','"+usuario.getImagem() + "');");
 				
 			
 			st.close();

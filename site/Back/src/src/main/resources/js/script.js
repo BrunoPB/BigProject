@@ -169,7 +169,7 @@ function ShowComment() {
 
  function Testar(){
         //event.preventDefault();
-        console.log("ola");
+        //console.log("ola");
         var pegar= window.document.getElementById("teste").value;
         var init={
            method:'GET'
@@ -180,5 +180,21 @@ function ShowComment() {
  }
 
 
-
+ let i =0;
 //-----------FUNÇÕES DA TELA MYCOMMENTS---------------
+
+function registroUsuario(){
+    
+    var nomeUsuarioP=window.document.getElementById("user-input").value; 
+    var senhaUsuarioP=window.document.getElementById("password-input").value;
+    var emailUsuarioP=window.document.getElementById("email-input").value;
+    var tegUsuarioP=window.document.getElementById("tag-input").value;
+    //console.log(tegUsuarioP);
+    var fileUsuario=window.document.getElementById("fileUsuario").value;
+    i++;
+   var fazer={
+    method:'GET'
+   };
+   fetch(`http://localhost:4567/mandarRe?query=${nomeUsuarioP},${senhaUsuarioP},${emailUsuarioP},${tegUsuarioP},${fileUsuario},${i}`,fazer);
+
+}

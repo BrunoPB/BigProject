@@ -19,12 +19,12 @@
         <!--Nome de Usuário-->
         <div class="user-div rdiv">
             <label class="user-label" for="user-input">Nome de Usuário</label>
-            <input class="user-input" id="user-input" type="text" required>
+            <input  class="user-input" id="user-input" type="text" required>
         </div>
         <!--Senha-->
         <div class="password-div rdiv">
             <label class="password-label" for="password-input">Senha</label>
-            <input class="password-input" id="password-input" type="password" required>
+            <input  class="password-input" id="password-input" type="password" required>
         </div>
         <!--Confirmação de Senha-->
         <div class="c-password-div rdiv">
@@ -33,7 +33,7 @@
         </div>
         <!--Email-->
         <div class="email-div rdiv">
-            <label class="email-label" for="email-input">Email</label>
+            <label  class="email-label" for="email-input">Email</label>
             <input class="email-input" id="email-input" type="email" required>
         </div>
         <!--Opção de ser pessoal-->
@@ -49,7 +49,7 @@
         <!--Tag-->
         <div class="tag-div rdiv" id="tag-div">
             <label class="tag-label" for="tag-input">Escolha uma Tag</label>
-            <input class="tag-input" id="tag-input" type="text" list="tag-list" required>
+            <input  class="tag-input" id="tag-input" type="text" list="tag-list" required>
             <datalist id="tag-list">
                 <option>Administração</option>
                 <option>Engenharia</option>
@@ -62,11 +62,11 @@
         <!--Comprovante-->
         <div class="comprovante-div rdiv" id="comprovante-div">
             <label class="comprovante-label" for="comprovante-input" id="comprovante-label"></label>
-            <input class="comprovante-input" id="comprovante-input" type="file">
+            <input id="fileUsuario" class="comprovante-input" id="comprovante-input" type="file">
         </div>
         <!--Registrar-->
         <div class="register-div">
-            <button class="register-button" type="submit">Registrar</button>
+            <button class="register-button"  onclick="registroUsuario()">Registrar</button>
         </div>
     </form>
 </body>
