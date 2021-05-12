@@ -1,14 +1,34 @@
-//-----------FUNÇÕES GERAIS-------------------
+//-----------FUNÇÕES DE NAVEGAÇÃO-------------------
 
 //FUNÇÃO PARA RETORNAR A HOMEPAGE
 function Home() {
     window.location.href = "/";
 }
 
-
 //FUNÇÃO PARA IR A TELA DE LOGIN
 function Login() {
     window.location.href = "/login";
+}
+
+//FUNÇÃO PARA IR A TELA DE MYPROJECTS
+function MyProjects() {
+    window.location.href = "/myprojects";
+}
+
+//FUNÇÃO PARA IR A TELA DE CREATION
+function Creation() {
+    window.location.href = "/creation";
+}
+
+//FUNÇÃO PARA IR A TELA DO PROJETO
+function Project( /*let x*/ ) {
+    //Por enquanto temos apenas um projeto place holder, portanto, a variável x não será utilizada    
+    window.location.href = "/project";
+}
+
+//FUNÇÃO PARA IR A TELA DE REGISTER
+function Register() {
+    window.location.href = "/register";
 }
 
 
@@ -16,33 +36,14 @@ function Login() {
 //----------FUNÇÕES DA TELA HOME-----------------
 
 
-//FUNÇÃO PARA IR A TELA DE MYPROJECTS
-function MyProjects() {
-    window.location.href = "/myprojects";
-}
 
-
-//FUNÇÃO PARA IR A TELA DE CREATION
-function Creation() {
-    window.location.href = "/creation";
-}
-
-
-//FUNÇÃO PARA IR A TELA DO PROJETO
-function Project( /*let x*/) {
-    //Por enquanto temos apenas um projeto place holder, portanto, a variável x não será utilizada    
-    window.location.href = "/project";
-}
 
 
 
 //---------FUNÇÕES DA TELA LOGIN-----------------
 
 
-//FUNÇÃO PARA IR A TELA DE REGISTER
-function Register() {
-    window.location.href = "/register";
-}
+
 
 
 
@@ -158,6 +159,96 @@ function tagChecked(tag) {
     }
 }
 
+//FUNÇÃO QUE TESTA SE O REGISTRO É VÁLIDO
+function validRegister() {
+    let valid = true;
+    //Campos
+    let nome = document.getElementById("user-input").value;
+    let senha = document.getElementById("password-input").value;
+    let cSenha = document.getElementById("c-password-input").value;
+    let email = document.getElementById("email-input").value;
+    let personal = document.getElementById("personal-input").checked;
+    let business = document.getElementById("business-input").checked;
+    let comprovante = document.getElementById("comprovante-input").value;
+
+    //Assegurando que todos os campos foram preenchidos
+    if (nome === "" || senha === "" || cSenha === "" || email === "") {
+        valid = false;
+        alert("Alguns campos não foram preenchidos.");
+        return valid;
+    }
+
+    //Confirmando a senha
+    if (senha !== cSenha) {
+        valid = false;
+        alert("As senhas não coincidem.");
+        return valid;
+    }
+
+    //Assegurando que o tipo de conta foi selecionado
+    if (!personal && !business) {
+        valid = false;
+        alert("Por favor, informe se sua conta será pessoal ou empresarial.");
+        return valid;
+    }
+
+    //Assegurando que há comprovante de existência na conta empresarial
+    if (business && comprovante === "") {
+        valid = false;
+        alert("É necessária a anexação do comprovante de existência.");
+        return valid;
+    }
+
+    return valid;
+}
+
+//FUNÇÃO PARA REGISTRAR O USUÁRIO NO BANCO DE DADOS
+function registroUsuario() {
+    if (validRegister()) {
+        let personal = document.getElementById("personal-input");
+        let business = document.getElementById("business-input");
+        let nome = document.getElementById("user-input").value;
+        let senha = document.getElementById("password-input").value;
+        let email = document.getElementById("email-input").value;
+        let file = document.getElementById("comprovante-input").value;
+
+        if (personal.checked) {
+            let tag;
+            let adm = document.getElementById("adm-input");
+            let eng = document.getElementById("eng-input");
+            let ent = document.getElementById("ent-input");
+            let sau = document.getElementById("sau-input");
+            let tec = document.getElementById("tec-input");
+            let out = document.getElementById("out-input");
+            if (adm.checked) {
+                tagUsuario = "adm";
+            } else if (eng.checked) {
+                tagUsuario = "eng";
+            } else if (ent.checked) {
+                tagUsuario = "ent";
+            } else if (sau.checked) {
+                tagUsuario = "sau";
+            } else if (tec.checked) {
+                tagUsuario = "tec";
+            } else {
+                tagUsuario = "out";
+            }
+
+            i++;
+            var fazer = {
+                method: 'GET'
+            };
+            fetch(`http://localhost:4567/mandarRe?query=${nome},${senha},${email},${file},${tag},${i}`, fazer);
+        } else if (business.checked) {
+            e++;
+            var fazer = {
+                method: 'GET'
+            };
+            fetch(`http://localhost:4567/empresaRe?query=${nome},${senha},${email},${file},${e}`, fazer);
+        }
+    }
+}
+
 
 //---------FUNÇÕES DA TELA CREATION-----------------
 
@@ -230,6 +321,24 @@ function ShowComment() {
 
 //-----------FUNÇÕES DA TELA MYPROJECTS--------------
 
+
+
+
+
+
+//-----------FUNÇÕES DA TELA MYCOMMENTS---------------
+
+
+
+
+
+
+
+
+
+
+//---------------------FUNÇÕES E VARIÁVEIS DE TESTE----------------------
+
 function Testar() {
     //event.preventDefault();
     //console.log("ola");
@@ -242,72 +351,5 @@ function Testar() {
 
 }
 
-
 let i = 0;
-let e =0;
-//-----------FUNÇÕES DA TELA MYCOMMENTS---------------
-
-
-
-
-function registroUsuario() {
-    let personal = document.getElementById("personal-input");
-    let business = document.getElementById("business-input");
-
-    if (personal.checked) {
-        var nomeUsuarioP = window.document.getElementById("user-input").value;
-        var senhaUsuarioP = window.document.getElementById("password-input").value;
-        var emailUsuarioP = window.document.getElementById("email-input").value;
-        var fileUsuario = window.document.getElementById("fileUsuario").value;
-
-        let adm = document.getElementById("adm-input");
-        let eng = document.getElementById("eng-input");
-        let ent = document.getElementById("ent-input");
-        let sau = document.getElementById("sau-input");
-        let tec = document.getElementById("tec-input");
-        let out = document.getElementById("out-input");
-
-        let tagUsuario;
-        if (adm.checked) {
-            tagUsuario = "adm";
-        }
-        else if (eng.checked) {
-            tagUsuario = "eng";
-        }
-        else if (ent.checked) {
-            tagUsuario = "ent";
-        }
-        else if (sau.checked) {
-            tagUsuario = "sau";
-        }
-        else if (tec.checked) {
-            tagUsuario = "tec";
-        }
-        else {
-            tagUsuario = "out"
-        }
-
-        i++;
-        var fazer = {
-            method: 'GET'
-        };
-        fetch(`http://localhost:4567/mandarRe?query=${nomeUsuarioP},${senhaUsuarioP},${emailUsuarioP},${fileUsuario},${tagUsuario},${i}`, fazer);
-
-    }
-    else if(business.checked){
-        var nomeEmpresa = window.document.getElementById("user-input").value;
-        var senhaEmpresa = window.document.getElementById("password-input").value;
-        var emailEMpresa = window.document.getElementById("email-input").value;
-        var fileEmpresa = window.document.getElementById("fileUsuario").value;
-        e++;
-        var fazer = {
-            method: 'GET'
-        };
-        fetch(`http://localhost:4567/empresaRe?query=${nomeEmpresa},${senhaEmpresa},${emailEMpresa},${fileEmpresa},${e}`, fazer);
-
-    }
-
-
-}
-
-
+let e = 0;
