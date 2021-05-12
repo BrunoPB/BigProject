@@ -19,12 +19,12 @@
         <!--Nome de Usuário-->
         <div class="user-div rdiv">
             <label class="user-label" for="user-input">Nome de Usuário</label>
-            <input  class="user-input" id="user-input" type="text" required>
+            <input class="user-input" id="user-input" type="text" required>
         </div>
         <!--Senha-->
         <div class="password-div rdiv">
             <label class="password-label" for="password-input">Senha</label>
-            <input  class="password-input" id="password-input" type="password" required>
+            <input class="password-input" id="password-input" type="password" required>
         </div>
         <!--Confirmação de Senha-->
         <div class="c-password-div rdiv">
@@ -33,7 +33,7 @@
         </div>
         <!--Email-->
         <div class="email-div rdiv">
-            <label  class="email-label" for="email-input">Email</label>
+            <label class="email-label" for="email-input">Email</label>
             <input class="email-input" id="email-input" type="email" required>
         </div>
         <!--Opção de ser pessoal-->
@@ -48,7 +48,7 @@
         </div>
         <!--Tag-->
         <div class="tag-div rdiv" id="tag-div">
-            <label class="tag-label" for="tag-input">Escolha uma Tag</label>
+            <!-- <label class="tag-label" for="tag-input">Escolha uma Tag</label>
             <input  class="tag-input" id="tag-input" type="text" list="tag-list" required>
             <datalist id="tag-list">
                 <option>Administração</option>
@@ -57,7 +57,22 @@
                 <option>Saúde</option>
                 <option>Tecnologia</option>
                 <option>Outro</option>
-            </datalist>
+            </datalist> -->
+            <h2 class="tag-title">Selecione uma Tag</h2>
+            <div class="tag-input-div">
+                <input class="adm-input taginput" id="adm-input" type="checkbox" onclick="tagChecked('adm')">
+                <label class="adm-label taglabel" for="adm-input">Administração</label>
+                <input class="eng-input taginput" id="eng-input" type="checkbox" onclick="tagChecked('eng')">
+                <label class="eng-label taglabel" for="eng-input">Engenharia</label>
+                <input class="ent-input taginput" id="ent-input" type="checkbox" onclick="tagChecked('ent')">
+                <label class="ent-label taglabel" for="ent-input">Entretenimento</label>
+                <input class="sau-input taginput" id="sau-input" type="checkbox" onclick="tagChecked('sau')">
+                <label class="sau-label taglabel" for="sau-input">Saúde</label>
+                <input class="tec-input taginput" id="tec-input" type="checkbox" onclick="tagChecked('tec')">
+                <label class="tec-label taglabel" for="tec-input">Tecnologia</label>
+                <input class="out-input taginput" id="out-input" type="checkbox" onclick="tagChecked('out')" checked>
+                <label class="out-label taglabel" for="out-input">Outro</label>
+            </div>
         </div>
         <!--Comprovante-->
         <div class="comprovante-div rdiv" id="comprovante-div">
@@ -66,7 +81,7 @@
         </div>
         <!--Registrar-->
         <div class="register-div">
-            <button class="register-button"  onclick="registroUsuario()">Registrar</button>
+            <button class="register-button" onclick="registroUsuario()">Registrar</button>
         </div>
     </form>
 </body>

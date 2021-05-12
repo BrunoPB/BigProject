@@ -89,6 +89,35 @@ h1 {
     margin-right: 6px;
 }
 
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+.tag-div,
+.comprovante-div {
+    display: none;
+}
+
+.tag-title {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.tag-input-div {
+    width: 100%;
+    display: grid;
+    grid-template: repeat(2, 1fr) / repeat(6, 1fr);
+    row-gap: 10px;
+    align-items: center;
+}
+
+.taglabel {
+    margin-right: 100px;
+}
+
+
+/*BOTÃO DE REGISTRAR*/
+
 .register-div {
     margin: 30px 0;
 }
@@ -102,13 +131,4 @@ h1 {
     color: white;
     font-size: 20px;
     font-weight: bolder;
-}
-
-input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-}
-
-.tag-div,
-.comprovante-div {
-    display: none;
 }
