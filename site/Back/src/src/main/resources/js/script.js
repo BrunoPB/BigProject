@@ -95,6 +95,64 @@ function isBusiness() {
     }
 }
 
+//FUNÇÃO PARA DESMARCAR OUTRAS OPÇÕES DE TAG QUANDO UMA FOR MARCADA
+function tagChecked(tag) {
+    let adm = document.getElementById("adm-input");
+    let eng = document.getElementById("eng-input");
+    let ent = document.getElementById("ent-input");
+    let sau = document.getElementById("sau-input");
+    let tec = document.getElementById("tec-input");
+    let out = document.getElementById("out-input");
+
+    switch (tag) {
+        case "adm":
+            eng.checked = false;
+            ent.checked = false;
+            sau.checked = false;
+            tec.checked = false;
+            out.checked = false;
+            break;
+        case "eng":
+            adm.checked = false;
+            ent.checked = false;
+            sau.checked = false;
+            tec.checked = false;
+            out.checked = false;
+            break;
+        case "ent":
+            eng.checked = false;
+            adm.checked = false;
+            sau.checked = false;
+            tec.checked = false;
+            out.checked = false;
+            break;
+        case "sau":
+            eng.checked = false;
+            ent.checked = false;
+            adm.checked = false;
+            tec.checked = false;
+            out.checked = false;
+            break;
+        case "tec":
+            eng.checked = false;
+            ent.checked = false;
+            sau.checked = false;
+            adm.checked = false;
+            out.checked = false;
+            break;
+        case "out":
+            eng.checked = false;
+            ent.checked = false;
+            sau.checked = false;
+            tec.checked = false;
+            adm.checked = false;
+            break;
+        default:
+            console.log("Error - Tag checking");
+            break;
+    }
+}
+
 
 //---------FUNÇÕES DA TELA CREATION-----------------
 
@@ -167,34 +225,34 @@ function ShowComment() {
 
 //-----------FUNÇÕES DA TELA MYPROJECTS--------------
 
- function Testar(){
-        //event.preventDefault();
-        //console.log("ola");
-        var pegar= window.document.getElementById("teste").value;
-        var init={
-           method:'GET'
-        };
-        fetch(`http://localhost:4567/pesquisa?query=${pegar}`,init);
-      
-
- }
+function Testar() {
+    //event.preventDefault();
+    //console.log("ola");
+    var pegar = window.document.getElementById("teste").value;
+    var init = {
+        method: 'GET'
+    };
+    fetch(`http://localhost:4567/pesquisa?query=${pegar}`, init);
 
 
- let i =0;
+}
+
+
+let i = 0;
 //-----------FUNÇÕES DA TELA MYCOMMENTS---------------
 
-function registroUsuario(){
-    
-    var nomeUsuarioP=window.document.getElementById("user-input").value; 
-    var senhaUsuarioP=window.document.getElementById("password-input").value;
-    var emailUsuarioP=window.document.getElementById("email-input").value;
-    var tegUsuarioP=window.document.getElementById("tag-input").value;
+function registroUsuario() {
+
+    var nomeUsuarioP = window.document.getElementById("user-input").value;
+    var senhaUsuarioP = window.document.getElementById("password-input").value;
+    var emailUsuarioP = window.document.getElementById("email-input").value;
+    var tegUsuarioP = window.document.getElementById("tag-input").value;
     //console.log(tegUsuarioP);
-    var fileUsuario=window.document.getElementById("fileUsuario").value;
+    var fileUsuario = window.document.getElementById("fileUsuario").value;
     i++;
-   var fazer={
-    method:'GET'
-   };
-   fetch(`http://localhost:4567/mandarRe?query=${nomeUsuarioP},${senhaUsuarioP},${emailUsuarioP},${tegUsuarioP},${fileUsuario},${i}`,fazer);
+    var fazer = {
+        method: 'GET'
+    };
+    fetch(`http://localhost:4567/mandarRe?query=${nomeUsuarioP},${senhaUsuarioP},${emailUsuarioP},${tegUsuarioP},${fileUsuario},${i}`, fazer);
 
 }
