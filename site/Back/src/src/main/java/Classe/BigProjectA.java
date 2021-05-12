@@ -10,10 +10,8 @@ import Pojetos.Projetos;
 import Usuario.Usuario;
 
 public class BigProjectA {
-	
-	private Connection conexao;
 
-	
+	private Connection conexao;
 
 	public boolean conectarPost() {
 		String driverName = "org.postgresql.Driver";
@@ -29,7 +27,7 @@ public class BigProjectA {
 			Class.forName(driverName);
 			conexao = DriverManager.getConnection(url, username, password);
 			status = (conexao == null);
-			System.out.println("Conexão efetuada com o postgres!");
+			System.out.println("Conexão com postgres!");
 		} catch (ClassNotFoundException e) {
 			System.err.println("Conexão NÃO efetuada com o postgres -- Driver não encontrado -- " + e.getMessage());
 		} catch (SQLException e) {
@@ -40,6 +38,8 @@ public class BigProjectA {
 
 	}
 //-------------------------------------------------------------------------------------------------------------
+
+	// retorna todos os usuarios presentes no bd
 	public void pegarUsuario() {
 
 		try {
@@ -59,17 +59,17 @@ public class BigProjectA {
 
 	}
 
+	// coloca um usuario no bd
 	public void inserirUsuario(Usuario usuario) {
 		boolean saberVerdade = false;
-		
+
 		try {
 			Statement st = conexao.createStatement();
-			st.executeUpdate("INSERT INTO usuario (idusuario,nome,senha,email,reputacao,imagem)" 
-					 + "VALUES ("+usuario.getIdUsuario()+ ", '" +  usuario.getNome()+ "', '"  
-				     + usuario.getSenhaUsuario()+ "', '" + usuario.geteMailUsuario() + "','"
-					 + usuario.getReputacaoUsuario()+ "','"+usuario.getImagem() + "');");
-				
-			
+			st.executeUpdate("INSERT INTO usuario (idusuario,nome,senha,email,reputacao,imagem)" + "VALUES ("
+					+ usuario.getIdUsuario() + ", '" + usuario.getNome() + "', '" + usuario.getSenhaUsuario() + "', '"
+					+ usuario.geteMailUsuario() + "','" + usuario.getReputacaoUsuario() + "','" + usuario.getImagem()
+					+ "');");
+
 			st.close();
 			saberVerdade = true;
 		} catch (SQLException u) {
@@ -77,24 +77,26 @@ public class BigProjectA {
 		}
 
 	}
-	
+
+	// atualiza o usuario determinado
 	public boolean atualizarUsuario(Usuario usuario) {
 		boolean status = false;
-		try {  
+		try {
 			Statement st = conexao.createStatement();
-			String sql = "UPDATE usuario SET email = '" + usuario.geteMailUsuario() + "', nome = '"  
-				       + usuario.getNome() + "', senha = '" + usuario.getSenhaUsuario() + "'"
-					   + " WHERE idusuario = " + usuario.getIdUsuario();
+			String sql = "UPDATE usuario SET email = '" + usuario.geteMailUsuario() + "', nome = '" + usuario.getNome()
+					+ "', senha = '" + usuario.getSenhaUsuario() + "'" + " WHERE idusuario = " + usuario.getIdUsuario();
 			st.executeUpdate(sql);
 			st.close();
 			status = true;
-		} catch (SQLException u) {  
+		} catch (SQLException u) {
 			throw new RuntimeException(u);
 		}
 		return status;
 	}
-   /* Fim Usuario  */ 
+	/* Fim Usuario */
 //-------------------------------------------------------------------------------------------------------------------	
+
+	// pega todos os ids de projetos
 	public void pegarProjeto() {
 
 		try {
@@ -113,16 +115,17 @@ public class BigProjectA {
 		}
 
 	}
+
+	// coloca uma novo projeto no BD
 	public void inserirProjeto(Projetos projeto) {
 		boolean saberVerdade = false;
-		
+
 		try {
 			Statement st = conexao.createStatement();
-			st.executeUpdate("INSERT INTO projetos (idprojeto,nome,datainicio,datafim)" 
-					 + "VALUES ("+ projeto.getIdProjeto()+ ", '" +  projeto.getNomeProjeto()+ "', '"  
-				       + projeto.getDataInicio()+ "', '" + projeto.getDataFim()+ "');");
-				
-			
+			st.executeUpdate("INSERT INTO projetos (idprojeto,nome,datainicio,datafim)" + "VALUES ("
+					+ projeto.getIdProjeto() + ", '" + projeto.getNomeProjeto() + "', '" + projeto.getDataInicio()
+					+ "', '" + projeto.getDataFim() + "');");
+
 			st.close();
 			saberVerdade = true;
 		} catch (SQLException u) {
@@ -130,35 +133,21 @@ public class BigProjectA {
 		}
 
 	}
-	
-	public boolean atualizarProjeto(Projetos projeto) {
-		boolean status = false;
-		try {  
-			Statement st = conexao.createStatement();
-			String sql = "UPDATE projetos SET descricao = '" + projeto.getDescricaoPojeto() + "', nome = '"  
-				       + projeto.getNomeProjeto() + "', valor = '" + projeto.getValorProjeto() + "'"
-					   + " WHERE idprojeto = " + projeto.getIdProjeto();
-			st.executeUpdate(sql);
-			st.close();
-			status = true;
-		} catch (SQLException u) {  
-			throw new RuntimeException(u);
-		}
-		return status;
-	}
-/* fim  Projetos */
+
+	/* fim Projetos */
 //--------------------------------------------------------------------------------------------------------------------
+	// retorna todos os elementos presentes na empresa
 	public Empresa pegarEmpresa() {
 		Empresa pegar = new Empresa();
 		try {
 			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 			ResultSet rs = st.executeQuery("SELECT * FROM empresa ");
 			if (rs.last()) {
-					pegar.setIdEmpresa(rs.getInt("idempresa"));
-					pegar.setNomeEmpresa(rs.getString("nome"));
-					pegar.seteMailEmpresa(rs.getString("email"));
-					pegar.setSenhaEmpresa(rs.getString("senha"));
-					;
+				pegar.setIdEmpresa(rs.getInt("idempresa"));
+				pegar.setNomeEmpresa(rs.getString("nome"));
+				pegar.seteMailEmpresa(rs.getString("email"));
+				pegar.setSenhaEmpresa(rs.getString("senha"));
+				;
 			}
 			st.close();
 		} catch (Exception e) {
@@ -167,16 +156,17 @@ public class BigProjectA {
 		return pegar;
 
 	}
-	
+
+	// inseri uma nova empresa em nosso BD
 	public void inserirEmpresa(Empresa empresa) {
 		boolean saberVerdade = false;
-		
+
 		try {
 			Statement st = conexao.createStatement();
-			st.executeUpdate("INSERT INTO empresa (idempresa,nome,email,senha)" 
-					 + "VALUES ("+ empresa.getIdEmpresa() + ", '" + empresa.getNomeEmpresa()+ "', '"  
-				       + empresa.geteMailEmpresa()+ "', '" + empresa.getSenhaEmpresa()+ "');");
-							
+			st.executeUpdate("INSERT INTO empresa (idempresa,nome,email,senha)" + "VALUES (" + empresa.getIdEmpresa()
+					+ ", '" + empresa.getNomeEmpresa() + "', '" + empresa.geteMailEmpresa() + "', '"
+					+ empresa.getSenhaEmpresa() + "');");
+
 			st.close();
 			saberVerdade = true;
 		} catch (SQLException u) {
@@ -184,24 +174,66 @@ public class BigProjectA {
 		}
 
 	}
-	
+
+	// atualiza as imformacoes da empresa
 	public boolean atualizarEmpresa(Empresa empresa) {
 		boolean status = false;
-		try {  
+		try {
 			Statement st = conexao.createStatement();
-			String sql = "UPDATE empresa SET email = '" + empresa.geteMailEmpresa() + "', nome = '"  
-				       +  empresa.getNomeEmpresa() + "', senha = '" + empresa.getSenhaEmpresa() + "'"
-					   + " WHERE idempresa = " +  empresa.getIdEmpresa();
+			String sql = "UPDATE empresa SET email = '" + empresa.geteMailEmpresa() + "', nome = '"
+					+ empresa.getNomeEmpresa() + "', senha = '" + empresa.getSenhaEmpresa() + "'"
+					+ " WHERE idempresa = " + empresa.getIdEmpresa();
 			st.executeUpdate(sql);
 			st.close();
 			status = true;
-		} catch (SQLException u) {  
+		} catch (SQLException u) {
 			throw new RuntimeException(u);
 		}
 		return status;
 	}
 	
+// fim Empresa	
+//************************************************************************************************	
+	
+	// pegar todos os comentarios
+	public void pegarComentarios() {
+
+		try {
+			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+			ResultSet rs = st.executeQuery("SELECT * FROM comentarios ");
+			if (rs.next()) {
+				rs.last();
+				rs.beforeFirst();
+				for (int i = 0; rs.next(); i++) {
+					System.out.println(rs.getString("comentario"));
+				}
+			}
+			st.close();
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
+
+	}
+	
+	public void inserirComentario(Comentarios comentario) {
+		boolean saberVerdade = false;
+
+		try {
+			Statement st = conexao.createStatement();
+			st.executeUpdate("INSERT INTO empresa (idcomentario,cometario,likes,data)" + "VALUES (" + comentario. getIdComentario()
+					+ ", '" + comentario.getComentario() + "', '" + comentario.getLikes() + "', '"
+					+ comentario.getDataComentario() + "');");
+
+			st.close();
+			saberVerdade = true;
+		} catch (SQLException u) {
+			throw new RuntimeException(u);
+		}
+
+	}
+
 }
+//****************************************************************************************************
 /*
  * set / gets costrutor clone toString blop ou usar o link como text banco de
  * dados em nuvem

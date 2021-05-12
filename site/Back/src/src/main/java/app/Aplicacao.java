@@ -46,25 +46,46 @@ public class Aplicacao {
 			return 200;
 		});
 		
-		
+		// pegar empresa
 		get("/empresaRe", (req, res) -> {
 
 			String nomeUU = "";
-			//System.out.println(nomeUU = req.queryParams("query"));
-			String[] realocacao = nomeUU.split("/");
+			System.out.println(nomeUU = req.queryParams("query"));
+			String[] realocacao = nomeUU.split(",");
 			Empresa mandarParaPhpAdmin = new Empresa(1, realocacao[0], realocacao[1], realocacao[2]);
 			conectar.inserirEmpresa(mandarParaPhpAdmin);
 			// System.out.println( senhaUU=req.queryParams("query1"));
 			return 200;
 		});
-
 		
+		// pegar projetos
+		get("/projetoGet", (req,res) ->{
+			String getProjeto="";
+			System.out.println(getProjeto = req.queryParams("query"));
+			String [] realocarProjeto=getProjeto.split(",");
+			
+			
+			return 200;
+		});
+		
+		//pegar os comentarios do projeto
+		get("/comentarioGet", (req,res)->{
+			String getComentario="";
+			System.out.println(getComentario = req.queryParams("query"));
+			String [] realocarProjeto=getComentario.split(",");
+			
+			return 200;
+		});
+		
+		
+			
 
 	}
 }
-
+// class para usar a funcao sem static
 class RetornaroFront {
 
+	 // String renderContent fuciona para colocar os html na pagina 
 	public String renderContent(String htmlFile) throws IOException, URISyntaxException {
 		return new String(Files.readAllBytes(Paths.get(getClass().getResource(htmlFile).toURI())),
 				StandardCharsets.UTF_8);

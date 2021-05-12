@@ -140,13 +140,6 @@ public class Empresa {
 }
 
 
-class Teste {
-
-	public String renderContent(String htmlFile) throws IOException, URISyntaxException {
-		return new String(Files.readAllBytes(Paths.get(getClass().getResource(htmlFile).toURI())),
-				StandardCharsets.UTF_8);
-	}
-}
 
 /*
  * id/empresa senha projetos dinheiro

@@ -67,13 +67,7 @@ public class Projetos {
 		this.idProjeto = idProjeto;
 	}
 	
-	public static void main(String[] args) {
-		Projetos eric = new Projetos(3,"barco","um navio bonito","4/07/2020","05/08/2020",300);
-		BigProjectA vai = new BigProjectA();
-		vai.conectarPost(); // para conectar 
-		//vai.inserirProjeto(eric);
-		//vai.atualizarProjeto(eric);
-	}
+
 	
 }
 /*

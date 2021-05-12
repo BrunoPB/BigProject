@@ -9,10 +9,11 @@ public class Usuario {
 	private String eMailUsuario;
 	private int reputacaoUsuario;
 	private String curriculoUsuario;
-	private String tagUsuario; // creio que seria melhor fazer uma lista
+	private String tagUsuario; 
 	private String imagem;
 	/* Fim usuario */
 
+	//contrutor
 	public Usuario(int id, String nome, String senha, String email, int reputacao, String imagem) {
 		this.idUsuario = id;
 		this.nome = nome;
@@ -20,8 +21,6 @@ public class Usuario {
 		this.eMailUsuario = email;
 		this.reputacaoUsuario = reputacao;
 		this.imagem=imagem;
-		
-
 		
 	}
 

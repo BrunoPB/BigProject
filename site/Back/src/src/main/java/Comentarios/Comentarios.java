@@ -1,12 +1,25 @@
 package Comentarios;
 
-class AlocaComentarios {
+
+public class Comentarios {
+
 	private int idComentario;
 	private int Ganhador;
 	private String Comentario;
 	private int likes;
 	private String dataComentario;
 
+	
+	public Comentarios(int idComentario, int ganhador, String comentario, int likes, String dataComentario) {
+		super();
+		this.idComentario = idComentario;
+		this.Ganhador = ganhador;
+		this.Comentario = comentario;
+		this.likes = likes;
+		this.dataComentario = dataComentario;
+	}
+	
+	
 	public int getIdComentario() {
 		return idComentario;
 	}
@@ -48,9 +61,6 @@ class AlocaComentarios {
 	}
 }
 
-public class Comentarios {
-
-}
 /*
  * comentarios projeto usuario like vencedor
  * 
