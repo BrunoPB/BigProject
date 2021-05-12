@@ -72,8 +72,6 @@ function isPersonal() {
         tag.style.display = "none";
         comprovante.style.display = "none";
     }
-
-
 }
 
 //FUNÇÃO PARA APARECER O COMPROVANTE DE EXISTÊNCIA SE A CONTA FOR EMPRESARIAL
@@ -97,8 +95,6 @@ function isBusiness() {
     } else { //Caso o usuário esteja desmarcando a opção de conta empresarial
         comprovante.style.display = "none";
     }
-    foiativadaU = false;
-
 }
 
 //FUNÇÃO PARA DESMARCAR OUTRAS OPÇÕES DE TAG QUANDO UMA FOR MARCADA
@@ -204,6 +200,7 @@ function validRegister() {
 
 //FUNÇÃO PARA REGISTRAR O USUÁRIO NO BANCO DE DADOS
 function registroUsuario() {
+    //Testa se o formulário está válido
     if (validRegister()) {
         let personal = document.getElementById("personal-input");
         let business = document.getElementById("business-input");
@@ -211,7 +208,11 @@ function registroUsuario() {
         let senha = document.getElementById("password-input").value;
         let email = document.getElementById("email-input").value;
         let file = document.getElementById("comprovante-input").value;
+        let methodGet = {
+            method: "GET"
+        };
 
+        //Se for uma conta pessoal
         if (personal.checked) {
             let tag;
             let adm = document.getElementById("adm-input");
@@ -235,16 +236,10 @@ function registroUsuario() {
             }
 
             i++;
-            var fazer = {
-                method: 'GET'
-            };
-            fetch(`http://localhost:4567/mandarRe?query=${nome},${senha},${email},${file},${tag},${i}`, fazer);
-        } else if (business.checked) {
+            fetch(`http://localhost:4567/mandarRe?query=${nome},${senha},${email},${file},${tag},${i}`, methodGet);
+        } else if (business.checked) { //Se for uma conta empresarial
             e++;
-            var fazer = {
-                method: 'GET'
-            };
-            fetch(`http://localhost:4567/empresaRe?query=${nome},${senha},${email},${file},${e}`, fazer);
+            fetch(`http://localhost:4567/empresaRe?query=${nome},${senha},${email},${file},${e}`, methodGet);
         }
     }
 }
@@ -296,6 +291,9 @@ function Calculate() {
 
 
 //----------FUNÇÕES DA TELA PROJECTS-------------
+
+
+
 
 
 //FUNÇÃO PARA APARECER A TELA DE COMENTAR
