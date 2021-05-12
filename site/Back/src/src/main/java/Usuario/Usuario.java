@@ -14,13 +14,14 @@ public class Usuario {
 	/* Fim usuario */
 
 	//contrutor
-	public Usuario(int id, String nome, String senha, String email, int reputacao, String imagem) {
+	public Usuario(int id, String nome, String senha, String email, String imagem,String tag,int reputacao ) {
 		this.idUsuario = id;
 		this.nome = nome;
 		this.senhaUsuario = senha;
 		this.eMailUsuario = email;
 		this.reputacaoUsuario = reputacao;
 		this.imagem=imagem;
+		this.tagUsuario=tag;
 		
 	}
 
