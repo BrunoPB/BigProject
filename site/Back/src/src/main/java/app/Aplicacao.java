@@ -41,8 +41,8 @@ public class Aplicacao {
 			System.out.println(nomeUU = req.queryParams("query"));
 			String[] realocacao = nomeUU.split(",");
 			int x= Integer.parseInt(realocacao[5]);
-			Usuario alocar = new Usuario(x, realocacao[0],realocacao[1], realocacao[2], 0,realocacao[4]);
-			conectar.inserirUsuario(alocar);
+			//Usuario alocar = new Usuario(x, realocacao[0],realocacao[1], realocacao[2], 0,realocacao[4]);
+			//conectar.inserirUsuario(alocar);
 			return 200;
 		});
 		

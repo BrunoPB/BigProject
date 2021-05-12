@@ -29,7 +29,7 @@ function Creation() {
 
 
 //FUNÇÃO PARA IR A TELA DO PROJETO
-function Project( /*let x*/ ) {
+function Project( /*let x*/) {
     //Por enquanto temos apenas um projeto place holder, portanto, a variável x não será utilizada    
     window.location.href = "/project";
 }
@@ -49,6 +49,7 @@ function Register() {
 //--------FUNÇÕES DA TELA REGISTER---------------
 
 //FUNÇÃO PARA APARECER A TAG E O COMPROVANTE CURRICULAR SE A CONTA FOR PESSOAL
+
 function isPersonal() {
     let personal = document.getElementById("personal-input");
     let business = document.getElementById("business-input");
@@ -70,6 +71,8 @@ function isPersonal() {
         tag.style.display = "none";
         comprovante.style.display = "none";
     }
+
+
 }
 
 //FUNÇÃO PARA APARECER O COMPROVANTE DE EXISTÊNCIA SE A CONTA FOR EMPRESARIAL
@@ -93,6 +96,8 @@ function isBusiness() {
     } else { //Caso o usuário esteja desmarcando a opção de conta empresarial
         comprovante.style.display = "none";
     }
+    foiativadaU = false;
+
 }
 
 //FUNÇÃO PARA DESMARCAR OUTRAS OPÇÕES DE TAG QUANDO UMA FOR MARCADA
@@ -241,18 +246,55 @@ function Testar() {
 let i = 0;
 //-----------FUNÇÕES DA TELA MYCOMMENTS---------------
 
-function registroUsuario() {
 
-    var nomeUsuarioP = window.document.getElementById("user-input").value;
-    var senhaUsuarioP = window.document.getElementById("password-input").value;
-    var emailUsuarioP = window.document.getElementById("email-input").value;
-    var tegUsuarioP = window.document.getElementById("tag-input").value;
-    //console.log(tegUsuarioP);
-    var fileUsuario = window.document.getElementById("fileUsuario").value;
-    i++;
-    var fazer = {
-        method: 'GET'
-    };
-    fetch(`http://localhost:4567/mandarRe?query=${nomeUsuarioP},${senhaUsuarioP},${emailUsuarioP},${tegUsuarioP},${fileUsuario},${i}`, fazer);
+
+
+function registroUsuario() {
+    let personal = document.getElementById("personal-input");
+    let business = document.getElementById("business-input");
+
+    if (personal.checked) {
+        var nomeUsuarioP = window.document.getElementById("user-input").value;
+        var senhaUsuarioP = window.document.getElementById("password-input").value;
+        var emailUsuarioP = window.document.getElementById("email-input").value;
+        var fileUsuario = window.document.getElementById("fileUsuario").value;
+
+        let adm = document.getElementById("adm-input");
+        let eng = document.getElementById("eng-input");
+        let ent = document.getElementById("ent-input");
+        let sau = document.getElementById("sau-input");
+        let tec = document.getElementById("tec-input");
+        let out = document.getElementById("out-input");
+
+        let tagUsuario;
+        if (adm.checked) {
+            tagUsuario = "adm";
+        }
+        else if (eng.checked) {
+            tagUsuario = "eng";
+        }
+        else if (ent.checked) {
+            tagUsuario = "ent";
+        }
+        else if (sau.checked) {
+            tagUsuario = "sau";
+        }
+        else if (tec.checked) {
+            tagUsuario = "tec";
+        }
+        else {
+            tagUsuario = "out"
+        }
+
+        i++;
+        var fazer = {
+            method: 'GET'
+        };
+        fetch(`http://localhost:4567/mandarRe?query=${nomeUsuarioP},${senhaUsuarioP},${emailUsuarioP},${fileUsuario},${tagUsuario},${i}`, fazer);
+
+    }
+
 
 }
+
+
