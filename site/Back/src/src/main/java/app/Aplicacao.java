@@ -52,7 +52,8 @@ public class Aplicacao {
 			String nomeUU = "";
 			System.out.println(nomeUU = req.queryParams("query"));
 			String[] realocacao = nomeUU.split(",");
-			Empresa mandarParaPhpAdmin = new Empresa(1, realocacao[0], realocacao[1], realocacao[2]);
+			int x= Integer.parseInt(realocacao[4]);
+			Empresa mandarParaPhpAdmin = new Empresa(x, realocacao[0], realocacao[1], realocacao[2],realocacao[3]);
 			conectar.inserirEmpresa(mandarParaPhpAdmin);
 			// System.out.println( senhaUU=req.queryParams("query1"));
 			return 200;

@@ -16,6 +16,15 @@ public class Empresa {
 	private String nomeEmpresa;
 	private String eMailEmpresa;
 	private String senhaEmpresa;
+	private String imagemEmpresa;
+
+	public String getImagemEmpresa() {
+		return imagemEmpresa;
+	}
+
+	public void setImagemEmpresa(String imagemEmpresa) {
+		this.imagemEmpresa = imagemEmpresa;
+	}
 
 	public int getIdEmpresa() {
 		return idEmpresa;
@@ -49,16 +58,17 @@ public class Empresa {
 		this.senhaEmpresa = senhaEmpresa;
 	}
 
-	public Empresa(int idEmpresa, String nomeEmpresa, String eMailEmpresa, String senhaEmpresa) {
+	public Empresa(int idEmpresa, String nomeEmpresa, String eMailEmpresa, String senhaEmpresa,String img) {
 		super();
 		this.idEmpresa = idEmpresa;
 		this.nomeEmpresa = nomeEmpresa;
 		this.eMailEmpresa = eMailEmpresa;
 		this.senhaEmpresa = senhaEmpresa;
+		this.imagemEmpresa=img;
 	}
 
 	public Empresa() {
-		this(0, " ", " ", " ");
+		this(0, " ", " ", " "," ");
 	}
 
 	@Override

@@ -244,6 +244,7 @@ function Testar() {
 
 
 let i = 0;
+let e =0;
 //-----------FUNÇÕES DA TELA MYCOMMENTS---------------
 
 
@@ -291,6 +292,18 @@ function registroUsuario() {
             method: 'GET'
         };
         fetch(`http://localhost:4567/mandarRe?query=${nomeUsuarioP},${senhaUsuarioP},${emailUsuarioP},${fileUsuario},${tagUsuario},${i}`, fazer);
+
+    }
+    else if(business.checked){
+        var nomeEmpresa = window.document.getElementById("user-input").value;
+        var senhaEmpresa = window.document.getElementById("password-input").value;
+        var emailEMpresa = window.document.getElementById("email-input").value;
+        var fileEmpresa = window.document.getElementById("fileUsuario").value;
+        e++;
+        var fazer = {
+            method: 'GET'
+        };
+        fetch(`http://localhost:4567/empresaRe?query=${nomeEmpresa},${senhaEmpresa},${emailEMpresa},${fileEmpresa},${e}`, fazer);
 
     }
 

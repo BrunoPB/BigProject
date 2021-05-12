@@ -163,9 +163,9 @@ public class BigProjectA {
 
 		try {
 			Statement st = conexao.createStatement();
-			st.executeUpdate("INSERT INTO empresa (idempresa,nome,email,senha)" + "VALUES (" + empresa.getIdEmpresa()
+			st.executeUpdate("INSERT INTO empresa (idempresa,nome,email,senha,imagem)" + "VALUES (" + empresa.getIdEmpresa()
 					+ ", '" + empresa.getNomeEmpresa() + "', '" + empresa.geteMailEmpresa() + "', '"
-					+ empresa.getSenhaEmpresa() + "');");
+					+ empresa.getSenhaEmpresa() + "', '" + empresa.getImagemEmpresa()+"');");
 
 			st.close();
 			saberVerdade = true;
