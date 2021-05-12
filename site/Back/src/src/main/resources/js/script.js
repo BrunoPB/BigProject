@@ -97,8 +97,9 @@ function isBusiness() {
     }
 }
 
-//FUNÇÃO PARA DESMARCAR OUTRAS OPÇÕES DE TAG QUANDO UMA FOR MARCADA
-function tagChecked(tag) {
+//FUNÇÃO PARA DESMARCAR OUTRAS OPÇÕES DE CHECKBOXES QUANDO UMA FOR MARCADA
+function boxChecked(tag) {
+    //Campos de Tag
     let adm = document.getElementById("adm-input");
     let eng = document.getElementById("eng-input");
     let ent = document.getElementById("ent-input");
@@ -106,7 +107,15 @@ function tagChecked(tag) {
     let tec = document.getElementById("tec-input");
     let out = document.getElementById("out-input");
 
+    //Campos de requisito curricular
+    let nenhum = document.getElementById("nenhum-input");
+    let grad = document.getElementById("grad-input");
+    let pos = document.getElementById("pos-input");
+    let mestrado = document.getElementById("mestrado-input");
+    let doutorado = document.getElementById("doutorado-input");
+
     switch (tag) {
+        //Cases para Tags
         case "adm":
             eng.checked = false;
             ent.checked = false;
@@ -148,6 +157,37 @@ function tagChecked(tag) {
             sau.checked = false;
             tec.checked = false;
             adm.checked = false;
+            break;
+            //Cases para requisito curricular
+        case "nenhum":
+            grad.checked = false;
+            pos.checked = false;
+            mestrado.checked = false;
+            doutorado.checked = false;
+            break;
+        case "grad":
+            nenhum.checked = false;
+            pos.checked = false;
+            mestrado.checked = false;
+            doutorado.checked = false;
+            break;
+        case "pos":
+            grad.checked = false;
+            nenhum.checked = false;
+            mestrado.checked = false;
+            doutorado.checked = false;
+            break;
+        case "mestrado":
+            grad.checked = false;
+            pos.checked = false;
+            nenhum.checked = false;
+            doutorado.checked = false;
+            break;
+        case "doutorado":
+            grad.checked = false;
+            pos.checked = false;
+            mestrado.checked = false;
+            nenhum.checked = false;
             break;
         default:
             console.log("Error - Tag checking");
@@ -222,17 +262,17 @@ function registroUsuario() {
             let tec = document.getElementById("tec-input");
             let out = document.getElementById("out-input");
             if (adm.checked) {
-                tagUsuario = "adm";
+                tag = "adm";
             } else if (eng.checked) {
-                tagUsuario = "eng";
+                tag = "eng";
             } else if (ent.checked) {
-                tagUsuario = "ent";
+                tag = "ent";
             } else if (sau.checked) {
-                tagUsuario = "sau";
+                tag = "sau";
             } else if (tec.checked) {
-                tagUsuario = "tec";
+                tag = "tec";
             } else {
-                tagUsuario = "out";
+                tag = "out";
             }
 
             i++;
@@ -250,33 +290,32 @@ function registroUsuario() {
 //FUNÇÃO DE CALCULAR CUSTO DO PROJETO
 function Calculate() {
     let dur = document.getElementById("duration-input") || 0;
-    let req = document.getElementById("requirement-input");
     let costText = document.getElementById("cost-text");
     let valid = true; //Variável para testar se o requisito curricular é válido
+
+    //Campos de requisito curricular
+    let nenhum = document.getElementById("nenhum-input").checked;
+    let grad = document.getElementById("grad-input").checked;
+    let pos = document.getElementById("pos-input").checked;
+    let mestrado = document.getElementById("mestrado-input").checked;
+    let doutorado = document.getElementById("doutorado-input").checked;
 
     //Cálculo com base na pauta
     let cost = dur.value * 20;
 
     //Cálculo com base no requisto
-    switch (req.value) {
-        case "Nenhum":
-            cost *= 1;
-            break;
-        case "Graduação":
-            cost *= 10;
-            break;
-        case "Pós-Graduação":
-            cost *= 25;
-            break;
-        case "Mestrado":
-            cost *= 50;
-            break;
-        case "Doutorado":
-            cost *= 80;
-            break;
-        default:
-            valid = false;
-            break;
+    if (nenhum) {
+        cost *= 1;
+    } else if (grad) {
+        cost *= 10;
+    } else if (pos) {
+        cost *= 25;
+    } else if (mestrado) {
+        cost *= 50;
+    } else if (doutorado) {
+        cost *= 80;
+    } else {
+        valid = false;
     }
 
     costText.style.border = "2px solid whitesmoke";

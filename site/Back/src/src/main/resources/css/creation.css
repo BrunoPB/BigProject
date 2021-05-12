@@ -123,6 +123,32 @@ input::-webkit-inner-spin-button {
 }
 
 
+/*CHECKBOXES*/
+
+.tag-title,
+.requirement-title {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.tag-input-div,
+.requirement-input-div {
+    width: auto;
+    display: grid;
+    grid-template: repeat(2, 1fr) / repeat(6, 1fr);
+    row-gap: 10px;
+    align-items: center;
+}
+
+.checklabel {
+    margin-right: 50px;
+}
+
+.checkinput {
+    margin: 0;
+}
+
+
 /*RODAPÉ*/
 
 footer {

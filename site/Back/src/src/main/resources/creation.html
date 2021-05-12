@@ -38,16 +38,21 @@
                 </div>
                 <!--Tags-->
                 <div class="tag-div">
-                    <label class="tag-label" for="tag-input">Tag</label>
-                    <input class="tag-input" id="tag-input" type="text" list="tags-list">
-                    <datalist id="tags-list">
-                        <option>Administração</option>
-                        <option>Engenharia</option>
-                        <option>Entretenimento</option>
-                        <option>Saúde</option>
-                        <option>Tecnologia</option>
-                        <option>Outro</option>
-                    </datalist>
+                    <h2 class="tag-title">Selecione uma Tag</h2>
+                    <div class="tag-input-div">
+                        <input class="adm-input checkinput" id="adm-input" type="checkbox" onclick="boxChecked('adm')">
+                        <label class="adm-label checklabel" for="adm-input">Administração</label>
+                        <input class="eng-input checkinput" id="eng-input" type="checkbox" onclick="boxChecked('eng')">
+                        <label class="eng-label checklabel" for="eng-input">Engenharia</label>
+                        <input class="ent-input checkinput" id="ent-input" type="checkbox" onclick="boxChecked('ent')">
+                        <label class="ent-label checklabel" for="ent-input">Entretenimento</label>
+                        <input class="sau-input checkinput" id="sau-input" type="checkbox" onclick="boxChecked('sau')">
+                        <label class="sau-label checklabel" for="sau-input">Saúde</label>
+                        <input class="tec-input checkinput" id="tec-input" type="checkbox" onclick="boxChecked('tec')">
+                        <label class="tec-label checklabel" for="tec-input">Tecnologia</label>
+                        <input class="out-input checkinput" id="out-input" type="checkbox" onclick="boxChecked('out')" checked>
+                        <label class="out-label checklabel" for="out-input">Outro</label>
+                    </div>
                 </div>
                 <!--Duração da pauta-->
                 <div class="duration-div">
@@ -56,15 +61,19 @@
                 </div>
                 <!--Requisito curricular-->
                 <div class="requirement-div">
-                    <label class="requirement-label" for="requirement-input">Requisito curricular</label>
-                    <input class="requirement-input" id="requirement-input" type="text" list="requirement-list" value="Nenhum">
-                    <datalist id="requirement-list">
-                        <option>Nenhum</option>
-                        <option>Graduação</option>
-                        <option>Pós-Graduação</option>
-                        <option>Mestrado</option>
-                        <option>Doutorado</option>
-                    </datalist>
+                    <h2 class="requirement-title">Requisito curricular</h2>
+                    <div class="requirement-input-div">
+                        <input class="nenhum-input checkinput" id="nenhum-input" type="checkbox" onclick="boxChecked('nenhum')" checked>
+                        <label class="nenhum-label checklabel" for="nenhum-input">Nenhum</label>
+                        <input class="grad-input checkinput" id="grad-input" type="checkbox" onclick="boxChecked('grad')">
+                        <label class="grad-label checklabel" for="grad-input">Graduação</label>
+                        <input class="pos-input checkinput" id="pos-input" type="checkbox" onclick="boxChecked('pos')">
+                        <label class="pos-label checklabel" for="pos-input">Pós&#8209Graduação</label>
+                        <input class="mestrado-input checkinput" id="mestrado-input" type="checkbox" onclick="boxChecked('mestrado')">
+                        <label class="mestrado-label checklabel" for="mestrado-input">Mestrado</label>
+                        <input class="doutorado-input checkinput" id="doutorado-input" type="checkbox" onclick="boxChecked('doutorado')">
+                        <label class="doutorado-label checklabel" for="doutorado-input">Doutorado</label>
+                    </div>
                 </div>
             </div>
             <!--Divisão de baixo-->

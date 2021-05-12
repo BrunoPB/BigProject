@@ -50,17 +50,17 @@
         <div class="tag-div rdiv" id="tag-div">
             <h2 class="tag-title">Selecione uma Tag</h2>
             <div class="tag-input-div">
-                <input class="adm-input taginput" id="adm-input" type="checkbox" onclick="tagChecked('adm')">
+                <input class="adm-input taginput" id="adm-input" type="checkbox" onclick="boxChecked('adm')">
                 <label class="adm-label taglabel" for="adm-input">Administração</label>
-                <input class="eng-input taginput" id="eng-input" type="checkbox" onclick="tagChecked('eng')">
+                <input class="eng-input taginput" id="eng-input" type="checkbox" onclick="boxChecked('eng')">
                 <label class="eng-label taglabel" for="eng-input">Engenharia</label>
-                <input class="ent-input taginput" id="ent-input" type="checkbox" onclick="tagChecked('ent')">
+                <input class="ent-input taginput" id="ent-input" type="checkbox" onclick="boxChecked('ent')">
                 <label class="ent-label taglabel" for="ent-input">Entretenimento</label>
-                <input class="sau-input taginput" id="sau-input" type="checkbox" onclick="tagChecked('sau')">
+                <input class="sau-input taginput" id="sau-input" type="checkbox" onclick="boxChecked('sau')">
                 <label class="sau-label taglabel" for="sau-input">Saúde</label>
-                <input class="tec-input taginput" id="tec-input" type="checkbox" onclick="tagChecked('tec')">
+                <input class="tec-input taginput" id="tec-input" type="checkbox" onclick="boxChecked('tec')">
                 <label class="tec-label taglabel" for="tec-input">Tecnologia</label>
-                <input class="out-input taginput" id="out-input" type="checkbox" onclick="tagChecked('out')" checked>
+                <input class="out-input taginput" id="out-input" type="checkbox" onclick="boxChecked('out')" checked>
                 <label class="out-label taglabel" for="out-input">Outro</label>
             </div>
         </div>
@@ -71,7 +71,7 @@
         </div>
         <!--Registrar-->
         <div class="register-div">
-            <button class="register-button" onclick="registroUsuario()" type="submit">Registrar</button>
+            <button class="register-button" onclick="registroUsuario()" type="button">Registrar</button>
         </div>
     </form>
 </body>
