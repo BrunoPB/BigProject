@@ -46,7 +46,7 @@ public class Aplicacao {
 		get("/mycomments", (req, res) -> mandarSite.renderContent("/mycomments.html"));
 		//Post_JSON();
 		// pegar as infomacoes do usuario
-		
+		 
 		get("/mandarRe", (req, res) -> {
 
 			String nomeUU = "";
@@ -57,9 +57,10 @@ public class Aplicacao {
 			Usuario alocar = new Usuario(x, realocacao[0], realocacao[1], realocacao[2], realocacao[3], realocacao[4],
 					0);
 			//conectar.inserirUsuario(alocar);
+			//String teste ="{ \"nome\": eric\",}"
 			String testarcoisas=alocar.getNome();
 			String testarcoisas2=alocar.getSenhaUsuario();
-			get("/temtativa1", (request, response) ->"Nome:"+ testarcoisas+" senha: "+testarcoisas2);
+		
 			return 200;
 		});
 
@@ -125,6 +126,8 @@ public class Aplicacao {
 			System.out.println(e);
 		}
 	}
+	
+	
 	
 
 }

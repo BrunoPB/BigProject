@@ -389,7 +389,7 @@ function criacaoprojeto() {
         console.log(now);
  	saberOidProjeto++;  
      
-      fetch(`http://localhost:4567/projetoRe?query=${nomeProjeto}//${duracaoProjeto}//${custoProjeto}//${tagProjeto}//${descricao}//${requisitoProjeto}//${saberOidProjeto}//${fileProjeto}`, methodGet1);
+      fetch(`http://localhost:4567/projetoRe?query=${nomeProjeto}//${duracaoProjeto}//${custoProjeto}//${tagProjeto}//${descricao}//${requisitoProjeto}//${saberOidProjeto}//${fileProjeto}`, methodGet1).then();
       //
          
        
