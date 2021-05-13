@@ -8,17 +8,25 @@ public class Projetos {
 	private String dataInicio;
 	private String dataFim;
 	private int valorProjeto;
+	private String tag;
+	private String imagem;
+	private String rec;
+
 	
-	public Projetos(int idProjeto, String nomeProjeto, String descricaoPojeto, String dataInicio, String dataFim,
-			int valorProjeto) {
-		super();
-		this.idProjeto = idProjeto;
-		this.nomeProjeto = nomeProjeto;
-		this.descricaoPojeto = descricaoPojeto;
-		this.dataInicio = dataInicio;
-		this.dataFim = dataFim;
-		this.valorProjeto = valorProjeto;
-	}
+	 public Projetos(int idProjeto1, String nomeProjeto1, String descricaoPojeto1, String dataInicio1, String dataFim1,
+		      int valorProjeto1, String tag1, String imagem1,String rec) {
+		    this.idProjeto = idProjeto1;
+		    this.nomeProjeto = nomeProjeto1;
+		    this.descricaoPojeto = descricaoPojeto1;
+		    this.dataInicio = dataInicio1;
+		    this.dataFim = dataFim1;
+		    this.valorProjeto = valorProjeto1;
+		    this.tag = tag1;
+		    this.imagem = imagem1;
+		    this.rec=rec;
+		    
+		  }
+
 	public String getNomeProjeto() {
 		return nomeProjeto;
 	}
@@ -65,6 +73,18 @@ public class Projetos {
 
 	public void setIdProjeto(int idProjeto) {
 		this.idProjeto = idProjeto;
+	}
+	public String getTag() {
+		return tag;
+	}
+	public void setTag(String tag) {
+		this.tag = tag;
+	}
+	public String getImagem() {
+		return imagem;
+	}
+	public void setImagem(String imagem) {
+		this.imagem = imagem;
 	}
 	
 

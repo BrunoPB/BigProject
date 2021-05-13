@@ -122,9 +122,10 @@ public class BigProjectA {
 
 		try {
 			Statement st = conexao.createStatement();
-			st.executeUpdate("INSERT INTO projetos (idprojeto,nome,datainicio,datafim)" + "VALUES ("
+			st.executeUpdate("INSERT INTO projetos (idprojeto,nome,datainicio,datafim,descricao,valor,tag,imagem)" + "VALUES ("
 					+ projeto.getIdProjeto() + ", '" + projeto.getNomeProjeto() + "', '" + projeto.getDataInicio()
-					+ "', '" + projeto.getDataFim() + "');");
+					+ "', '" + projeto.getDataFim() + "', '" + projeto.getDescricaoPojeto()+"', '" 
+					+projeto.getValorProjeto()+ "', '" + projeto.getTag()+ "', '" + projeto.getImagem()+"');");
 
 			st.close();
 			saberVerdade = true;

@@ -7,9 +7,15 @@ import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 import Classe.BigProjectA;
 import Empresa.Empresa;
+import Pojetos.Projetos;
 import Usuario.Usuario;
 import java.util.Random;
 
@@ -60,12 +66,27 @@ public class Aplicacao {
 		});
 		
 		// pegar projetos
-		get("/projetoGet", (req,res) ->{
+		get("/projetoRe", (req,res) ->{
 			String getProjeto="";
+			LocalDate date = LocalDate.now(); // Gets the current date
+			
+		
+			
 			System.out.println(getProjeto = req.queryParams("query"));
-			String [] realocarProjeto=getProjeto.split(",");
+			String [] realocarProjeto=getProjeto.split("//");
+			int idProjeto= Integer.parseInt(realocarProjeto[6]);
+			int custoProjeto= Integer.parseInt(realocarProjeto[2]);
+			int dataAsermodificada= Integer.parseInt(realocarProjeto[1]);
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+			//System.out.println(date.format(formatter));
+			String pegarInicio=date.format(formatter);
+			date=date.plusDays(dataAsermodificada);
+			String pegarFim=date.format(formatter);
+			Projetos projeto = new Projetos(idProjeto,realocarProjeto[0],realocarProjeto[4],pegarInicio,pegarFim
+						,custoProjeto,realocarProjeto[3],realocarProjeto[7],realocarProjeto[5]);
+			conectar.inserirProjeto(projeto);
 			
-			
+	
 			return 200;
 		});
 		
@@ -74,6 +95,7 @@ public class Aplicacao {
 			String getComentario="";
 			System.out.println(getComentario = req.queryParams("query"));
 			String [] realocarProjeto=getComentario.split(",");
+			
 			
 			return 200;
 		});
