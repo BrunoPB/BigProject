@@ -2,10 +2,15 @@ package app;
 
 import static spark.Spark.*;
 
+import java.io.BufferedInputStream;
 import java.io.IOException;
-
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
 import java.net.URISyntaxException;
-
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -17,6 +22,7 @@ import Classe.BigProjectA;
 import Empresa.Empresa;
 import Pojetos.Projetos;
 import Usuario.Usuario;
+import spark.utils.IOUtils;
 
 public class Aplicacao {
 	private final static String USER_AGENT = "Mozilla/5.0";
@@ -28,7 +34,8 @@ public class Aplicacao {
 
 		BigProjectA conectar = new BigProjectA(); // conectar com nosso banco de dados
 		conectar.conectarPost();
-
+		
+		
 		/* codigos onde iremos colocar a pagina on */
 		get("/", (req, res) -> mandarSite.renderContent("/home.html"));
 		get("/login", (req, res) -> mandarSite.renderContent("/login.html"));
@@ -37,8 +44,9 @@ public class Aplicacao {
 		get("/creation", (req, res) -> mandarSite.renderContent("/creation.html"));
 		get("/project", (req, res) -> mandarSite.renderContent("/project.html"));
 		get("/mycomments", (req, res) -> mandarSite.renderContent("/mycomments.html"));
-
+		//Post_JSON();
 		// pegar as infomacoes do usuario
+		
 		get("/mandarRe", (req, res) -> {
 
 			String nomeUU = "";
@@ -48,7 +56,10 @@ public class Aplicacao {
 			int x = Integer.parseInt(realocacao[5]);
 			Usuario alocar = new Usuario(x, realocacao[0], realocacao[1], realocacao[2], realocacao[3], realocacao[4],
 					0);
-			conectar.inserirUsuario(alocar);
+			//conectar.inserirUsuario(alocar);
+			String testarcoisas=alocar.getNome();
+			String testarcoisas2=alocar.getSenhaUsuario();
+			get("/temtativa1", (request, response) ->"Nome:"+ testarcoisas+" senha: "+testarcoisas2);
 			return 200;
 		});
 
@@ -98,6 +109,23 @@ public class Aplicacao {
 		});
 
 	}
+	public static void Post_JSON() throws IOException {
+        String utlsite = "http://localhost:/testativa1";
+        String json = "{  \"vai que vai\", [ \"deubom\" ], }";
+        URL url = new URL(utlsite);
+        HttpURLConnection conectComHttp = (HttpURLConnection) url.openConnection();
+        conectComHttp.setDoOutput(true);
+        conectComHttp.setRequestMethod("POST");
+        conectComHttp.setRequestProperty("Content-Type", "application/json");
+        try (OutputStream outputStream =  conectComHttp.getOutputStream()) { 
+         outputStream.write(json.getBytes());
+         outputStream.flush();
+         outputStream.close();
+        } catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+	
 
 }
 
