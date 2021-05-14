@@ -92,10 +92,13 @@ public class Aplicacao {
 			String pegarFim = date.format(formatter);
 			Projetos projeto = new Projetos(idProjeto, realocarProjeto[0], realocarProjeto[4], pegarInicio, pegarFim,
 					custoProjeto, realocarProjeto[3], realocarProjeto[7], realocarProjeto[5]);
-
-			 conectar.inserirProjeto(projeto);
-
-			return 200;
+		    res.header("Access-Control-Allow-Origin", "*");
+            res.header("Access-Control-Allow-Methods", "POST,GET");
+            res.header("Access-Control-Allow-Headers", "*");
+            res.header("Access-Control-Max-Age", "86400");
+			// conectar.inserirProjeto(projeto);
+       
+			return  projeto.jsonCreationProjeto(projeto);
 		});
 
 		// pegar os comentarios do projeto

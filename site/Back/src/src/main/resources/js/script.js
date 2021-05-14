@@ -387,9 +387,42 @@ function createProject() {
         }
 
         saberOidProjeto++;
-        fetch(`http://localhost:4567/projetoRe?query=${nome}//${duracao}//${custo}//${tag}//${descricao}//${requisito}//${saberOidProjeto}//${file}`, methodGet).then();
+        fetch(`http://localhost:4567/projetoRe?query=${nome}//${duracao}//${custo}//${tag}//${descricao}//${requisito}//${saberOidProjeto}//${file}`, methodGet)
+		.then(console.log("to aki"))
+		.then(res=>res.json())
+		.then(data=>  testativavai(data));
+        
+		        
     }
 }
+
+function testativavai(data){
+
+var pegarNome = data.nomeProjeto;
+var idPro= data.idProjeto;
+var descricaoPojeto=data.descricaoPojeto;
+var dataInicio = data.dataInicio;
+var dataFim =data.dataFim;
+var valorProjeto= data.valorProjeto;
+var tag = data.tag;
+var imagem =data.imagem;
+var rec=data.rec;
+
+console.log(pegarNome);
+console.log(idPro);
+console.log(descricaoPojeto);
+console.log(dataInicio);
+console.log(dataFim);
+console.log(valorProjeto);
+console.log(tag);
+console.log(imagem);
+console.log(rec);
+
+}
+
+
+
+
 
 //FUNÇÃO QUE VALIDA O PROJETO
 function validProject() {
