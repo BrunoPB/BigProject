@@ -284,62 +284,28 @@ function registroUsuario() {
     }
 }
 
+//FUNÇÃO PARA CRIAR O PROJETO E ENVIAR PARA O BANCO DE DADOS
+function createProject() {
+    if (validProject()) {
+        let nome = document.getElementById("title-input").value;
+        let duracao = document.getElementById("duration-input").value;
+        let custo = Calculate();
+        let descricao = document.getElementById("description-input").value;
+        let file = document.getElementById("images-input").value;
+        let tag;
+        let requisito;
+        let methodGet = {
+            method: "GET"
+        };
 
-
-function validarProjeto() {
-    let valid = true;
-    //Campos
-    let nomeProjeto = window.document.getElementById("title-input").value;
-    let duracaoProjeto =window.document.getElementById("duration-input").value;
-    let custoProjeto =window.document.getElementById("cost-text").value;
-    let fileProjeto =window.document.getElementById("imagemgod").value;
-
-    let adm = document.getElementById("adm-input");
-    let eng = document.getElementById("eng-input");
-    let ent = document.getElementById("ent-input");
-    let sau = document.getElementById("sau-input");
-    let tec = document.getElementById("tec-input");
-    let out = document.getElementById("out-input");
-
-    //Campos de requisito curricular
-    let nenhum = document.getElementById("nenhum-input");
-    let grad = document.getElementById("grad-input");
-    let pos = document.getElementById("pos-input");
-    let mestrado = document.getElementById("mestrado-input");
-    let doutorado = document.getElementById("doutorado-input");
-      
-
-    if(nomeProjeto==""||duracaoProjeto==""||custoProjeto==""||fileProjeto==null){
-        valid = false;
-        alert("Alguns campos não foram preenchidos.");
-        return valid;
-    }
-  
-    
-
-    return valid;
-}
-var saberOidProjeto=0;;
-// mandar para o back 
-function criacaoprojeto() {
-        if(validarProjeto){  
-            var now;
-        //const horasInicio = new Date();
-        let nomeProjeto = window.document.getElementById("title-input").value;
-        let duracaoProjeto =window.document.getElementById("duration-input").value;
-        let custoProjeto =Calculate();
-        let descricao =window.document.getElementById("description-input").value;
-        let fileProjeto =window.document.getElementById("imagemgod").value;
-        let tagProjeto;
-        let requisitoProjeto="";
-        
+        //Campos de Tag
         let adm = document.getElementById("adm-input");
         let eng = document.getElementById("eng-input");
         let ent = document.getElementById("ent-input");
         let sau = document.getElementById("sau-input");
         let tec = document.getElementById("tec-input");
         let out = document.getElementById("out-input");
-    
+
         //Campos de requisito curricular
         let nenhum = document.getElementById("nenhum-input");
         let grad = document.getElementById("grad-input");
@@ -347,57 +313,63 @@ function criacaoprojeto() {
         let mestrado = document.getElementById("mestrado-input");
         let doutorado = document.getElementById("doutorado-input");
 
-        if(adm.checked){
-            tagProjeto="adm";
+        //Tag
+        if (adm.checked) {
+            tag = "adm";
+        } else if (eng.checked) {
+            tag = "eng";
+        } else if (ent.checked) {
+            tag = "ent";
+        } else if (sau.checked) {
+            tag = "sau";
+        } else if (tec.checked) {
+            tag = "tec";
+        } else {
+            tag = "out";
         }
-        else if(eng.checked){
-            tagProjeto="eng";
-        }
-        else if(ent.checked){
-            tagProjeto="ent";
-        }
-        else if(sau.checked){
-            tagProjeto="sau"
-        }
-        else if(tec.checked){
-            tagProjeto="tec";
-        }
-        else{
-            tagProjeto="out"
-        }
-    /* fim pegar a tg */
 
-        if(nenhum.checked){
-            requisitoProjeto = "nenhum"
+        //Requisito
+        if (nenhum.checked) {
+            requisito = "nenhum"
+        } else if (grad.checked) {
+            requisito = "grad";
+        } else if (pos.checked) {
+            requisito = "pos";
+        } else if (mestrado.checked) {
+            requisito = "mestrado";
+        } else if (doutorado.checked) {
+            requisito = "doutorado";
+        } else {
+            requisito = "nenhum";
         }
-        else if(grad.checked){
-            requisitoProjeto="grad";
-        }
-        else if(pos.checked){
-            requisitoProjeto="pos";
-        }
-        else if(mestrado.checked){
-            requisitoProjeto="mestrado";
-        }
-        else if(doutorado.checked){
-            requisitoProjeto="doutorado";
-        }
-        // mandar para o back
-        let methodGet1 = {
-            method: "GET"
-        };
-        console.log(now);
- 	saberOidProjeto++;  
-     
-      fetch(`http://localhost:4567/projetoRe?query=${nomeProjeto}//${duracaoProjeto}//${custoProjeto}//${tagProjeto}//${descricao}//${requisitoProjeto}//${saberOidProjeto}//${fileProjeto}`, methodGet1).then();
-      //
-         
-       
+
+        saberOidProjeto++;
+        fetch(`http://localhost:4567/projetoRe?query=${nome}//${duracao}//${custo}//${tag}//${descricao}//${requisito}//${saberOidProjeto}//${file}`, methodGet).then();
     }
 }
 
+//FUNÇÃO QUE VALIDA O PROJETO
+function validProject() {
+    let valid = true;
+    //Campos
+    let nome = document.getElementById("title-input").value;
+    let duracao = document.getElementById("duration-input").value;
+    let file = document.getElementById("images-input").value;
 
+    if (nome == "" || duracao == "" || file == "") {
+        valid = false;
+        alert("Alguns campos não foram preenchidos.");
+        return valid;
+    }
 
+    if (duracao < 1) {
+        valid = false;
+        alert("Duração do projeto inválida.");
+        return valid;
+    }
+
+    return valid;
+}
 
 
 //---------FUNÇÕES DA TELA CREATION-----------------
@@ -440,7 +412,6 @@ function Calculate() {
         costText.innerHTML = "Requisito curricular inválido";
     }
     return cost;
-
 }
 
 
@@ -506,3 +477,4 @@ function Testar() {
 
 let i = 0;
 let e = 0;
+var saberOidProjeto = 0;
