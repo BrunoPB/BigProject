@@ -50,7 +50,6 @@ function Register() {
 //--------FUNÇÕES DA TELA REGISTER---------------
 
 //FUNÇÃO PARA APARECER A TAG E O COMPROVANTE CURRICULAR SE A CONTA FOR PESSOAL
-
 function isPersonal() {
     let personal = document.getElementById("personal-input");
     let business = document.getElementById("business-input");
@@ -238,6 +237,50 @@ function validRegister() {
     return valid;
 }
 
+
+
+//---------FUNÇÕES DA TELA CREATION-----------------
+
+//FUNÇÃO DE CALCULAR CUSTO DO PROJETO
+function Calculate() {
+    let dur = document.getElementById("duration-input") || 0;
+    let costText = document.getElementById("cost-text");
+    let valid = true; //Variável para testar se o requisito curricular é válido
+
+    //Campos de requisito curricular
+    let nenhum = document.getElementById("nenhum-input").checked;
+    let grad = document.getElementById("grad-input").checked;
+    let pos = document.getElementById("pos-input").checked;
+    let mestrado = document.getElementById("mestrado-input").checked;
+    let doutorado = document.getElementById("doutorado-input").checked;
+
+    //Cálculo com base na pauta
+    let cost = dur.value * 20;
+
+    //Cálculo com base no requisto
+    if (nenhum) {
+        cost *= 1;
+    } else if (grad) {
+        cost *= 10;
+    } else if (pos) {
+        cost *= 25;
+    } else if (mestrado) {
+        cost *= 50;
+    } else if (doutorado) {
+        cost *= 80;
+    } else {
+        valid = false;
+    }
+
+    costText.style.border = "2px solid whitesmoke";
+    if (valid) {
+        costText.innerHTML = "Custo: R$ " + cost;
+    } else {
+        costText.innerHTML = "Requisito curricular inválido";
+    }
+    return cost;
+}
+
 //FUNÇÃO PARA REGISTRAR O USUÁRIO NO BANCO DE DADOS
 function registroUsuario() {
     //Testa se o formulário está válido
@@ -372,49 +415,6 @@ function validProject() {
 }
 
 
-//---------FUNÇÕES DA TELA CREATION-----------------
-
-//FUNÇÃO DE CALCULAR CUSTO DO PROJETO
-function Calculate() {
-    let dur = document.getElementById("duration-input") || 0;
-    let costText = document.getElementById("cost-text");
-    let valid = true; //Variável para testar se o requisito curricular é válido
-
-    //Campos de requisito curricular
-    let nenhum = document.getElementById("nenhum-input").checked;
-    let grad = document.getElementById("grad-input").checked;
-    let pos = document.getElementById("pos-input").checked;
-    let mestrado = document.getElementById("mestrado-input").checked;
-    let doutorado = document.getElementById("doutorado-input").checked;
-
-    //Cálculo com base na pauta
-    let cost = dur.value * 20;
-
-    //Cálculo com base no requisto
-    if (nenhum) {
-        cost *= 1;
-    } else if (grad) {
-        cost *= 10;
-    } else if (pos) {
-        cost *= 25;
-    } else if (mestrado) {
-        cost *= 50;
-    } else if (doutorado) {
-        cost *= 80;
-    } else {
-        valid = false;
-    }
-
-    costText.style.border = "2px solid whitesmoke";
-    if (valid) {
-        costText.innerHTML = "Custo: R$ " + cost;
-    } else {
-        costText.innerHTML = "Requisito curricular inválido";
-    }
-    return cost;
-}
-
-
 
 //----------FUNÇÕES DA TELA PROJECTS-------------
 
@@ -449,20 +449,21 @@ function ShowComment() {
 
 
 
-
 //-----------FUNÇÕES DA TELA MYCOMMENTS---------------
 
 
 
 
 
+//-----------FUNÇÕES DA TELA LOGOUT------------------
 
 
 
 
 
-//---------------------FUNÇÕES E VARIÁVEIS DE TESTE----------------------
 
+
+//-----------FUNÇÕES E VARIÁVEIS DE TESTE---------------
 function Testar() {
     //event.preventDefault();
     //console.log("ola");
