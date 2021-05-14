@@ -1,6 +1,7 @@
 package Pojetos;
 import Classe.BigProjectA;
-
+import org.json.JSONException;
+import org.json.JSONObject;
 public class Projetos {
 	private int idProjeto;
 	private String nomeProjeto;
@@ -86,6 +87,36 @@ public class Projetos {
 	public void setImagem(String imagem) {
 		this.imagem = imagem;
 	}
+	
+	  public String jsonCreationProjeto(){// Chamar no click -> Fazer verificação pre envio -> no Js
+		     String json_projeto = "{\"idP\":\"idProjeto\",\"nomeP\":\"nomeProjeto\",\"descricaoP\":\"descricaoPojeto\",\"dataIP\":\"dataInicio\",\"dataFP\":\"dataFim\",\"valorP\":\"valorProjeto\",\"tagP\":\"tag\",\"imagemP\":\"imagem\",\"recP\":\"rec\"}";//Montagem da string do json -> Composto por 2 slots ({\"Primeiro Slot\":\"Segundo Slot\"})
+		     //Primeiro Slot Nome gerado para "variavel" ||-> Segundo Slot Variavel para atribuição
+
+		        JSONObject my_obj = new JSONObject(json_projeto); // iniciação do obj json com passagem de string 
+
+		        Integer idProjeto = my_obj.getInt("idP");
+		        String nomeProjeto = my_obj.getString("nomeP");
+		        String descricaoProjeto = my_obj.getString("descricaoP");
+		        String dataIProjeto = my_obj.getString("dataIP"); 
+		        String dataFProjeto = my_obj.getString("dataFP");
+		        String valorProjeto = my_obj.getString("valorP");
+		        String tagProjeto = my_obj.getString("tagP");
+		        String imagemProjeto = my_obj.getString("imagemP");
+
+		        
+
+		        System.out.println(idProjeto);
+		        System.out.println(nomeProjeto); 
+		        System.out.println(descricaoProjeto);
+		        System.out.println(dataIProjeto);
+		        System.out.println(dataFProjeto);
+		        System.out.println(valorProjeto);
+		        System.out.println(tagProjeto);
+		        System.out.println(imagemProjeto);
+
+		        //return da string do json -> pode ser adiquirido por chamada unica por meio do objeto json
+		        return json_projeto;//Verificar necessidade
+		        }
 	
 
 	

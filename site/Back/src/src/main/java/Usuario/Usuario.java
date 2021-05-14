@@ -1,5 +1,6 @@
 package Usuario;
-
+import org.json.JSONException;
+import org.json.JSONObject;
 import Classe.BigProjectA;
 
 public class Usuario {
@@ -90,5 +91,37 @@ public class Usuario {
 	public void setImagem(String imagem) {
 		this.imagem = imagem;
 	}
+	
+    
+   public String jsonCreationUsuario(){// Chamar no click -> Fazer verificação pre envio -> no Js
+     String json_usuario = "{\"idU\":\"idUsuario\",\"nomeU\":\"nome\",\"senhaU\":\"senhaUsuario\",\"eMailU\":\"eMailUsuario\",\"reputacaoU\":\"reputacaoUsuario\","
+     		+ "\"curriculoU\":\"curriculoUsuario\",\"tagU\":\"tagUsuario\",\"imagemU\":\"imagem\"}";//Montagem da string do json -> Composto por 2 slots ({\"Primeiro Slot\":\"Segundo Slot\"})
+     //Primeiro Slot Nome gerado para "variavel" ||-> Segundo Slot Variavel para atribuição
+
+        JSONObject my_obj = new JSONObject(json_usuario); // iniciação do obj json com passagem de string 
+
+        Integer idUsuario = my_obj.getInt("idU");
+        String nomeUsuario = my_obj.getString("nomeU");
+        String senhaUsuario = my_obj.getString("senhaU");
+        String eMailUsuario = my_obj.getString("eMailU"); 
+        String reputacaoUsuario = my_obj.getString("reputacaoU");
+        String curriculoUsuario = my_obj.getString("curriculoU");
+        String tagUsuario = my_obj.getString("tagU");
+        String imagemUsuario = my_obj.getString("imagemU");
+
+        
+
+        System.out.println(idUsuario);
+        System.out.println(nomeUsuario); 
+        System.out.println(senhaUsuario);
+        System.out.println(eMailUsuario);
+        System.out.println(reputacaoUsuario);
+        System.out.println(curriculoUsuario);
+        System.out.println(tagUsuario);
+        System.out.println(imagemUsuario);
+
+        //return da string do json -> pode ser adiquirido por chamada unica por meio do objeto json
+        return json_usuario;//Verificar necessidade
+        }
 
 }

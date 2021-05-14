@@ -19,6 +19,10 @@
     <artifactId>postgresql</artifactId>
     <version>42.2.20</version>
 </dependency>
-
+<dependency>
+    <groupId>org.json</groupId>
+    <artifactId>json</artifactId>
+    <version>20210307</version>
+</dependency>
   </dependencies>
 </project>

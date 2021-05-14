@@ -56,11 +56,9 @@ public class Aplicacao {
 			int x = Integer.parseInt(realocacao[5]);
 			Usuario alocar = new Usuario(x, realocacao[0], realocacao[1], realocacao[2], realocacao[3], realocacao[4],
 					0);
+			System.out.println(alocar.toString());
 			//conectar.inserirUsuario(alocar);
-			//String teste ="{ \"nome\": eric\",}"
-			String testarcoisas=alocar.getNome();
-			String testarcoisas2=alocar.getSenhaUsuario();
-		
+	
 			return 200;
 		});
 
@@ -109,22 +107,6 @@ public class Aplicacao {
 			return 200;
 		});
 
-	}
-	public static void Post_JSON() throws IOException {
-        String utlsite = "http://localhost:/testativa1";
-        String json = "{  \"vai que vai\", [ \"deubom\" ], }";
-        URL url = new URL(utlsite);
-        HttpURLConnection conectComHttp = (HttpURLConnection) url.openConnection();
-        conectComHttp.setDoOutput(true);
-        conectComHttp.setRequestMethod("POST");
-        conectComHttp.setRequestProperty("Content-Type", "application/json");
-        try (OutputStream outputStream =  conectComHttp.getOutputStream()) { 
-         outputStream.write(json.getBytes());
-         outputStream.flush();
-         outputStream.close();
-        } catch (Exception e) {
-			System.out.println(e);
-		}
 	}
 	
 	
