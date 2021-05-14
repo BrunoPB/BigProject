@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>BigProject - Logout</title>
+    <script type="text/javascript" src="./js/script.js"></script>
+    <link href="css/logout.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <!--FORMULÁRIO-->
+    <form>
+        <!--Logo-->
+        <button class="logo-button" type="button" onclick="Home()">
+            <img class="logo-image" src="imgs/BigProject-logo.png">
+        </button>
+        <div class="logout-div">
+            <button class="logout-button">Fazer Logout</button>
+        </div>
+        <h1>Trocar Senha</h1>
+        <!--Senha atual-->
+        <div class="old-password-div inputdiv">
+            <label class="old-password-label inputlabel" for="old-password-input">Senha atual</label>
+            <input class="old-password-input" id="old-password-input" type="password" required>
+        </div>
+        <!--Senha nova-->
+        <div class="new-password-div inputdiv">
+            <label class="new-password-label inputlabel" for="new-password-input">Nova senha</label>
+            <input class="new-password-input" id="new-password-input" type="password" required>
+        </div>
+        <!--Confirmação da senha nova-->
+        <div class="c-new-password-div inputdiv">
+            <label class="c-new-password-label inputlabel" for="c-new-password-input">Confirmação da nova senha</label>
+            <input class="c-new-password-input" id="c-new-password-input" type="password" required>
+        </div>
+        <!--Botão de Login-->
+        <button class="change-button" type="submit">Trocar Senha</button>
+    </form>
+</body>
+
+</html>

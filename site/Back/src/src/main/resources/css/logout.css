@@ -1,0 +1,115 @@
+/*BODY*/
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-image: url("../imgs/background-image.jpg");
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+
+/*FORMULÁRIO*/
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: white;
+    padding: 30px;
+    border: none;
+    border-radius: 20px;
+    margin-top: 60px;
+    width: 80%;
+    height: 80%;
+}
+
+.logo-button {
+    background-color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 2px;
+    margin-bottom: 20px;
+}
+
+.logo-button img {
+    width: 350px;
+    height: auto;
+}
+
+h1 {
+    margin: 20px 0 10px 0;
+    font-size: 28px;
+}
+
+.inputdiv {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin: 10px 0;
+    width: 500px;
+}
+
+.inputlabel {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+input {
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 6px;
+    font-size: 14px;
+    width: 100%;
+}
+
+.change-button,
+.logout-button {
+    width: 150px;
+    height: 40px;
+    background-color: #9f0000;
+    border: none;
+    border-radius: 15px;
+    color: white;
+    font-size: 20px;
+    font-weight: bolder;
+    margin: 30px 0 0 0;
+}
+
+
+/*BOTÃO DE LOGOUT*/
+
+.logout-div {
+    width: 100%;
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.logout-button {
+    margin: 0;
+}
+
+
+/*MEDIA QUERIES*/
+
+@media only screen and (min-device-width: 550px) {
+    form {
+        width: auto;
+    }
+}
