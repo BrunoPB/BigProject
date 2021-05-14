@@ -457,9 +457,21 @@ function ShowComment() {
 
 //-----------FUNÇÕES DA TELA LOGOUT------------------
 
+function validPasswordChange() {
+    let valid = true;
+    //Campos
+    let atualS = document.getElementById("old-password-input").value;
+    let novaS = document.getElementById("new-password-input").value;
+    let cNovaS = document.getElementById("c-new-password-input").value;
 
+    if (novaS !== cNovaS) {
+        valid = false;
+        alert("As senhas não coincidem.");
+        return valid;
+    }
 
-
+    return valid;
+}
 
 
 
