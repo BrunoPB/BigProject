@@ -1,8 +1,10 @@
-package Classe;
+package dao;
 
 import java.sql.*;
 import java.util.*;
 import java.util.ArrayList;
+
+import org.json.JSONObject;
 
 import Comentarios.Comentarios;
 import Empresa.Empresa;
@@ -57,6 +59,26 @@ public class BigProjectA {
 			System.err.println(e.getMessage());
 		}
 
+	}
+	
+	public String [] pegarNomeUsuario() {
+		int pegarValor=  Integer.parseInt(retornarOsids()[1]);
+		String []nomes=new String[pegarValor];
+		try {
+			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+			ResultSet rs = st.executeQuery("SELECT nome FROM usuario ");
+			if (rs.next()) {
+				rs.last();
+				rs.beforeFirst();
+				for (int i = 0; rs.next(); i++) {
+					nomes[i]=rs.getString("nome");
+				}
+			}
+			st.close();
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
+		return nomes;
 	}
 
 	// coloca um usuario no bd
@@ -122,10 +144,11 @@ public class BigProjectA {
 
 		try {
 			Statement st = conexao.createStatement();
-			st.executeUpdate("INSERT INTO projetos (idprojeto,nome,datainicio,datafim,descricao,valor,tag,imagem)" + "VALUES ("
-					+ projeto.getIdProjeto() + ", '" + projeto.getNomeProjeto() + "', '" + projeto.getDataInicio()
-					+ "', '" + projeto.getDataFim() + "', '" + projeto.getDescricaoPojeto()+"', '" 
-					+projeto.getValorProjeto()+ "', '" + projeto.getTag()+ "', '" + projeto.getImagem()+"');");
+			st.executeUpdate("INSERT INTO projetos (idprojeto,nome,datainicio,datafim,descricao,valor,tag,imagem)"
+					+ "VALUES (" + projeto.getIdProjeto() + ", '" + projeto.getNomeProjeto() + "', '"
+					+ projeto.getDataInicio() + "', '" + projeto.getDataFim() + "', '" + projeto.getDescricaoPojeto()
+					+ "', '" + projeto.getValorProjeto() + "', '" + projeto.getTag() + "', '" + projeto.getImagem()
+					+ "');");
 
 			st.close();
 			saberVerdade = true;
@@ -164,9 +187,9 @@ public class BigProjectA {
 
 		try {
 			Statement st = conexao.createStatement();
-			st.executeUpdate("INSERT INTO empresa (idempresa,nome,email,senha,imagem)" + "VALUES (" + empresa.getIdEmpresa()
-					+ ", '" + empresa.getNomeEmpresa() + "', '" + empresa.geteMailEmpresa() + "', '"
-					+ empresa.getSenhaEmpresa() + "', '" + empresa.getImagemEmpresa()+"');");
+			st.executeUpdate("INSERT INTO empresa (idempresa,nome,email,senha,imagem)" + "VALUES ("
+					+ empresa.getIdEmpresa() + ", '" + empresa.getNomeEmpresa() + "', '" + empresa.geteMailEmpresa()
+					+ "', '" + empresa.getSenhaEmpresa() + "', '" + empresa.getImagemEmpresa() + "');");
 
 			st.close();
 			saberVerdade = true;
@@ -192,16 +215,16 @@ public class BigProjectA {
 		}
 		return status;
 	}
-	
+
 // fim Empresa	
 //************************************************************************************************	
-	
+
 	// pegar todos os comentarios
 	public void pegarComentarios() {
 
 		try {
 			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-			ResultSet rs = st.executeQuery("SELECT * FROM comentarios ");
+			ResultSet rs = st.executeQuery("SELECT  FROM comentarios ");
 			if (rs.next()) {
 				rs.last();
 				rs.beforeFirst();
@@ -215,15 +238,15 @@ public class BigProjectA {
 		}
 
 	}
-	
+
 	public void inserirComentario(Comentarios comentario) {
 		boolean saberVerdade = false;
 
 		try {
 			Statement st = conexao.createStatement();
-			st.executeUpdate("INSERT INTO empresa (idcomentario,cometario,likes,data)" + "VALUES (" + comentario. getIdComentario()
-					+ ", '" + comentario.getComentario() + "', '" + comentario.getLikes() + "', '"
-					+ comentario.getDataComentario() + "');");
+			st.executeUpdate("INSERT INTO empresa (idcomentario,cometario,likes,data)" + "VALUES ("
+					+ comentario.getIdComentario() + ", '" + comentario.getComentario() + "', '" + comentario.getLikes()
+					+ "', '" + comentario.getDataComentario() + "');");
 
 			st.close();
 			saberVerdade = true;
@@ -232,8 +255,93 @@ public class BigProjectA {
 		}
 
 	}
+//**********************************************************************************************************
+	// ira retornar os ultimos  ids de usuarios 
+	public String [] retornarOsids() {
+		String []idsGet = new String[4];
+		try {
+			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+			ResultSet rs = st.executeQuery("SELECT idempresa FROM empresa ");
+			if(rs.last()) {
+				idsGet[0]=Integer.toString(rs.getInt("idempresa"));
+				//System.out.println("ultimo id de empresa =="+idsGet[0]);
+			}
+			else {
+				idsGet[0]="0";
+				//System.out.println("ultimo id de empresa =="+idsGet[0]);
+			}
+			st.close();
+		} catch (Exception e) {
+			System.err.println(e.getMessage()+"em pegar id empresa");
+		}
+		
+		try {
+			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+			ResultSet rs = st.executeQuery("SELECT idusuario FROM usuario ");
+			if(rs.last()) {
+				idsGet[1]=Integer.toString(rs.getInt("idusuario"));
+				//System.out.println("ultimo id de usuario =="+idsGet[1]);
+			}
+			else {
+				idsGet[1]="0";
+				//System.out.println("ultimo id de usuario =="+idsGet[1]);
+			}		
+			st.close();
+		} catch (Exception e) {
+			System.err.println(e.getMessage()+"em pegar id usuario");
+		}
+		
+		try {
+			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+			ResultSet rs = st.executeQuery("SELECT idprojeto FROM projetos ");
+			if(rs.last()) {
+				idsGet[2]=Integer.toString(rs.getInt("idprojeto"));
+				//System.out.println("ultimo id de projeto =="+idsGet[2]);
+			}
+			else {
+				idsGet[2]="0";
+				//System.out.println("ultimo id de projeto =="+idsGet[2]);
+			}
+			st.close();
+		} catch (Exception e) {
+			System.err.println(e.getMessage()+"em pegar id projeto");
+		}
+		
+		try {
+			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+			ResultSet rs = st.executeQuery("SELECT idcomentario FROM comentarios ");
+			if(rs.last()) {
+				idsGet[3]=Integer.toString(rs.getInt("idcomentario"));
+				//System.out.println("ultimo id de comentario =="+idsGet[3]);
+			}
+			else {
+				idsGet[3]="0";
+				//System.out.println("ultimo id de comentario =="+idsGet[3]);
+			}
+			st.close();
+		} catch (Exception e) {
+			System.err.println(e.getMessage()+"em pegar id comentario");
+		}
+		
+		
+		
 
+		return idsGet;
+	}
+	
+	public String jasonIds(String []ids) {
+		
+		JSONObject jasoNIds = new JSONObject(); 
+		jasoNIds.put("idEmpresa",ids[0]);
+		jasoNIds.put("idUsuario",ids[1]);
+		jasoNIds.put("idprojeto",ids[2]);
+		jasoNIds.put("idComentario",ids[3]);
+	
+		return jasoNIds.toString();
+	}
+	
 }
+
 //****************************************************************************************************
 /*
  * set / gets costrutor clone toString blop ou usar o link como text banco de

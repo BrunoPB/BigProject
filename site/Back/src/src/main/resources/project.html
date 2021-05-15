@@ -146,13 +146,14 @@
     <!--COMENTAR-->
     <section class="comment" id="comment">
         <h2 class="title-comment">Comentar</h2>
-        <textarea rows="20"></textarea>
+        
+        <textarea id="comentarioUsuer" rows="20"></textarea>
     </section>
     <!--RODAPÉ-->
     <footer>
         <button class="show-comment-button" id="show-comment-button" type="button" onclick="ShowComment()">Comentar</button>
         <!--Irá se tornar "cancelar ao clicar"-->
-        <button class="post-comment-button" id="post-comment-button" type="button">Postar comentário</button>
+        <button class="post-comment-button" id="post-comment-button" type="button" onclick="pegarComentariosParaoback()">Postar comentário</button>
         <!--Só aparecerá se o botão de comentar for clicado, desaparece se cancelado-->
     </footer>
 </body>

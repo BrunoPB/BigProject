@@ -18,10 +18,10 @@ import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import Classe.BigProjectA;
 import Empresa.Empresa;
 import Pojetos.Projetos;
 import Usuario.Usuario;
+import dao.BigProjectA;
 import spark.utils.IOUtils;
 
 public class Aplicacao {
@@ -34,8 +34,7 @@ public class Aplicacao {
 
 		BigProjectA conectar = new BigProjectA(); // conectar com nosso banco de dados
 		conectar.conectarPost();
-		
-		
+
 		/* codigos onde iremos colocar a pagina on */
 		get("/", (req, res) -> mandarSite.renderContent("/home.html"));
 		get("/login", (req, res) -> mandarSite.renderContent("/login.html"));
@@ -44,25 +43,61 @@ public class Aplicacao {
 		get("/creation", (req, res) -> mandarSite.renderContent("/creation.html"));
 		get("/project", (req, res) -> mandarSite.renderContent("/project.html"));
 		get("/mycomments", (req, res) -> mandarSite.renderContent("/mycomments.html"));
-		//Post_JSON();
+		// Post_JSON();
 		// pegar as infomacoes do usuario
-		 
+
+		
+		//mandar os ids para o front end
+		get("/Ids", (req, res) -> {
+
+			String[] idsget = conectar.retornarOsids();
+			res.header("Access-Control-Allow-Origin", "*");
+			res.header("Access-Control-Allow-Methods", "POST,GET");
+			res.header("Access-Control-Allow-Headers", "*");
+			res.header("Access-Control-Max-Age", "86400");
+		
+			return 	conectar.jasonIds(idsget);
+		});
+
+		
+		// mandar Usuario para o front e para o bd 
 		get("/mandarRe", (req, res) -> {
 
 			String nomeUU = "";
-
+			boolean verdade= true;
 			System.out.println(nomeUU = req.queryParams("query"));
 			String[] realocacao = nomeUU.split(",");
-			int x = Integer.parseInt(realocacao[5]);
-			Usuario alocar = new Usuario(x, realocacao[0], realocacao[1], realocacao[2], realocacao[3], realocacao[4],
+			String[] idsget = conectar.retornarOsids();
+			int idUser = Integer.parseInt(idsget [1]);
+			idUser++;
+			Usuario alocar = new Usuario(idUser, realocacao[0], realocacao[1], realocacao[2], realocacao[3], realocacao[4],
 					0);
-			System.out.println(alocar.toString());
-			//conectar.inserirUsuario(alocar);
-	
-			return 200;
+			res.header("Access-Control-Allow-Origin", "*");
+			res.header("Access-Control-Allow-Methods", "POST,GET");
+			res.header("Access-Control-Allow-Headers", "*");
+			res.header("Access-Control-Max-Age", "86400");
+			
+			
+			String []receber=conectar.pegarNomeUsuario();
+			int foo = Integer.parseInt(idsget [1]);
+			for(int i =0;i<foo;i++) {
+				if(receber[i].equals(realocacao[0])) { 
+					verdade = false;
+					return alocar.ErrorUsuario();
+				}
+				
+				
+				
+													
+			}
+			
+			if(verdade) {
+			conectar.inserirUsuario(alocar);
+			}
+			return  alocar.jsonCreationUsuario(alocar);
 		});
 
-		// pegar empresa
+		//  mandar empresa para o back end
 		get("/empresaRe", (req, res) -> {
 
 			String nomeUU = "";
@@ -75,7 +110,7 @@ public class Aplicacao {
 			return 200;
 		});
 
-		// pegar projetos
+		// pegar projetos para o back end
 		get("/projetoRe", (req, res) -> {
 			String getProjeto = "";
 			LocalDate date = LocalDate.now(); // Gets the current date
@@ -92,13 +127,13 @@ public class Aplicacao {
 			String pegarFim = date.format(formatter);
 			Projetos projeto = new Projetos(idProjeto, realocarProjeto[0], realocarProjeto[4], pegarInicio, pegarFim,
 					custoProjeto, realocarProjeto[3], realocarProjeto[7], realocarProjeto[5]);
-		    res.header("Access-Control-Allow-Origin", "*");
-            res.header("Access-Control-Allow-Methods", "POST,GET");
-            res.header("Access-Control-Allow-Headers", "*");
-            res.header("Access-Control-Max-Age", "86400");
-			// conectar.inserirProjeto(projeto);
-       
-			return  projeto.jsonCreationProjeto(projeto);
+			res.header("Access-Control-Allow-Origin", "*");
+			res.header("Access-Control-Allow-Methods", "POST,GET");
+			res.header("Access-Control-Allow-Headers", "*");
+			res.header("Access-Control-Max-Age", "86400");
+			conectar.inserirProjeto(projeto);
+
+			return projeto.jsonCreationProjeto(projeto);
 		});
 
 		// pegar os comentarios do projeto
@@ -111,9 +146,6 @@ public class Aplicacao {
 		});
 
 	}
-	
-	
-	
 
 }
 

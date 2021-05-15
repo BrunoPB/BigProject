@@ -1,29 +1,33 @@
 package Usuario;
+
 import org.json.JSONException;
 import org.json.JSONObject;
-import Classe.BigProjectA;
+
+import dao.BigProjectA;
 
 public class Usuario {
+	
+
 	private int idUsuario;
 	private String nome;
 	private String senhaUsuario;
 	private String eMailUsuario;
 	private int reputacaoUsuario;
 	private String curriculoUsuario;
-	private String tagUsuario; 
+	private String tagUsuario;
 	private String imagem;
 	/* Fim usuario */
 
-	//contrutor
-	public Usuario(int id, String nome, String senha, String email, String imagem,String tag,int reputacao ) {
+	// contrutor
+	public Usuario(int id, String nome, String senha, String email, String imagem, String tag, int reputacao) {
 		this.idUsuario = id;
 		this.nome = nome;
 		this.senhaUsuario = senha;
 		this.eMailUsuario = email;
 		this.reputacaoUsuario = reputacao;
-		this.imagem=imagem;
-		this.tagUsuario=tag;
-		
+		this.imagem = imagem;
+		this.tagUsuario = tag;
+
 	}
 
 	public void setNome(String nome) {
@@ -82,8 +86,6 @@ public class Usuario {
 		this.tagUsuario = tagUsuario;
 	}
 
-
-
 	public String getImagem() {
 		return imagem;
 	}
@@ -92,36 +94,32 @@ public class Usuario {
 		this.imagem = imagem;
 	}
 	
-    
-   public String jsonCreationUsuario(){// Chamar no click -> Fazer verificação pre envio -> no Js
-     String json_usuario = "{\"idU\":\"idUsuario\",\"nomeU\":\"nome\",\"senhaU\":\"senhaUsuario\",\"eMailU\":\"eMailUsuario\",\"reputacaoU\":\"reputacaoUsuario\","
-     		+ "\"curriculoU\":\"curriculoUsuario\",\"tagU\":\"tagUsuario\",\"imagemU\":\"imagem\"}";//Montagem da string do json -> Composto por 2 slots ({\"Primeiro Slot\":\"Segundo Slot\"})
-     //Primeiro Slot Nome gerado para "variavel" ||-> Segundo Slot Variavel para atribuição
+	@Override
+	public String toString() {
+		return "Usuario [idUsuario=" + idUsuario + ", nome=" + nome + ", senhaUsuario=" + senhaUsuario
+				+ ", eMailUsuario=" + eMailUsuario + ", reputacaoUsuario=" + reputacaoUsuario + ", curriculoUsuario="
+				+ curriculoUsuario + ", tagUsuario=" + tagUsuario + ", imagem=" + imagem + "]";
+	}
 
-        JSONObject my_obj = new JSONObject(json_usuario); // iniciação do obj json com passagem de string 
+	public String jsonCreationUsuario(Usuario usuario) {// Chamar no click -> Fazer verificação pre envio -> no Js
 
-        Integer idUsuario = my_obj.getInt("idU");
-        String nomeUsuario = my_obj.getString("nomeU");
-        String senhaUsuario = my_obj.getString("senhaU");
-        String eMailUsuario = my_obj.getString("eMailU"); 
-        String reputacaoUsuario = my_obj.getString("reputacaoU");
-        String curriculoUsuario = my_obj.getString("curriculoU");
-        String tagUsuario = my_obj.getString("tagU");
-        String imagemUsuario = my_obj.getString("imagemU");
+		JSONObject jasonUsuario = new JSONObject(); // iniciação do obj json com passagem de string
+		jasonUsuario.put("idUsuario",usuario.getIdUsuario());
+		jasonUsuario.put("nomeUsuario",usuario.getNome());
+		jasonUsuario.put("senhaUsuario",usuario.getSenhaUsuario());
+		jasonUsuario.put("emailUsuario",usuario.geteMailUsuario());
+		jasonUsuario.put("reputacaoUsuario",usuario.getReputacaoUsuario());
+		jasonUsuario.put("tagUsuario",usuario.getTagUsuario());
+		jasonUsuario.put("imagem",usuario.getImagem());
+		return jasonUsuario.toString();// Verificar necessidade
+	}
+	
+	public JSONObject ErrorUsuario() {// Chamar no click -> Fazer verificação pre envio -> no Js
 
-        
-
-        System.out.println(idUsuario);
-        System.out.println(nomeUsuario); 
-        System.out.println(senhaUsuario);
-        System.out.println(eMailUsuario);
-        System.out.println(reputacaoUsuario);
-        System.out.println(curriculoUsuario);
-        System.out.println(tagUsuario);
-        System.out.println(imagemUsuario);
-
-        //return da string do json -> pode ser adiquirido por chamada unica por meio do objeto json
-        return json_usuario;//Verificar necessidade
-        }
+		JSONObject jasonUsuarioError = new JSONObject(); // iniciação do obj json com passagem de string
+		
+		jasonUsuarioError.put("Erro","Erro");
+		return jasonUsuarioError;// Verificar necessidade
+	}
 
 }
