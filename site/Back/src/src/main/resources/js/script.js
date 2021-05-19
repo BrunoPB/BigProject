@@ -285,9 +285,9 @@ function Calculate() {
 function registroUsuario() {
 	//Testa se o formulário está válido
 	if (validRegister()) {
-       
-        
-        
+
+
+
 
 		let personal = document.getElementById("personal-input");
 		let business = document.getElementById("business-input");
@@ -298,11 +298,11 @@ function registroUsuario() {
 		let methodGet = {
 			method: "GET"
 		};
-		
-	
-		
-		
-	receberInformacoesBD()
+
+
+
+
+		receberInformacoesBD()
 		//Se for uma conta pessoal
 		if (personal.checked) {
 			let tag;
@@ -325,7 +325,7 @@ function registroUsuario() {
 			} else {
 				tag = "out";
 			}
-			
+
 
 			fetch(`http://localhost:4567/mandarRe?query=${nome},${senha},${email},${file},${tag},${10}`, methodGet)
 				.then(res => res.json())
@@ -421,7 +421,7 @@ function createProject() {
 		}
 
 
-		fetch(`http://localhost:4567/projetoRe?query=${nome}//${duracao}//${custo}//${tag}//${descricao}//${requisito}//${saberOidProjeto}//${file}`, methodGet)
+		fetch(`http://localhost:4567/projetoRe?query=${nome}//${duracao}//${custo}//${tag}//${descricao}//${requisito}//${30}//${file}`, methodGet)
 			.then(console.log("to aki"))
 			.then(res => res.json())
 			.then(data => testativavai(data));
@@ -486,7 +486,10 @@ function validProject() {
 function pegarComentariosParaoback() {
 
 	var comentario = window.document.getElementById("comentarioUsuer").value;
-	console.log(comentario);
+	let methodGet = {
+		method: "GET"
+	};
+	fetch(`http://localhost:4567/comentarioRe?query=${comentario}`, methodGet)
 
 }
 
@@ -561,22 +564,59 @@ function receberInformacoesBD() {
 	fetch(`http://localhost:4567/Ids`, init)
 		.then(res => res.json())
 		.then(data => console.log(receberosID(data)));
-        
+
 
 
 
 }
+
+
 
 
 function receberosID(data) {
 	let usuarioId = data.idUsuario;
-let	empresaId = data.idEmpresa;
-let	saberOidProjeto = data.idprojeto;
-let	idComentario = data.idComentario;
+	let empresaId = data.idEmpresa;
+	let saberOidProjeto = data.idprojeto;
+	let idComentario = data.idComentario;
 
 	console.log(usuarioId + "\n" + empresaId + "\n" + saberOidProjeto + "\n" + idComentario);
 	return usuarioId;
 
-	
+
 }
 
+
+
+
+// pegar dados de login e testar 
+function loginnoSite() {
+	console.log("ola");
+	if (validacaoLogin()) {
+		
+		var nomeDeLogin = window.document.getElementById("userinput").value;
+		var senhaDeLogin = window.document.getElementById("passwordinput").value;
+		let methodGet = {
+			method: "GET"
+		};
+		fetch(`http://localhost:4567/pegarlog?query=${nomeDeLogin}//${senhaDeLogin}`,methodGet)
+		.then(response => response.json())
+  		.then(data => console.log(data));
+	
+		
+	
+		
+	}
+}
+
+function validacaoLogin() {
+	var nomeDeLogin = window.document.getElementById("userinput").value;
+	var senhaDeLogin = window.document.getElementById("passwordinput").value;
+	if(nomeDeLogin==""||senhaDeLogin==""){
+		alert("Favor preencher todos os campos.");
+		return false;
+	}
+	else{
+		return true;
+	}
+
+}

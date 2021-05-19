@@ -23,6 +23,10 @@ import Pojetos.Projetos;
 import Usuario.Usuario;
 import dao.BigProjectA;
 import spark.utils.IOUtils;
+import com.azure.core.credential.AzureKeyCredential;
+import com.azure.ai.textanalytics.models.*;
+import com.azure.ai.textanalytics.TextAnalyticsClientBuilder;
+import com.azure.ai.textanalytics.TextAnalyticsClient;
 
 public class Aplicacao {
 	private final static String USER_AGENT = "Mozilla/5.0";
@@ -46,8 +50,7 @@ public class Aplicacao {
 		// Post_JSON();
 		// pegar as infomacoes do usuario
 
-		
-		//mandar os ids para o front end
+		// mandar os ids para o front end
 		get("/Ids", (req, res) -> {
 
 			String[] idsget = conectar.retornarOsids();
@@ -55,49 +58,44 @@ public class Aplicacao {
 			res.header("Access-Control-Allow-Methods", "POST,GET");
 			res.header("Access-Control-Allow-Headers", "*");
 			res.header("Access-Control-Max-Age", "86400");
-		
-			return 	conectar.jasonIds(idsget);
+
+			return conectar.jasonIds(idsget);
 		});
 
-		
-		// mandar Usuario para o front e para o bd 
+		// mandar Usuario para o front e para o bd
 		get("/mandarRe", (req, res) -> {
 
 			String nomeUU = "";
-			boolean verdade= true;
+			boolean verdade = true;
 			System.out.println(nomeUU = req.queryParams("query"));
 			String[] realocacao = nomeUU.split(",");
 			String[] idsget = conectar.retornarOsids();
-			int idUser = Integer.parseInt(idsget [1]);
+			int idUser = Integer.parseInt(idsget[1]);
 			idUser++;
-			Usuario alocar = new Usuario(idUser, realocacao[0], realocacao[1], realocacao[2], realocacao[3], realocacao[4],
-					0);
+			Usuario alocar = new Usuario(idUser, realocacao[0], realocacao[1], realocacao[2], realocacao[3],
+					realocacao[4], 0);
 			res.header("Access-Control-Allow-Origin", "*");
 			res.header("Access-Control-Allow-Methods", "POST,GET");
 			res.header("Access-Control-Allow-Headers", "*");
 			res.header("Access-Control-Max-Age", "86400");
-			
-			
-			String []receber=conectar.pegarNomeUsuario();
-			int foo = Integer.parseInt(idsget [1]);
-			for(int i =0;i<foo;i++) {
-				if(receber[i].equals(realocacao[0])) { 
+
+			String[] receber = conectar.pegarNomeUsuario();
+			int foo = Integer.parseInt(idsget[1]);
+			for (int i = 0; i < foo; i++) {
+				if (receber[i].equals(realocacao[0])) {
 					verdade = false;
 					return alocar.ErrorUsuario();
 				}
-				
-				
-				
-													
+
 			}
-			
-			if(verdade) {
-			conectar.inserirUsuario(alocar);
+
+			if (verdade) {
+				conectar.inserirUsuario(alocar);
 			}
-			return  alocar.jsonCreationUsuario(alocar);
+			return alocar.jsonCreationUsuario(alocar);
 		});
 
-		//  mandar empresa para o back end
+		// mandar empresa para o back end
 		get("/empresaRe", (req, res) -> {
 
 			String nomeUU = "";
@@ -135,15 +133,37 @@ public class Aplicacao {
 
 			return projeto.jsonCreationProjeto(projeto);
 		});
-
-		// pegar os comentarios do projeto
-		get("/comentarioGet", (req, res) -> {
+		
+		get("/pegarlog", (req, res) -> {
 			String getComentario = "";
 			System.out.println(getComentario = req.queryParams("query"));
-			String[] realocarProjeto = getComentario.split(",");
-
+			String[] realocarComentarios = getComentario.split("//");
+			res.header("Access-Control-Allow-Origin", "*");
+			res.header("Access-Control-Allow-Methods", "POST,GET");
+			res.header("Access-Control-Allow-Headers", "*");
+			res.header("Access-Control-Max-Age", "86400");
+			String []receberT=conectar.fazerloginNoSite(realocarComentarios);
+			Usuario alocar = new Usuario();
+			System.out.println(alocar.paginadeLogin(receberT));
 			return 200;
 		});
+
+
+		// pegar os comentarios do projeto
+		get("/comentarioRe", (req, res) -> {
+			String getComentario = "";
+			System.out.println(getComentario = req.queryParams("query"));
+			String[] realocarComentarios = getComentario.split("//");
+			TextAnalyticsSamples pegarPalavraschaves = new TextAnalyticsSamples(); // fazer a ia funcionar
+			// pegarPalavraschaves.fazerIA(realocarComentarios[0]);
+			res.header("Access-Control-Allow-Origin", "*");
+			res.header("Access-Control-Allow-Methods", "POST,GET");
+			res.header("Access-Control-Allow-Headers", "*");
+			res.header("Access-Control-Max-Age", "86400");
+			return 200;
+		});
+
+	
 
 	}
 
@@ -157,4 +177,30 @@ class RetornaroFront {
 		return new String(Files.readAllBytes(Paths.get(getClass().getResource(htmlFile).toURI())),
 				StandardCharsets.UTF_8);
 	}
+}
+
+class TextAnalyticsSamples {
+	private static String KEY = "f1ac82243b374ad2999f41b053f93b30";
+	private static String ENDPOINT = "https://ti2textanalyse.cognitiveservices.azure.com/";
+
+	public static void fazerIA(String receber) {
+		TextAnalyticsClient client = authenticateClient(KEY, ENDPOINT);
+		extractKeyPhrasesExample(client, receber);
+	}
+
+	public static TextAnalyticsClient authenticateClient(String key, String endpoint) {
+		return new TextAnalyticsClientBuilder().credential(new AzureKeyCredential(key)).endpoint(endpoint)
+				.buildClient();
+	}
+
+	public static void extractKeyPhrasesExample(TextAnalyticsClient client, String pato) {
+		// The text that need be analyzed.
+		String text = "My cat might need to see a veterinarian.";
+
+		System.out.printf("Recognized phrases: %n");
+		for (String keyPhrase : client.extractKeyPhrases(pato)) {
+			System.out.printf("%s%n", keyPhrase);
+		}
+	}
+
 }

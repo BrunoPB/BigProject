@@ -60,10 +60,10 @@ public class BigProjectA {
 		}
 
 	}
-	
-	public String [] pegarNomeUsuario() {
-		int pegarValor=  Integer.parseInt(retornarOsids()[1]);
-		String []nomes=new String[pegarValor];
+
+	public String[] pegarNomeUsuario() {
+		int pegarValor = Integer.parseInt(retornarOsids()[1]);
+		String[] nomes = new String[pegarValor];
 		try {
 			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 			ResultSet rs = st.executeQuery("SELECT nome FROM usuario ");
@@ -71,7 +71,7 @@ public class BigProjectA {
 				rs.last();
 				rs.beforeFirst();
 				for (int i = 0; rs.next(); i++) {
-					nomes[i]=rs.getString("nome");
+					nomes[i] = rs.getString("nome");
 				}
 			}
 			st.close();
@@ -255,91 +255,135 @@ public class BigProjectA {
 		}
 
 	}
+
 //**********************************************************************************************************
-	// ira retornar os ultimos  ids de usuarios 
-	public String [] retornarOsids() {
-		String []idsGet = new String[4];
+	// ira retornar os ultimos ids de usuarios
+	public String[] retornarOsids() {
+		String[] idsGet = new String[4];
 		try {
 			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 			ResultSet rs = st.executeQuery("SELECT idempresa FROM empresa ");
-			if(rs.last()) {
-				idsGet[0]=Integer.toString(rs.getInt("idempresa"));
-				//System.out.println("ultimo id de empresa =="+idsGet[0]);
-			}
-			else {
-				idsGet[0]="0";
-				//System.out.println("ultimo id de empresa =="+idsGet[0]);
+			if (rs.last()) {
+				idsGet[0] = Integer.toString(rs.getInt("idempresa"));
+				// System.out.println("ultimo id de empresa =="+idsGet[0]);
+			} else {
+				idsGet[0] = "0";
+				// System.out.println("ultimo id de empresa =="+idsGet[0]);
 			}
 			st.close();
 		} catch (Exception e) {
-			System.err.println(e.getMessage()+"em pegar id empresa");
+			System.err.println(e.getMessage() + "em pegar id empresa");
 		}
-		
+
 		try {
 			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 			ResultSet rs = st.executeQuery("SELECT idusuario FROM usuario ");
-			if(rs.last()) {
-				idsGet[1]=Integer.toString(rs.getInt("idusuario"));
-				//System.out.println("ultimo id de usuario =="+idsGet[1]);
+			if (rs.last()) {
+				idsGet[1] = Integer.toString(rs.getInt("idusuario"));
+				// System.out.println("ultimo id de usuario =="+idsGet[1]);
+			} else {
+				idsGet[1] = "0";
+				// System.out.println("ultimo id de usuario =="+idsGet[1]);
 			}
-			else {
-				idsGet[1]="0";
-				//System.out.println("ultimo id de usuario =="+idsGet[1]);
-			}		
 			st.close();
 		} catch (Exception e) {
-			System.err.println(e.getMessage()+"em pegar id usuario");
+			System.err.println(e.getMessage() + "em pegar id usuario");
 		}
-		
+
 		try {
 			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 			ResultSet rs = st.executeQuery("SELECT idprojeto FROM projetos ");
-			if(rs.last()) {
-				idsGet[2]=Integer.toString(rs.getInt("idprojeto"));
-				//System.out.println("ultimo id de projeto =="+idsGet[2]);
-			}
-			else {
-				idsGet[2]="0";
-				//System.out.println("ultimo id de projeto =="+idsGet[2]);
+			if (rs.last()) {
+				idsGet[2] = Integer.toString(rs.getInt("idprojeto"));
+				// System.out.println("ultimo id de projeto =="+idsGet[2]);
+			} else {
+				idsGet[2] = "0";
+				// System.out.println("ultimo id de projeto =="+idsGet[2]);
 			}
 			st.close();
 		} catch (Exception e) {
-			System.err.println(e.getMessage()+"em pegar id projeto");
+			System.err.println(e.getMessage() + "em pegar id projeto");
 		}
-		
+
 		try {
 			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 			ResultSet rs = st.executeQuery("SELECT idcomentario FROM comentarios ");
-			if(rs.last()) {
-				idsGet[3]=Integer.toString(rs.getInt("idcomentario"));
-				//System.out.println("ultimo id de comentario =="+idsGet[3]);
-			}
-			else {
-				idsGet[3]="0";
-				//System.out.println("ultimo id de comentario =="+idsGet[3]);
+			if (rs.last()) {
+				idsGet[3] = Integer.toString(rs.getInt("idcomentario"));
+				// System.out.println("ultimo id de comentario =="+idsGet[3]);
+			} else {
+				idsGet[3] = "0";
+				// System.out.println("ultimo id de comentario =="+idsGet[3]);
 			}
 			st.close();
 		} catch (Exception e) {
-			System.err.println(e.getMessage()+"em pegar id comentario");
+			System.err.println(e.getMessage() + "em pegar id comentario");
 		}
-		
-		
-		
 
 		return idsGet;
 	}
-	
-	public String jasonIds(String []ids) {
-		
-		JSONObject jasoNIds = new JSONObject(); 
-		jasoNIds.put("idEmpresa",ids[0]);
-		jasoNIds.put("idUsuario",ids[1]);
-		jasoNIds.put("idprojeto",ids[2]);
-		jasoNIds.put("idComentario",ids[3]);
-	
+
+	public String jasonIds(String[] ids) {
+
+		JSONObject jasoNIds = new JSONObject();
+		jasoNIds.put("idEmpresa", ids[0]);
+		jasoNIds.put("idUsuario", ids[1]);
+		jasoNIds.put("idprojeto", ids[2]);
+		jasoNIds.put("idComentario", ids[3]);
+
 		return jasoNIds.toString();
 	}
-	
+
+	/// login em nosso site
+	public String[] fazerloginNoSite(String[] valores) {
+		String[] saber = new String[3];
+		try {
+			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+			ResultSet rs = st.executeQuery("SELECT * FROM usuario ");
+			if (rs.next()) {
+				rs.last();
+				rs.beforeFirst();
+				for (int i = 0; rs.next(); i++) {
+					if (rs.getString("nome").equals(valores[0])) {
+						if (rs.getString("senha").equals(valores[1])) {
+							saber[0] = "Usuario";
+							saber[1] = rs.getString("idusuario");
+							return saber;
+						}
+					}
+				}
+			}
+
+			st.close();
+			
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
+
+		try {
+			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+			ResultSet rs = st.executeQuery("SELECT *FROM empresa ");
+			if (rs.next()) {
+				rs.last();
+				rs.beforeFirst();
+				for (int i = 0; rs.next(); i++) {
+					if (rs.getString("nome").equals(valores[0])) {
+						if (rs.getString("senha").equals(valores[1])) {
+							saber[0] = "Empresa";
+							saber[1] = rs.getString("idempresa");
+						}
+					}
+				}
+			}
+			st.close();
+			return saber;
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
+
+		return null;
+	}
+
 }
 
 //****************************************************************************************************

@@ -19,6 +19,16 @@ public class Usuario {
 	/* Fim usuario */
 
 	// contrutor
+	public Usuario() {
+		this.idUsuario = 1;
+		this.nome = "";
+		this.senhaUsuario = "";
+		this.eMailUsuario = "";
+		this.reputacaoUsuario = 0;
+		this.imagem = "";
+		this.tagUsuario = "";
+
+	}
 	public Usuario(int id, String nome, String senha, String email, String imagem, String tag, int reputacao) {
 		this.idUsuario = id;
 		this.nome = nome;
@@ -120,6 +130,13 @@ public class Usuario {
 		
 		jasonUsuarioError.put("Erro","Erro");
 		return jasonUsuarioError;// Verificar necessidade
+	}
+	
+	public String paginadeLogin(String []usuario) {
+		JSONObject jasonUsuarioLogin = new JSONObject();
+		jasonUsuarioLogin.put("idUsuario",usuario[1]);
+		jasonUsuarioLogin.put("usuario",usuario[0]);
+		return jasonUsuarioLogin.toString();
 	}
 
 }
