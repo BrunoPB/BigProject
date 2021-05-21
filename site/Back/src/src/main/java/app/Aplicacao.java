@@ -38,6 +38,8 @@ public class Aplicacao {
 
 		BigProjectA conectar = new BigProjectA(); // conectar com nosso banco de dados
 		conectar.conectarPost();
+		TextAnalyticsSamples pegarPalavraschaves = new TextAnalyticsSamples(); // fazer a ia funcionar
+		 TextAnalyticsSamples.fazerIA(" Ruim esse negocio");
 
 		/* codigos onde iremos colocar a pagina on */
 		get("/", (req, res) -> mandarSite.renderContent("/home.html"));
@@ -133,7 +135,7 @@ public class Aplicacao {
 
 			return projeto.jsonCreationProjeto(projeto);
 		});
-		
+
 		get("/pegarlog", (req, res) -> {
 			String getComentario = "";
 			System.out.println(getComentario = req.queryParams("query"));
@@ -142,28 +144,24 @@ public class Aplicacao {
 			res.header("Access-Control-Allow-Methods", "POST,GET");
 			res.header("Access-Control-Allow-Headers", "*");
 			res.header("Access-Control-Max-Age", "86400");
-			String []receberT=conectar.fazerloginNoSite(realocarComentarios);
+			String[] receberT = conectar.fazerloginNoSite(realocarComentarios);
 			Usuario alocar = new Usuario();
 			System.out.println(alocar.paginadeLogin(receberT));
 			return 200;
 		});
-
 
 		// pegar os comentarios do projeto
 		get("/comentarioRe", (req, res) -> {
 			String getComentario = "";
 			System.out.println(getComentario = req.queryParams("query"));
 			String[] realocarComentarios = getComentario.split("//");
-			TextAnalyticsSamples pegarPalavraschaves = new TextAnalyticsSamples(); // fazer a ia funcionar
-			// pegarPalavraschaves.fazerIA(realocarComentarios[0]);
+			
 			res.header("Access-Control-Allow-Origin", "*");
 			res.header("Access-Control-Allow-Methods", "POST,GET");
 			res.header("Access-Control-Allow-Headers", "*");
 			res.header("Access-Control-Max-Age", "86400");
 			return 200;
 		});
-
-	
 
 	}
 
@@ -186,6 +184,7 @@ class TextAnalyticsSamples {
 	public static void fazerIA(String receber) {
 		TextAnalyticsClient client = authenticateClient(KEY, ENDPOINT);
 		extractKeyPhrasesExample(client, receber);
+		sentimentAnalysisExample(client, receber);
 	}
 
 	public static TextAnalyticsClient authenticateClient(String key, String endpoint) {
@@ -203,4 +202,22 @@ class TextAnalyticsSamples {
 		}
 	}
 
+	public static void sentimentAnalysisExample(TextAnalyticsClient client, String pato) {
+		// The text that need be analyzed.
+		
+
+		DocumentSentiment documentSentiment = client.analyzeSentiment(pato);
+		System.out.printf(
+				"Recognized document sentiment: %s, positive score: %s, neutral score: %s, negative score: %s.%n",
+				documentSentiment.getSentiment(), documentSentiment.getConfidenceScores().getPositive(),
+				documentSentiment.getConfidenceScores().getNeutral(),
+				documentSentiment.getConfidenceScores().getNegative());
+
+		for (SentenceSentiment sentenceSentiment : documentSentiment.getSentences()) {
+			System.out.printf(
+					"Recognized sentence sentiment: %s %n",
+					sentenceSentiment.getSentiment(), sentenceSentiment.getConfidenceScores().getNegative()
+					);
+		}
+	}
 }

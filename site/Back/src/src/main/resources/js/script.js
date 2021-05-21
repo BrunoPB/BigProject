@@ -331,7 +331,7 @@ function registroUsuario() {
 				.then(res => res.json())
 				.then(data => {
 					if (compararUsuarioComOBD(data)) {
-						alert("GG izi .");
+						alert("Adicionado .");
 						console.log(data);
 					}
 					else {
@@ -424,8 +424,8 @@ function createProject() {
 		fetch(`http://localhost:4567/projetoRe?query=${nome}//${duracao}//${custo}//${tag}//${descricao}//${requisito}//${30}//${file}`, methodGet)
 			.then(console.log("to aki"))
 			.then(res => res.json())
-			.then(data => testativavai(data));
-		saberOidProjeto++;
+			.then(data => console.log(data));
+		//saberOidProjeto++;
 
 
 	}
