@@ -51,6 +51,7 @@ public class Empresa {
 	public void setSenhaEmpresa(String senhaEmpresa) {
 		this.senhaEmpresa = senhaEmpresa;
 	}
+	
 
 	public Empresa(int idEmpresa, String nomeEmpresa, String eMailEmpresa, String senhaEmpresa, String img) {
 		super();
@@ -94,5 +95,14 @@ public class Empresa {
 		// objeto json
 		return json_prep;// Verificar necessidade
 	}
+	
+	public String paginadeLogin(String []empresa) {
+		JSONObject jasonEmpresaLogin = new JSONObject();
+		jasonEmpresaLogin.put("idEmpresa",empresa[1]);
+		jasonEmpresaLogin.put("usuario",empresa[0]);
+		return jasonEmpresaLogin.toString();
+	}
+	
+	
 
 }

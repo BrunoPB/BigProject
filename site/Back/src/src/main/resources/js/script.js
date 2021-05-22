@@ -344,8 +344,8 @@ function registroUsuario() {
 
 		} else if (business.checked) { //Se for uma conta empresarial
 
-			fetch(`http://localhost:4567/empresaRe?query=${nome},${senha},${email},${file},${empresaId}`, methodGet);
-			empresaId++;
+			fetch(`http://localhost:4567/empresaRe?query=${nome},${senha},${email},${file},${10}`, methodGet);
+			
 		}
 	}
 }
@@ -589,33 +589,54 @@ function receberosID(data) {
 
 
 // pegar dados de login e testar 
-function loginnoSite() {
-	console.log("ola");
+function testel() {
+
 	if (validacaoLogin()) {
-		
+
 		var nomeDeLogin = window.document.getElementById("userinput").value;
 		var senhaDeLogin = window.document.getElementById("passwordinput").value;
 		let methodGet = {
 			method: "GET"
 		};
-		fetch(`http://localhost:4567/pegarlog?query=${nomeDeLogin}//${senhaDeLogin}`,methodGet)
-		.then(response => response.json())
-  		.then(data => console.log(data));
-	
-		
-	
-		
+		fetch(`http://localhost:4567/pegarlog?query=${nomeDeLogin}//${senhaDeLogin}`, methodGet)
+			.then(response => response.json())
+			.then(data => {
+				if (testeSupremo(data)) {
+					alert("bem vindo");
+					ficarOnline(data);
+				}
+				else{
+					alert("Who is Who");
+				}
+			});
+
+	}
+}
+function testeSupremo(data) {
+	if (data.usuario == "Usuario" || data.usuario == "Empresa") {
+		return true;
+	}
+	else {
+		return false;
 	}
 }
 
+function ficarOnline(data) {
+
+	if (data.usuario == "Usuario") {
+		var whoisWho = data.idUsuario;
+		sessionStorage.setItem('Usuario', 'Usuario');
+		sessionStorage.setItem('idUsuario', whoisWho);
+	}
+}
 function validacaoLogin() {
 	var nomeDeLogin = window.document.getElementById("userinput").value;
 	var senhaDeLogin = window.document.getElementById("passwordinput").value;
-	if(nomeDeLogin==""||senhaDeLogin==""){
+	if (nomeDeLogin == "" || senhaDeLogin == "") {
 		alert("Favor preencher todos os campos.");
 		return false;
 	}
-	else{
+	else {
 		return true;
 	}
 

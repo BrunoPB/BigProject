@@ -38,8 +38,10 @@ public class Aplicacao {
 
 		BigProjectA conectar = new BigProjectA(); // conectar com nosso banco de dados
 		conectar.conectarPost();
-		TextAnalyticsSamples pegarPalavraschaves = new TextAnalyticsSamples(); // fazer a ia funcionar
-		 TextAnalyticsSamples.fazerIA(" Ruim esse negocio");
+		/*
+		 * TextAnalyticsSamples pegarPalavraschaves = new TextAnalyticsSamples(); //
+		 * fazer a ia funcionar TextAnalyticsSamples.fazerIA(" Ruim esse negocio");
+		 */
 
 		/* codigos onde iremos colocar a pagina on */
 		get("/", (req, res) -> mandarSite.renderContent("/home.html"));
@@ -103,9 +105,13 @@ public class Aplicacao {
 			String nomeUU = "";
 			System.out.println(nomeUU = req.queryParams("query"));
 			String[] realocacao = nomeUU.split(",");
-			int x = Integer.parseInt(realocacao[4]);
-			Empresa mandarParaPhpAdmin = new Empresa(x, realocacao[0], realocacao[1], realocacao[2], realocacao[3]);
+			
+			String[] idsget = conectar.retornarOsids();
+			
+			int idUser = Integer.parseInt(idsget[0]);
+			Empresa mandarParaPhpAdmin = new Empresa(idUser+1, realocacao[0], realocacao[2], realocacao[1], realocacao[3]);
 			conectar.inserirEmpresa(mandarParaPhpAdmin);
+			
 			// System.out.println( senhaUU=req.queryParams("query1"));
 			return 200;
 		});
@@ -140,13 +146,30 @@ public class Aplicacao {
 			String getComentario = "";
 			System.out.println(getComentario = req.queryParams("query"));
 			String[] realocarComentarios = getComentario.split("//");
+			
+			String[] receberT = conectar.fazerloginNoSite(realocarComentarios);
+			if (receberT[0].equals("Usuario")) {
+				res.header("Access-Control-Allow-Origin", "*");
+				res.header("Access-Control-Allow-Methods", "POST,GET");
+				res.header("Access-Control-Allow-Headers", "*");
+				res.header("Access-Control-Max-Age", "86400");
+				Usuario alocar = new Usuario();
+				System.out.println(alocar.paginadeLogin(receberT));
+				return alocar.paginadeLogin(receberT);
+			}
+			else if(receberT[0].equals("Empresa")) {
+				res.header("Access-Control-Allow-Origin", "*");
+				res.header("Access-Control-Allow-Methods", "POST,GET");
+				res.header("Access-Control-Allow-Headers", "*");
+				res.header("Access-Control-Max-Age", "86400");
+				Empresa alocar = new Empresa();
+				System.out.println(alocar.paginadeLogin(receberT));
+				return alocar.paginadeLogin(receberT);
+			}
 			res.header("Access-Control-Allow-Origin", "*");
 			res.header("Access-Control-Allow-Methods", "POST,GET");
 			res.header("Access-Control-Allow-Headers", "*");
 			res.header("Access-Control-Max-Age", "86400");
-			String[] receberT = conectar.fazerloginNoSite(realocarComentarios);
-			Usuario alocar = new Usuario();
-			System.out.println(alocar.paginadeLogin(receberT));
 			return 200;
 		});
 
@@ -155,7 +178,7 @@ public class Aplicacao {
 			String getComentario = "";
 			System.out.println(getComentario = req.queryParams("query"));
 			String[] realocarComentarios = getComentario.split("//");
-			
+
 			res.header("Access-Control-Allow-Origin", "*");
 			res.header("Access-Control-Allow-Methods", "POST,GET");
 			res.header("Access-Control-Allow-Headers", "*");
@@ -204,7 +227,6 @@ class TextAnalyticsSamples {
 
 	public static void sentimentAnalysisExample(TextAnalyticsClient client, String pato) {
 		// The text that need be analyzed.
-		
 
 		DocumentSentiment documentSentiment = client.analyzeSentiment(pato);
 		System.out.printf(
@@ -214,10 +236,8 @@ class TextAnalyticsSamples {
 				documentSentiment.getConfidenceScores().getNegative());
 
 		for (SentenceSentiment sentenceSentiment : documentSentiment.getSentences()) {
-			System.out.printf(
-					"Recognized sentence sentiment: %s %n",
-					sentenceSentiment.getSentiment(), sentenceSentiment.getConfidenceScores().getNegative()
-					);
+			System.out.printf("Recognized sentence sentiment: %s %n", sentenceSentiment.getSentiment(),
+					sentenceSentiment.getConfidenceScores().getNegative());
 		}
 	}
 }
