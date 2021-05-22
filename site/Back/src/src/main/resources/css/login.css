@@ -22,7 +22,7 @@ button:hover {
 
 /*FORMULÁRIO*/
 
-form {
+section {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
