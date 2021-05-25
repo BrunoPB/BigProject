@@ -8,9 +8,9 @@
     <link href="css/home.css" rel="stylesheet" type="text/css">
 </head>
 
-<body >
+<body onload="loginSiteMudancas()">
     <!--CABEÇALHO-->
-    <header>
+    <header >
         <!--Logo-->
         <button class="logo-button" type="button" onclick="Home()">
             <img class="logo-image" src="./imgs/BigProject-logo.png">
@@ -36,7 +36,7 @@
     </header>
     <!--FILTRO-->
     <filter>
-        <button class="adm-button" type="button">Administração</button>
+        <button class="adm-button" type="button" onclick="testarnegociodoBruno()" >Administração</button>
         <button class="eng-button" type="button">Engenharia</button>
         <button class="ent-button" type="button">Entretenimento</button>
         <button class="sau-button" type="button">Saúde</button>
@@ -46,9 +46,9 @@
     <main>
         <!--Projetos-->
         <button type="button" class="project-section psa" onclick="Project()">
-            <img src="/imgs/MobyWhale-main.jpg">
+            <img id="lixo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBhvuSKDYSdX-bDCf3w6yEiYnxOulvYbOdfWj7h4Z3fLTcPn9Tpw3JlAhvlWOFyDCTa9M">
             <div class="project-text">
-                <h1>Moby Whale</h1>
+                <h1 id ="pato">Moby Whale</h1>
                 <h2>Living Sean</h2>
             </div>
         </button>

@@ -115,14 +115,7 @@ main {
     text-align: justify;
 }
 
-.description-imgs {
-    display: grid;
-    grid-template: 1fr 1fr / 1fr 1fr;
-    width: 100%;
-    gap: 10px;
-    padding: 10px 0 30px 0;
-    border-bottom: 2px solid rgba(100, 100, 100, 0.75);
-}
+
 
 .pimg {
     width: 100%;

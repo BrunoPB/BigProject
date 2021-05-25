@@ -65,6 +65,19 @@ public class Aplicacao {
 
 			return conectar.jasonIds(idsget);
 		});
+		
+		get("/imgs",(req,res)->{
+			String[] idsget = conectar.retornarOsids();
+			int idUser = Integer.parseInt(idsget[2]);
+			String [] recebertudo=conectar.pegarImagensProjetoTelalogin(idUser);
+			res.header("Access-Control-Allow-Origin", "*");
+			res.header("Access-Control-Allow-Methods", "POST,GET");
+			res.header("Access-Control-Allow-Headers", "*");
+			res.header("Access-Control-Max-Age", "86400");
+			
+			return conectar.jasonprojetos(recebertudo,idUser);
+		});
+		//http://localhost:4567/imgs
 
 		// mandar Usuario para o front e para o bd
 		get("/mandarRe", (req, res) -> {
@@ -98,10 +111,24 @@ public class Aplicacao {
 			}
 			return alocar.jsonCreationUsuario(alocar);
 		});
+		
+		get("/imgsProjeto",(req, res) -> {
+			
+			String[] idsget = conectar.retornarOsids();
+			int idUser = Integer.parseInt(idsget[2]);
+			String [] recebertudo=conectar.pegarImagensProjetoTelaComentario(idUser);
+			res.header("Access-Control-Allow-Origin", "*");
+			res.header("Access-Control-Allow-Methods", "POST,GET");
+			res.header("Access-Control-Allow-Headers", "*");
+			res.header("Access-Control-Max-Age", "86400");			
+			System.out.println(conectar.jasonprojetosProjeto(recebertudo,idUser));
+			return conectar.jasonprojetosProjeto(recebertudo,idUser);
+			
+		});
 
 		// mandar empresa para o back end
 		get("/empresaRe", (req, res) -> {
-
+				
 			String nomeUU = "";
 			System.out.println(nomeUU = req.queryParams("query"));
 			String[] realocacao = nomeUU.split(",");
@@ -122,8 +149,9 @@ public class Aplicacao {
 			LocalDate date = LocalDate.now(); // Gets the current date
 
 			System.out.println(getProjeto = req.queryParams("query"));
-			String[] realocarProjeto = getProjeto.split("//");
-			int idProjeto = Integer.parseInt(realocarProjeto[6]);
+			String[] realocarProjeto = getProjeto.split("///");
+			String[] idsget = conectar.retornarOsids();
+			int idProjeto1 = Integer.parseInt(idsget[2]);			
 			int custoProjeto = Integer.parseInt(realocarProjeto[2]);
 			int dataAsermodificada = Integer.parseInt(realocarProjeto[1]);
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
@@ -131,13 +159,16 @@ public class Aplicacao {
 			String pegarInicio = date.format(formatter);
 			date = date.plusDays(dataAsermodificada);
 			String pegarFim = date.format(formatter);
-			Projetos projeto = new Projetos(idProjeto, realocarProjeto[0], realocarProjeto[4], pegarInicio, pegarFim,
+			Projetos projeto = new Projetos(idProjeto1+1, realocarProjeto[0], realocarProjeto[4], pegarInicio, pegarFim,
 					custoProjeto, realocarProjeto[3], realocarProjeto[7], realocarProjeto[5]);
 			res.header("Access-Control-Allow-Origin", "*");
 			res.header("Access-Control-Allow-Methods", "POST,GET");
 			res.header("Access-Control-Allow-Headers", "*");
 			res.header("Access-Control-Max-Age", "86400");
-			conectar.inserirProjeto(projeto);
+			 byte[] bytes = realocarProjeto[7].getBytes();
+			 String s = new String (bytes, "ISO-8859-1");
+			 System.out.println(s);
+			conectar.inserirProjeto(projeto,bytes);
 
 			return projeto.jsonCreationProjeto(projeto);
 		});
@@ -217,9 +248,7 @@ class TextAnalyticsSamples {
 
 	public static void extractKeyPhrasesExample(TextAnalyticsClient client, String pato) {
 		// The text that need be analyzed.
-		String text = "My cat might need to see a veterinarian.";
-
-		System.out.printf("Recognized phrases: %n");
+		
 		for (String keyPhrase : client.extractKeyPhrases(pato)) {
 			System.out.printf("%s%n", keyPhrase);
 		}

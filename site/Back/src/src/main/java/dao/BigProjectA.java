@@ -139,7 +139,7 @@ public class BigProjectA {
 	}
 
 	// coloca uma novo projeto no BD
-	public void inserirProjeto(Projetos projeto) {
+	public void inserirProjeto(Projetos projeto, byte[] img) {
 		boolean saberVerdade = false;
 
 		try {
@@ -147,8 +147,7 @@ public class BigProjectA {
 			st.executeUpdate("INSERT INTO projetos (idprojeto,nome,datainicio,datafim,descricao,valor,tag,imagem)"
 					+ "VALUES (" + projeto.getIdProjeto() + ", '" + projeto.getNomeProjeto() + "', '"
 					+ projeto.getDataInicio() + "', '" + projeto.getDataFim() + "', '" + projeto.getDescricaoPojeto()
-					+ "', '" + projeto.getValorProjeto() + "', '" + projeto.getTag() + "', '" + projeto.getImagem()
-					+ "');");
+					+ "', '" + projeto.getValorProjeto() + "', '" + projeto.getTag() + "', '" + projeto.getImagem() + "');");
 
 			st.close();
 			saberVerdade = true;
@@ -156,6 +155,85 @@ public class BigProjectA {
 			throw new RuntimeException(u);
 		}
 
+	}
+
+	public String[] pegarImagensProjetoTelalogin(int id) {
+		String[] pegarProjeto = new String[id];
+		try {
+			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+			ResultSet rs = st.executeQuery("SELECT nome,imagem FROM projetos ");
+			if (rs.next()) {
+				rs.last();
+				rs.beforeFirst();
+				for (int i = 0; rs.next(); i++) {
+					pegarProjeto[i] = rs.getString("nome");
+					pegarProjeto[i] += "///";
+					pegarProjeto[i] += rs.getString("imagem");
+				}
+			}
+			st.close();
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
+		return pegarProjeto;
+
+	}
+	
+	
+	public String[] pegarImagensProjetoTelaComentario(int id) {
+		String[] pegarProjeto = new String[id];
+		try {
+			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+			ResultSet rs = st.executeQuery("SELECT nome,imagem , tag,descricao FROM projetos ");
+			if (rs.next()) {
+				rs.last();
+				rs.beforeFirst();
+				for (int i = 0; rs.next(); i++) {
+					pegarProjeto[i] = rs.getString("nome");
+					pegarProjeto[i] += "///";
+					pegarProjeto[i] += rs.getString("imagem");
+					pegarProjeto[i] += "///";
+					pegarProjeto[i] += rs.getString("tag");
+					pegarProjeto[i] += "///";
+					pegarProjeto[i] += rs.getString("descricao");
+					pegarProjeto[i] += "///";
+				}
+			}
+			st.close();
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
+		return pegarProjeto;
+
+	}
+	
+
+	public String jasonprojetosProjeto(String[] projetos, int x) {
+		JSONObject jasoNIds = new JSONObject();
+		for (int i = 0; i < x; i++) {
+			String [] teste=  projetos[i].split("///");
+			
+			jasoNIds.put("Nome", teste[0]);
+			jasoNIds.put("imagem", teste[1]);
+			jasoNIds.put("tag", teste[2]);
+			jasoNIds.put("descricao", teste[3]);
+		}
+		
+
+		return jasoNIds.toString();
+	}
+
+	public String jasonprojetos(String[] projetos, int x) {
+		JSONObject jasoNIds = new JSONObject();
+		for (int i = 0; i < x; i++) {
+			String [] teste=  projetos[i].split("///");
+			
+			jasoNIds.put("Nome", teste[0]);
+			jasoNIds.put("imagem", teste[1]);
+		}
+		
+
+		return jasoNIds.toString();
 	}
 
 	/* fim Projetos */
@@ -355,7 +433,7 @@ public class BigProjectA {
 			}
 
 			st.close();
-			
+
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 		}

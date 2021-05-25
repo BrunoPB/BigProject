@@ -24,6 +24,7 @@ function Creation() {
 function Project( /*let x*/) {
 	//Por enquanto temos apenas um projeto place holder, portanto, a variável x não será utilizada    
 	window.location.href = "/project";
+	projetoTT();
 }
 
 //FUNÇÃO PARA IR A TELA DE REGISTER
@@ -345,7 +346,7 @@ function registroUsuario() {
 		} else if (business.checked) { //Se for uma conta empresarial
 
 			fetch(`http://localhost:4567/empresaRe?query=${nome},${senha},${email},${file},${10}`, methodGet);
-			
+
 		}
 	}
 }
@@ -421,7 +422,7 @@ function createProject() {
 		}
 
 
-		fetch(`http://localhost:4567/projetoRe?query=${nome}//${duracao}//${custo}//${tag}//${descricao}//${requisito}//${30}//${file}`, methodGet)
+		fetch(`http://localhost:4567/projetoRe?query=${nome}///${duracao}///${custo}///${tag}///${descricao}///${requisito}///${30}///${file}`, methodGet)
 			.then(console.log("to aki"))
 			.then(res => res.json())
 			.then(data => console.log(data));
@@ -484,12 +485,12 @@ function validProject() {
 
 // pegar os comentarios
 function pegarComentariosParaoback() {
-
+	let saberAverdade = sessionStorage.getItem('idUsuario')
 	var comentario = window.document.getElementById("comentarioUsuer").value;
 	let methodGet = {
 		method: "GET"
 	};
-	fetch(`http://localhost:4567/comentarioRe?query=${comentario}`, methodGet)
+	fetch(`http://localhost:4567/comentarioRe?query=${comentario}//${saberAverdade}`, methodGet)
 
 }
 
@@ -569,7 +570,60 @@ function receberInformacoesBD() {
 
 
 }
+/*
+function testarnegociodoBruno(){ 
+ let test="pantera cor de rosa";
+ window.document.getElementById("pato").innerHTML=test;
+ 
+ window.document.getElementById("lixo").src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Talon_0.jpg"
+}
+*/
+//inerhtml
+function imagensPaginaInicio() {
 
+	var init = {
+		method: 'GET'
+	};
+	fetch(`http://localhost:4567/imgs`, init)
+		.then(res => res.json())
+		.then(data => fazerPagina(data));
+
+}
+
+function fazerPagina(data) {
+	if (data.Nome != "") {
+
+		let pegarNome = data.Nome;
+		let pegarImagem = data.imagem;
+		let ttt = data.imagem;
+		
+		window.document.getElementById("pato").innerHTML = pegarNome;
+		window.document.getElementById("lixo").src = pegarImagem;
+	}
+
+
+
+}
+
+function projetoTT() {
+	var init = {
+		method: 'GET'
+	};
+	console.log("OLa");
+	fetch(`http://localhost:4567/imgsProjeto`, init)
+		.then(res => res.json())
+		.then(data => console.log(data));
+}
+
+function colocarNo(data) {
+
+	let pegarNome = data.Nome;
+	let pegarImagem = data.imagem;
+
+	let pegarTextoaki = "ola mundo"
+	window.document.getElementById("imagemProjetP").src = pegarImagem
+	window.document.getElementById("pegarComentario").innerHTML = pegarNome;
+}
 
 
 
@@ -604,8 +658,10 @@ function testel() {
 				if (testeSupremo(data)) {
 					alert("bem vindo");
 					ficarOnline(data);
+					Home();
+
 				}
-				else{
+				else {
 					alert("Who is Who");
 				}
 			});
@@ -629,6 +685,29 @@ function ficarOnline(data) {
 		sessionStorage.setItem('idUsuario', whoisWho);
 	}
 }
+
+
+// se retornar um String mudar as paginas 
+function loginSiteMudancas() {
+	imagensPaginaInicio();
+	let saberAverdade = sessionStorage.getItem('Usuario');
+	if (saberAverdade == "Usuario") {
+		console.log("ola ");
+		return "Usuario"
+	}
+	else if (saberAverdade == "Empresa") {
+
+		return "Empresa"
+	}
+	else {
+		return null;
+	}
+
+
+}
+
+
+
 function validacaoLogin() {
 	var nomeDeLogin = window.document.getElementById("userinput").value;
 	var senhaDeLogin = window.document.getElementById("passwordinput").value;

@@ -1,5 +1,11 @@
 package Pojetos;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -30,6 +36,7 @@ public class Projetos {
 		this.rec = rec;
 
 	}
+
 	public String getRec() {
 		return rec;
 	}
@@ -37,7 +44,6 @@ public class Projetos {
 	public void setRec(String rec) {
 		this.rec = rec;
 	}
-
 
 	public String getNomeProjeto() {
 		return nomeProjeto;
@@ -122,13 +128,13 @@ public class Projetos {
 		jasoN.put("idProjeto", projeto.getIdProjeto());
 		jasoN.put("nomeProjeto", projeto.getNomeProjeto());
 		jasoN.put("descricaoPojeto", projeto.getDescricaoPojeto());
-		jasoN.put("dataInicio",projeto.getDataInicio());
-		jasoN.put("dataFim",projeto.getDataFim());
-		jasoN.put("valorProjeto",projeto.getValorProjeto());
-		jasoN.put("tag",projeto.getTag());
-		jasoN.put("imagem",projeto.getImagem());
-		jasoN.put("rec",projeto.getRec());
-		
+		jasoN.put("dataInicio", projeto.getDataInicio());
+		jasoN.put("dataFim", projeto.getDataFim());
+		jasoN.put("valorProjeto", projeto.getValorProjeto());
+		jasoN.put("tag", projeto.getTag());
+		jasoN.put("imagem", projeto.getImagem());
+		jasoN.put("rec", projeto.getRec());
+
 		/*
 		 * //jason.parce System.out.println(idProjeto); System.out.println(nomeProjeto);
 		 * System.out.println(descricaoProjeto); System.out.println(dataIProjeto);
@@ -140,6 +146,8 @@ public class Projetos {
 		// objeto json
 		return jasoN.toString();// Verificar necessidade
 	}
+
+
 
 }
 /*
