@@ -8,17 +8,17 @@
     <link href="css/home.css" rel="stylesheet" type="text/css">
 </head>
 
-<body onload="loginSiteMudancas()">
+<body onload="adaptScreenHome()">
     <!--CABEÇALHO-->
-    <header >
+    <header>
         <!--Logo-->
         <button class="logo-button" type="button" onclick="Home()">
             <img class="logo-image" src="./imgs/BigProject-logo.png">
         </button>
         <!--Barra de pesquisa-->
-        <form class="search-form" >
+        <form class="search-form">
             <input id="teste" class="search-input" type="text" placeholder="Pesquisar" name="email">
-            <button class="search-button"  onclick="Testar()" type="button">
+            <button class="search-button" onclick="Testar()" type="button">
                 <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24">
                     <path
                         d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
@@ -36,7 +36,7 @@
     </header>
     <!--FILTRO-->
     <filter>
-        <button class="adm-button" type="button" onclick="testarnegociodoBruno()" >Administração</button>
+        <button class="adm-button" type="button" onclick="testarnegociodoBruno()">Administração</button>
         <button class="eng-button" type="button">Engenharia</button>
         <button class="ent-button" type="button">Entretenimento</button>
         <button class="sau-button" type="button">Saúde</button>
@@ -46,9 +46,10 @@
     <main>
         <!--Projetos-->
         <button type="button" class="project-section psa" onclick="Project()">
-            <img id="lixo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBhvuSKDYSdX-bDCf3w6yEiYnxOulvYbOdfWj7h4Z3fLTcPn9Tpw3JlAhvlWOFyDCTa9M">
+            <img id="lixo"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBhvuSKDYSdX-bDCf3w6yEiYnxOulvYbOdfWj7h4Z3fLTcPn9Tpw3JlAhvlWOFyDCTa9M">
             <div class="project-text">
-                <h1 id ="pato">Moby Whale</h1>
+                <h1 id="pato">Moby Whale</h1>
                 <h2>Living Sean</h2>
             </div>
         </button>
@@ -117,250 +118,20 @@
         </button>
     </main>
     <!--MENU-->
-    <nav>
+    <nav id="nav">
         <!--Botão "Novo Projeto"-->
-        <button class="novo-projeto-button" type="button" onclick="Creation()">
+        <button class="novo-projeto-button" id="novo-projeto-button" type="button" onclick="Creation()">
             <h3 class="novo-projeto-text">Novo Projeto</h3>
         </button>
         <!--Botão "Meus Projetos"-->
-        <button class="meus-projetos-button" type="button" onclick="MyProjects()">
+        <button class="meus-projetos-button" id="meus-projetos-button" type="button" onclick="MyProjects()">
             <h3 class="meus-projetos-text">Meus Projetos</h3>
         </button>
+        <!--Botão "Meus Comentários"-->
+        <button class="meus-comentarios-button" id="meus-comentarios-button" type="button" onclick="MyComments()">
+            <h3 class="meus-comentarios-text">Meus Comentários</h3>
+        </button>
     </nav>
-    
-    <style>
-    /*BODY*/
-
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: sans-serif;
-}
-
-body {
-    background-color: rgba(0, 0, 0, 0.75);
-    display: block;
-    overflow-y: scroll;
-}
-
-button:hover {
-    cursor: pointer;
-}
-
-
-/*CABEÇALHO*/
-
-header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    position: fixed;
-    background-color: #9f0000;
-    width: 100%;
-    height: 60px;
-    padding: 20px;
-    z-index: 1;
-}
-
-.logo-button {
-    background-color: white;
-    border: none;
-    border-radius: 10px;
-    padding: 2px;
-}
-
-.logo-image {
-    height: 40px;
-}
-
-.search-form {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: 40%;
-    min-width: auto;
-    justify-content: center;
-}
-
-.search-input {
-    display: none;
-    height: 30px;
-    width: 100%;
-    background-color: white;
-    border: none;
-    border-radius: 2px 0 0 2px;
-    padding: 3px;
-}
-
-.search-button {
-    border: 2px solid white;
-    border-radius: 0 2px 2px 0;
-    padding: 2px 12px;
-    background-color: transparent;
-    width: 30%;
-}
-
-.user-button {
-    background-color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 5px;
-}
-
-
-/*FILTRO*/
-
-filter {
-    width: 100%;
-    margin-top: 60px;
-    height: auto;
-    padding: 5px 0;
-    position: fixed;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-    background-color: rgba(255, 255, 255, 0.75);
-    z-index: 1;
-}
-
-filter button {
-    background-color: #9f0000;
-    color: whitesmoke;
-    padding: 5px 8px;
-    border: none;
-    border-radius: 10px;
-    font-weight: bold;
-    font-size: 14px;
-}
-
-
-/*CONTEÚDO*/
-
-main {
-    padding: 105px 30px;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 10px;
-}
-
-.project-section {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    overflow: hidden;
-    padding: 0;
-    margin: 0;
-    border: 0;
-}
-
-.project-section img {
-    width: 100%;
-    height: auto;
-    padding: 0;
-}
-
-.project-section img:hover {
-    transform: scale(1.1);
-    transition-property: transform;
-    transition-duration: 500ms;
-}
-
-.project-text {
-    background-color: rgba(255, 255, 255, 0.75);
-    padding: 3px;
-    position: absolute;
-}
-
-.psa {
-    grid-area: span 2 / span 2;
-}
-
-.psh {
-    grid-column: span 2;
-}
-
-.psv {
-    grid-row: span 2;
-}
-
-.project-text h1 {
-    font-size: 14px;
-}
-
-.project-section h2 {
-    font-size: 10px;
-}
-
-
-/*MENU*/
-
-nav {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    position: fixed;
-    background-color: #9f0000;
-    width: 100%;
-    height: 60px;
-    padding: 20px;
-    bottom: 0;
-}
-
-nav button {
-    padding: 8px;
-    width: 30%;
-    min-width: auto;
-    background-color: white;
-    border: none;
-    border-radius: 10px;
-}
-
-nav button h3 {
-    color: #9f0000;
-    font-size: 20px;
-    font-weight: bolder;
-}
-
-
-/*MEDIA QUERIES*/
-
-@media only screen and (min-device-width: 550px) {
-    /*Cabeçalho*/
-    .search-form {
-        justify-content: space-between;
-    }
-    .search-input {
-        display: block;
-    }
-    .search-button {
-        width: auto;
-    }
-    /*Conteúdo*/
-    main {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-@media only screen and (min-device-width: 1000px) {
-    /*Conteúdo*/
-    main {
-        grid-template-columns: repeat(4, 1fr);
-    }
-}
-
-@media only screen and (min-device-width: 1350px) {
-    /*Conteúdo*/
-    main {
-        grid-template-columns: repeat(5, 1fr);
-    }
-}
-    </style>
-    
-    
 </body>
 
 </html>

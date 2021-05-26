@@ -167,7 +167,7 @@ main {
 /*MENU*/
 
 nav {
-    display: flex;
+    display: none;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
