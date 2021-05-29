@@ -7,7 +7,7 @@ function Home() {
 
 //FUNÇÃO PARA IR A TELA DE LOGIN
 function Login() {
-    if (loginSiteMudancas() !== "nao") {
+    if (loginSiteMudancas() === "nao") {
         window.location.href = "/login";
     } else {
         Logout();
@@ -28,7 +28,7 @@ function Creation() {
 function Project( /*let x*/ ) {
     //Por enquanto temos apenas um projeto place holder, portanto, a variável x não será utilizada    
     window.location.href = "/project";
-    projetoTT();
+    
 }
 
 //FUNÇÃO PARA IR A TELA DE REGISTER
@@ -610,16 +610,17 @@ function projetoTT() {
     console.log("OLa");
     fetch(`http://localhost:4567/imgsProjeto`, init)
         .then(res => res.json())
-        .then(data => console.log(data));
+        .then(data =>colocarNo(data));
 }
 
 function colocarNo(data) {
-    let pegarNome = data.Nome;
+    let pegarNome = data.descricao;
     let pegarImagem = data.imagem;
 
     let pegarTextoaki = "ola mundo"
-    window.document.getElementById("imagemProjetP").src = pegarImagem
-    window.document.getElementById("pegarComentario").innerHTML = pegarNome;
+    document.getElementById("imagemProjetP").src = pegarImagem
+    document.getElementById("pegarComentarioP").innerHTML = pegarNome;
+    adaptScreenProject();
 }
 
 
