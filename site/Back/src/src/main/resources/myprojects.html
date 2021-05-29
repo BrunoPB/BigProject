@@ -68,16 +68,14 @@
             <!--Filtro-->
             <form class="filter-form">
                 <h2 class="filter-text">Filtrar comentários por:</h2>
-                <input class="filter-input" type="text" list="filter-list" placeholder="Escolha um filtro">
+                <input id="filter-input" class="filter-input" type="text" list="filter-list" placeholder="Escolha um filtro">
                 <datalist id="filter-list">
-                    <option>Qualidade do comentário</option>
-                    <option>Reputação do autor</option>
-                    <option>Qualidade do currículo do autor</option>
+                    <option>Positivo</option>
+                    <option>Neutro</option>
+                    <option>Negativo</option>
                     <option>Quantidade de curtidas</option>
                     <option>Data - mais recente</option>
                     <option>Data - mais antigo</option>
-                    <option>Menor número de caractéres</option>
-                    <option>Maior número de caractéres</option>
                 </datalist>
                 <button class="filter-button" type="button">Filtrar</button>
             </form>

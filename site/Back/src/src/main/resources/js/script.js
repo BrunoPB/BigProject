@@ -28,7 +28,7 @@ function Creation() {
 function Project( /*let x*/ ) {
     //Por enquanto temos apenas um projeto place holder, portanto, a variável x não será utilizada    
     window.location.href = "/project";
-    
+
 }
 
 //FUNÇÃO PARA IR A TELA DE REGISTER
@@ -534,6 +534,18 @@ function ShowComment() {
     }
 }
 
+//FUNÇÃO DE DAR LIKE NO COMENTÁRIO
+function LikeComment(comId) {
+    if (loginSiteMudancas() === "Usuario") {
+        let com = document.getElementById(comId).style;
+        if (com.fill === "lightblue") {
+            com.fill = "#AAAAAA";
+        } else {
+            com.fill = "lightblue";
+        }
+    }
+}
+
 
 
 
@@ -610,7 +622,7 @@ function projetoTT() {
     console.log("OLa");
     fetch(`http://localhost:4567/imgsProjeto`, init)
         .then(res => res.json())
-        .then(data =>colocarNo(data));
+        .then(data => colocarNo(data));
 }
 
 function colocarNo(data) {
