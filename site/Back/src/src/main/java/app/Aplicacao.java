@@ -134,9 +134,8 @@ public class Aplicacao {
 			String nomeUU = "";
 			System.out.println(nomeUU = req.queryParams("query"));
 			String[] realocacao = nomeUU.split(",");
-
+			
 			String[] idsget = conectar.retornarOsids();
-
 			int idUser = Integer.parseInt(idsget[0]);
 			Empresa mandarParaPhpAdmin = new Empresa(idUser + 1, realocacao[0], realocacao[2], realocacao[1],
 					realocacao[3]);

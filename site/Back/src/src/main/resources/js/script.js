@@ -385,7 +385,17 @@ function registroUsuario() {
                 });
         } else if (business.checked) { //Se for uma conta empresarial
 
-            fetch(`http://localhost:4567/empresaRe?query=${nome},${senha},${email},${file},${10}`, methodGet);
+            fetch(`http://localhost:4567/empresaRe?query=${nome},${senha},${email},${file},${10}`, methodGet)
+            .then(res=> res.json())
+            .then(data=>{
+                if(compararEmpresacomBD(data)){
+                    alert("Adicionado .");
+                }
+                else{
+                    alert("Empresa ja existe .");
+                    Register();
+                }
+            })
 
         }
     }
@@ -538,10 +548,10 @@ function ShowComment() {
 function LikeComment(comId) {
     if (loginSiteMudancas() === "Usuario") {
         let com = document.getElementById(comId).style;
-        if (com.fill === "lightblue") {
+        if (com.fill === "blue") {
             com.fill = "#AAAAAA";
         } else {
-            com.fill = "lightblue";
+            com.fill = "blue";
         }
     }
 }
