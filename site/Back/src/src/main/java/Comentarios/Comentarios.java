@@ -9,17 +9,66 @@ public class Comentarios {
 	private String Comentario;
 	private int likes;
 	private String dataComentario;
+	private String sentimentos;
+	private int idProjeto;
+	private int idUsuario; 
+
 
 	
-	public Comentarios(int idComentario, int ganhador, String comentario, int likes, String dataComentario) {
+
+	public Comentarios(int idComentario2, int ganhador2, String comentario2, int likes2, String dataComentario2,
+			String pegar, int idProjeot,int idUsuario) {
 		super();
-		this.idComentario = idComentario;
-		this.Ganhador = ganhador;
-		this.Comentario = comentario;
-		this.likes = likes;
-		this.dataComentario = dataComentario;
+		this.idComentario = idComentario2;
+		this.Ganhador = ganhador2;
+		this.Comentario = comentario2;
+		this.likes = likes2;
+		this.dataComentario = dataComentario2;
+		this.sentimentos=pegar;
+		this.idProjeto=idProjeot;
+		this.idUsuario=idUsuario;
 	}
-	
+
+
+
+
+
+
+	public int getIdUsuario() {
+		return idUsuario;
+	}
+
+
+
+
+	public void setIdUsuario(int idUsuario) {
+		this.idUsuario = idUsuario;
+	}
+
+
+
+
+
+
+	public String getSentimentos() {
+		return sentimentos;
+	}
+
+
+	public void setSentimentos(String sentimentos) {
+		this.sentimentos = sentimentos;
+	}
+
+
+	public int getIdProjeto() {
+		return idProjeto;
+	}
+
+
+	public void setIdProjeto(int idProjeto) {
+		this.idProjeto = idProjeto;
+	}
+
 	
 	public int getIdComentario() {
 		return idComentario;
@@ -99,6 +148,12 @@ public class Comentarios {
 	        //return da string do json -> pode ser adiquirido por chamada unica por meio do objeto json
 	        return json_comentario;//Verificar necessidade
 	        }
+	   @Override
+		public String toString() {
+			return "Comentarios [idComentario=" + idComentario + ", Ganhador=" + Ganhador + ", Comentario=" + Comentario
+					+ ", likes=" + likes + ", dataComentario=" + dataComentario + ", sentimentos=" + sentimentos
+					+ ", idProjeto=" + idProjeto + "]";
+		}
 
 	
 }

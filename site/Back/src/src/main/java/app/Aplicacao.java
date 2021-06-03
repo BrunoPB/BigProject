@@ -24,6 +24,9 @@ import Usuario.Usuario;
 import dao.BigProjectA;
 import spark.utils.IOUtils;
 import com.azure.core.credential.AzureKeyCredential;
+
+import Comentarios.Comentarios;
+
 import com.azure.ai.textanalytics.models.*;
 import com.azure.ai.textanalytics.TextAnalyticsClientBuilder;
 import com.azure.ai.textanalytics.TextAnalyticsClient;
@@ -71,12 +74,12 @@ public class Aplicacao {
 		get("/imgs", (req, res) -> {
 			String[] idsget = conectar.retornarOsids();
 			int idUser = Integer.parseInt(idsget[2]);
-			String[] recebertudo = conectar.pegarImagensProjetoTelalogin(idUser);
+			String[] recebertudo = conectar.pegarImagensProjetoTelaComentario(idUser);
 			res.header("Access-Control-Allow-Origin", "*");
 			res.header("Access-Control-Allow-Methods", "POST,GET");
 			res.header("Access-Control-Allow-Headers", "*");
 			res.header("Access-Control-Max-Age", "86400");
-
+			// System.out.println(recebertudo[2]);
 			return conectar.jasonprojetos(recebertudo, idUser);
 		});
 		// http://localhost:4567/imgs
@@ -118,13 +121,15 @@ public class Aplicacao {
 
 			String[] idsget = conectar.retornarOsids();
 			int idUser = Integer.parseInt(idsget[2]);
-			String[] recebertudo = conectar.pegarImagensProjetoTelaComentario(idUser);
+			String[] recebertudo = conectar.pegarImagensProjetoTelaComentariot(idUser);
 			res.header("Access-Control-Allow-Origin", "*");
 			res.header("Access-Control-Allow-Methods", "POST,GET");
 			res.header("Access-Control-Allow-Headers", "*");
 			res.header("Access-Control-Max-Age", "86400");
-			System.out.println(conectar.jasonprojetosProjeto(recebertudo, idUser));
-			return conectar.jasonprojetosProjeto(recebertudo, idUser);
+			// System.out.println(recebertudo[2]);
+			System.out.println(conectar.jasonprojetosProjeto(recebertudo));
+
+			return conectar.jasonprojetosProjeto(recebertudo);
 
 		});
 
@@ -134,7 +139,7 @@ public class Aplicacao {
 			String nomeUU = "";
 			System.out.println(nomeUU = req.queryParams("query"));
 			String[] realocacao = nomeUU.split(",");
-			
+
 			String[] idsget = conectar.retornarOsids();
 			int idUser = Integer.parseInt(idsget[0]);
 			Empresa mandarParaPhpAdmin = new Empresa(idUser + 1, realocacao[0], realocacao[2], realocacao[1],
@@ -162,14 +167,15 @@ public class Aplicacao {
 			date = date.plusDays(dataAsermodificada);
 			String pegarFim = date.format(formatter);
 			Projetos projeto = new Projetos(idProjeto1 + 1, realocarProjeto[0], realocarProjeto[4], pegarInicio,
-					pegarFim, custoProjeto, realocarProjeto[3], realocarProjeto[7], realocarProjeto[5]);
+					pegarFim, custoProjeto, realocarProjeto[3], realocarProjeto[7], realocarProjeto[5],
+					realocarProjeto[8]);
 			res.header("Access-Control-Allow-Origin", "*");
 			res.header("Access-Control-Allow-Methods", "POST,GET");
 			res.header("Access-Control-Allow-Headers", "*");
 			res.header("Access-Control-Max-Age", "86400");
 			byte[] bytes = realocarProjeto[7].getBytes();
-			String s = new String(bytes, "ISO-8859-1");
-			System.out.println(s);
+			String s = new String(bytes, "utf-8");
+			// System.out.println(s);
 			conectar.inserirProjeto(projeto, bytes);
 
 			return projeto.jsonCreationProjeto(projeto);
@@ -209,14 +215,26 @@ public class Aplicacao {
 		get("/comentarioRe", (req, res) -> {
 			String getComentario = "";
 			System.out.println(getComentario = req.queryParams("query"));
-			String[] realocarComentarios = getComentario.split("//");
-
+			String[] realocarComentarios = getComentario.split("///");
+			TextAnalyticsSamples pegarPalavraschaves = new TextAnalyticsSamples();
+			String pegar = TextAnalyticsSamples.fazerIA(realocarComentarios[0]);
+			System.out.println(pegar);
+			String[] idsget = conectar.retornarOsids();
+			int idUser = Integer.parseInt(idsget[3]);
+			int idProjeot = Integer.parseInt(realocarComentarios[2]);
+			int idusuario = Integer.parseInt(realocarComentarios[1]);
+			Comentarios comnet = new Comentarios(idUser + 1, 0, realocarComentarios[0], 0, realocarComentarios[4],
+					pegar, idProjeot, idusuario);
+			System.out.println(comnet.toString());
+			conectar.inserirComentario(comnet);
 			res.header("Access-Control-Allow-Origin", "*");
 			res.header("Access-Control-Allow-Methods", "POST,GET");
 			res.header("Access-Control-Allow-Headers", "*");
 			res.header("Access-Control-Max-Age", "86400");
 			return 200;
 		});
+
+	
 
 	}
 
@@ -236,10 +254,10 @@ class TextAnalyticsSamples {
 	private static String KEY = "f1ac82243b374ad2999f41b053f93b30";
 	private static String ENDPOINT = "https://ti2textanalyse.cognitiveservices.azure.com/";
 
-	public static void fazerIA(String receber) {
+	public static String fazerIA(String receber) {
 		TextAnalyticsClient client = authenticateClient(KEY, ENDPOINT);
-		extractKeyPhrasesExample(client, receber);
-		sentimentAnalysisExample(client, receber);
+		// extractKeyPhrasesExample(client, receber);
+		return sentimentAnalysisExample(client, receber);
 	}
 
 	public static TextAnalyticsClient authenticateClient(String key, String endpoint) {
@@ -255,7 +273,7 @@ class TextAnalyticsSamples {
 		}
 	}
 
-	public static void sentimentAnalysisExample(TextAnalyticsClient client, String pato) {
+	public static String sentimentAnalysisExample(TextAnalyticsClient client, String pato) {
 		// The text that need be analyzed.
 
 		DocumentSentiment documentSentiment = client.analyzeSentiment(pato);
@@ -265,11 +283,24 @@ class TextAnalyticsSamples {
 				documentSentiment.getConfidenceScores().getNeutral(),
 				documentSentiment.getConfidenceScores().getNegative());
 
-		for (SentenceSentiment sentenceSentiment : documentSentiment.getSentences()) {
-			System.out.printf("Recognized sentence sentiment: %s %n", sentenceSentiment.getSentiment(),
-					sentenceSentiment.getConfidenceScores().getNegative());
-		}
+		String pegar = documentSentiment.getSentiment().toString();
+		Double tt = documentSentiment.getConfidenceScores().getNeutral();
+		Double tt2 = documentSentiment.getConfidenceScores().getPositive();
+		Double tt3 = documentSentiment.getConfidenceScores().getNegative();
+		pegar += " /neutral score: ";
+		pegar += Double.toString(tt);
+		pegar += " /positive score: ";
+		pegar += Double.toString(tt2);
+		pegar += " /negative score: ";
+		pegar += Double.toString(tt3);
+		return pegar;
+
+		/*
+		 * for (SentenceSentiment sentenceSentiment : documentSentiment.getSentences())
+		 * { System.out.printf("Recognized sentence sentiment: %s %n",
+		 * sentenceSentiment.getSentiment(),
+		 * sentenceSentiment.getConfidenceScores().getNegative()); } return null;
+		 */
 	}
 
-	
 }

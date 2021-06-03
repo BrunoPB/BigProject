@@ -25,7 +25,7 @@ function Creation() {
 }
 
 //FUNÇÃO PARA IR A TELA DO PROJETO
-function Project( /*let x*/ ) {
+function Project( /*let x*/) {
     //Por enquanto temos apenas um projeto place holder, portanto, a variável x não será utilizada    
     window.location.href = "/project";
 
@@ -211,7 +211,7 @@ function boxChecked(tag) {
             tec.checked = false;
             adm.checked = false;
             break;
-            //Cases para requisito curricular
+        //Cases para requisito curricular
         case "nenhum":
             grad.checked = false;
             pos.checked = false;
@@ -350,7 +350,7 @@ function registroUsuario() {
         };
 
         receberInformacoesBD()
-            //Se for uma conta pessoal
+        //Se for uma conta pessoal
         if (personal.checked) {
             let tag;
             let adm = document.getElementById("adm-input");
@@ -385,17 +385,8 @@ function registroUsuario() {
                 });
         } else if (business.checked) { //Se for uma conta empresarial
 
-            fetch(`http://localhost:4567/empresaRe?query=${nome},${senha},${email},${file},${10}`, methodGet)
-            .then(res=> res.json())
-            .then(data=>{
-                if(compararEmpresacomBD(data)){
-                    alert("Adicionado .");
-                }
-                else{
-                    alert("Empresa ja existe .");
-                    Register();
-                }
-            })
+            fetch(`http://localhost:4567/empresaRe?query=${nome},${senha},${email},${file},${10}`, methodGet);
+
 
         }
     }
@@ -408,6 +399,8 @@ function compararUsuarioComOBD(data) {
         return true;
     }
 }
+
+
 
 //FUNÇÃO PARA CRIAR O PROJETO E ENVIAR PARA O BANCO DE DADOS
 function createProject() {
@@ -467,8 +460,8 @@ function createProject() {
         } else {
             requisito = "nenhum";
         }
-
-        fetch(`http://localhost:4567/projetoRe?query=${nome}///${duracao}///${custo}///${tag}///${descricao}///${requisito}///${30}///${file}`, methodGet)
+        let idEmpresa = sessionStorage.getItem('idEmpresa')
+        fetch(`http://localhost:4567/projetoRe?query=${nome}///${duracao}///${custo}///${tag}///${descricao}///${requisito}///${30}///${file}///${idEmpresa}`, methodGet)
             .then(console.log("to aki"))
             .then(res => res.json())
             .then(data => console.log(data));
@@ -514,13 +507,25 @@ function validProject() {
 }
 
 // pegar os comentarios
+var n=3;
 function pegarComentariosParaoback() {
+
+    var data = new Date();
+    var dia = String(data.getDate()).padStart(2, '0');
+    var mes = String(data.getMonth() + 1).padStart(2, '0');
+    var ano = data.getFullYear();
+    dataAtual = dia + '/' + mes + '/' + ano;
+
+
     let saberAverdade = sessionStorage.getItem('idUsuario')
     var comentario = window.document.getElementById("comentarioUsuer").value;
+    let saberprojeto = sessionStorage.getItem('idProjeto')
+
     let methodGet = {
         method: "GET"
     };
-    fetch(`http://localhost:4567/comentarioRe?query=${comentario}//${saberAverdade}`, methodGet)
+    fetch(`http://localhost:4567/comentarioRe?query=${comentario}///${saberAverdade}///${saberprojeto}///${0}///${dataAtual}///${false}`, methodGet)
+    sessionStorage.setItem('Ncomentarios',n++);
 }
 
 
@@ -616,6 +621,7 @@ function imagensPaginaInicio() {
 
 function fazerPagina(data) {
     if (data.Nome != "") {
+        //sessionStorage.removeItem('idProjeto');
         let pegarNome = data.Nome;
         let pegarImagem = data.imagem;
         let ttt = data.imagem;
@@ -636,23 +642,39 @@ function projetoTT() {
 }
 
 function colocarNo(data) {
+
     let pegarNome = data.descricao;
     let pegarImagem = data.imagem;
+    let pegarcomentario = data.comentario;
 
     let pegarTextoaki = "ola mundo"
-    document.getElementById("imagemProjetP").src = pegarImagem
+    document.getElementById("imagemProjetP").src = pegarImagem;
     document.getElementById("pegarComentarioP").innerHTML = pegarNome;
+   
+  
+    document.getElementById("testeC").innerHTML = pegarcomentario;
+    //console.log(data.idProjeto);
+    document.getElementById("sentimentos").innerHTML=data.sentimento;
+    document.getElementById("idUsuarioC").innerHTML=data.idusuario;
+    document.getElementById("likesC").innerHTML=data.likes;
+    document.getElementById("dataC").innerHTML=data.data;
+    document.getElementById("NomeProjetoC").innerHTML=data.Nome;
+    sessionStorage.setItem('idProjeto', data.idProjeto);
+    console.log(data.comentario);
+
     adaptScreenProject();
 }
 
 
 
 function receberosID(data) {
+
     let usuarioId = data.idUsuario;
     let empresaId = data.idEmpresa;
     let saberOidProjeto = data.idprojeto;
     let idComentario = data.idComentario;
 
+    sessionStorage.setItem('idPojeto', '');
     console.log(usuarioId + "\n" + empresaId + "\n" + saberOidProjeto + "\n" + idComentario);
     return usuarioId;
 }
@@ -679,6 +701,7 @@ function testel() {
                 }
             });
     }
+
 }
 
 function testeSupremo(data) {
@@ -695,6 +718,11 @@ function ficarOnline(data) {
         sessionStorage.setItem('Usuario', 'Usuario');
         sessionStorage.setItem('idUsuario', whoisWho);
     }
+    if (data.usuario == "Empresa") {
+        var whoisWho1 = data.idEmpresa;
+        sessionStorage.setItem('Usuario', 'Empresa');
+        sessionStorage.setItem('idEmpresa', whoisWho1);
+    }
 }
 
 
@@ -707,4 +735,29 @@ function validacaoLogin() {
     } else {
         return true;
     }
+}
+
+function sairSite() {
+    sessionStorage.removeItem('Usuario');
+    sessionStorage.removeItem('idUsuario');
+    sessionStorage.removeItem('idEmpresa');
+    Home();
+}
+
+function mandarcomentarios(){
+
+    let init = {
+        method: "GET"
+    };
+     fetch(`http://localhost:4567/comentariossiten`, init)
+    //.then(res => res.json())
+    //.then(data =>tratarcomentarios(data));
+
+    
+}
+
+
+function tratarcomentarios(data){
+
+    console.log(data.comentario);
 }

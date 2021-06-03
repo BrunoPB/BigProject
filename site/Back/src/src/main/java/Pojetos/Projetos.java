@@ -22,9 +22,10 @@ public class Projetos {
 	private String tag;
 	private String imagem;
 	private String rec;
+	private String iddaEmpresa;
 
 	public Projetos(int idProjeto1, String nomeProjeto1, String descricaoPojeto1, String dataInicio1, String dataFim1,
-			int valorProjeto1, String tag1, String imagem1, String rec) {
+			int valorProjeto1, String tag1, String imagem1, String rec, String idEmpresa) {
 		this.idProjeto = idProjeto1;
 		this.nomeProjeto = nomeProjeto1;
 		this.descricaoPojeto = descricaoPojeto1;
@@ -34,6 +35,7 @@ public class Projetos {
 		this.tag = tag1;
 		this.imagem = imagem1;
 		this.rec = rec;
+		this.iddaEmpresa=idEmpresa;
 
 	}
 
@@ -134,6 +136,7 @@ public class Projetos {
 		jasoN.put("tag", projeto.getTag());
 		jasoN.put("imagem", projeto.getImagem());
 		jasoN.put("rec", projeto.getRec());
+		jasoN.put("idMepresa",projeto.getIddaEmpresa());
 
 		/*
 		 * //jason.parce System.out.println(idProjeto); System.out.println(nomeProjeto);
@@ -145,6 +148,14 @@ public class Projetos {
 		// return da string do json -> pode ser adiquirido por chamada unica por meio do
 		// objeto json
 		return jasoN.toString();// Verificar necessidade
+	}
+
+	public String getIddaEmpresa() {
+		return iddaEmpresa;
+	}
+
+	public void setIddaEmpresa(String iddaEmpresa) {
+		this.iddaEmpresa = iddaEmpresa;
 	}
 
 

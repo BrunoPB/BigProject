@@ -144,10 +144,11 @@ public class BigProjectA {
 
 		try {
 			Statement st = conexao.createStatement();
-			st.executeUpdate("INSERT INTO projetos (idprojeto,nome,datainicio,datafim,descricao,valor,tag,imagem)"
+			st.executeUpdate("INSERT INTO projetos (idprojeto,nome,datainicio,datafim,descricao,valor,tag,imagem,idep)"
 					+ "VALUES (" + projeto.getIdProjeto() + ", '" + projeto.getNomeProjeto() + "', '"
 					+ projeto.getDataInicio() + "', '" + projeto.getDataFim() + "', '" + projeto.getDescricaoPojeto()
-					+ "', '" + projeto.getValorProjeto() + "', '" + projeto.getTag() + "', '" + projeto.getImagem() + "');");
+					+ "', '" + projeto.getValorProjeto() + "', '" + projeto.getTag() + "', '" + projeto.getImagem()
+					+ "' , '" + projeto.getIddaEmpresa() + "');");
 
 			st.close();
 			saberVerdade = true;
@@ -178,8 +179,7 @@ public class BigProjectA {
 		return pegarProjeto;
 
 	}
-	
-	
+
 	public String[] pegarImagensProjetoTelaComentario(int id) {
 		String[] pegarProjeto = new String[id];
 		try {
@@ -206,32 +206,96 @@ public class BigProjectA {
 		return pegarProjeto;
 
 	}
-	
 
-	public String jasonprojetosProjeto(String[] projetos, int x) {
-		JSONObject jasoNIds = new JSONObject();
-		for (int i = 0; i < x; i++) {
-			String [] teste=  projetos[i].split("///");
-			
-			jasoNIds.put("Nome", teste[0]);
-			jasoNIds.put("imagem", teste[1]);
-			jasoNIds.put("tag", teste[2]);
-			jasoNIds.put("descricao", teste[3]);
+	public String[] pegarImagensProjetoTelaComentariot(int id) {
+		String[] pegarProjeto = new String[30];
+		int i = 0;
+		try {
+			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+			ResultSet rs = st.executeQuery("SELECT nome,imagem , tag,descricao ,datafim, idprojeto FROM projetos ");
+
+			if (rs.next()) {
+				rs.last();
+				rs.beforeFirst();
+				for (; rs.next(); i++) {
+					pegarProjeto[i] = rs.getString("nome");
+					pegarProjeto[i] += "///";
+					pegarProjeto[i] += rs.getString("imagem");
+					pegarProjeto[i] += "///";
+					pegarProjeto[i] += rs.getString("tag");
+					pegarProjeto[i] += "///";
+					pegarProjeto[i] += rs.getString("descricao");
+					pegarProjeto[i] += "///";
+					pegarProjeto[i] += rs.getString("datafim");
+					pegarProjeto[i] += "///";
+					pegarProjeto[i] += rs.getString("idprojeto");
+					pegarProjeto[i] += "///";
+				}
+			}
+			st.close();
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
 		}
-		
+		try {
+			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+			ResultSet rs = st.executeQuery("SELECT * FROM comentarios ");
+			if (rs.next()) {
+				rs.last();
+				rs.beforeFirst();
+				for (; rs.next(); i++) {
+					pegarProjeto[i] = rs.getString("idcomentario");
+					pegarProjeto[i] += "///";
+					pegarProjeto[i] += rs.getString("comentario");
+					pegarProjeto[i] += "///";
+					pegarProjeto[i] += rs.getString("likes");
+					pegarProjeto[i] += "///";
+					pegarProjeto[i] += rs.getString("data");
+					pegarProjeto[i] += "///";
+					pegarProjeto[i] += rs.getString("sentimento");
+					pegarProjeto[i] += "///";
+					pegarProjeto[i] += rs.getString("idusuario");
+					pegarProjeto[i] += "///";
+				}
+			}
+			st.close();
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
+		// System.out.println( pegarProjeto[0]);
+		return pegarProjeto;
+	}
 
+	public String jasonprojetosProjeto(String[] projetos) {
+		JSONObject jasoNIds = new JSONObject();
+
+		String[] teste = projetos[1].split("///");
+		jasoNIds.put("Nome", teste[0]);
+		jasoNIds.put("imagem", teste[1]);
+		jasoNIds.put("tag", teste[2]);
+		jasoNIds.put("descricao", teste[3]);
+		jasoNIds.put("dataFim", teste[4]);
+		jasoNIds.put("idProjeto", teste[5]);
+
+		String[] teste1 = projetos[7].split("///");
+		
+		jasoNIds.put("idcomentario", teste1[0]);
+		jasoNIds.put("comentario", teste1[1]);
+		jasoNIds.put("likes", teste1[2]);
+		jasoNIds.put("data", teste1[3]);
+		jasoNIds.put("sentimento", teste1[4]);
+		jasoNIds.put("idusuario", teste1[5]);
+		
 		return jasoNIds.toString();
 	}
 
 	public String jasonprojetos(String[] projetos, int x) {
 		JSONObject jasoNIds = new JSONObject();
 		for (int i = 0; i < x; i++) {
-			String [] teste=  projetos[i].split("///");
-			
+			String[] teste = projetos[i].split("///");
+
 			jasoNIds.put("Nome", teste[0]);
 			jasoNIds.put("imagem", teste[1]);
 		}
-		
 
 		return jasoNIds.toString();
 	}
@@ -239,13 +303,31 @@ public class BigProjectA {
 	/* fim Projetos */
 //--------------------------------------------------------------------------------------------------------------------
 	// retorna todos os elementos presentes na empresa
-	public Empresa pegarEmpresa() {
+	public boolean pegarEmpresa(int numero, String nome, String senha) {
+		boolean saber = false;
+		try {
+			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+			ResultSet rs = st.executeQuery("SELECT * FROM empresa ");
+			if (rs.last()) {
+				if (nome.equals(rs.getString("nome")) && senha.equals(rs.getString("senha"))) {
+					saber = true;
+				}
+
+			}
+			st.close();
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
+		return saber;
+
+	}
+
+	public Empresa pegarEmpresalogin() {
 		Empresa pegar = new Empresa();
 		try {
 			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 			ResultSet rs = st.executeQuery("SELECT * FROM empresa ");
 			if (rs.last()) {
-				pegar.setIdEmpresa(rs.getInt("idempresa"));
 				pegar.setNomeEmpresa(rs.getString("nome"));
 				pegar.seteMailEmpresa(rs.getString("email"));
 				pegar.setSenhaEmpresa(rs.getString("senha"));
@@ -317,22 +399,23 @@ public class BigProjectA {
 
 	}
 
-	public void inserirComentario(Comentarios comentario) {
-		boolean saberVerdade = false;
+	 public void inserirComentario(Comentarios comentario) {
+	        boolean saberVerdade = false;
 
-		try {
-			Statement st = conexao.createStatement();
-			st.executeUpdate("INSERT INTO empresa (idcomentario,cometario,likes,data)" + "VALUES ("
-					+ comentario.getIdComentario() + ", '" + comentario.getComentario() + "', '" + comentario.getLikes()
-					+ "', '" + comentario.getDataComentario() + "');");
+	        try {
+	            Statement st = conexao.createStatement();
+	            st.executeUpdate("INSERT INTO comentarios (idcomentario,comentario,likes,data,idprojeto,sentimento,idusuario)" + "VALUES ("
+	                    + comentario.getIdComentario() + ", '" + comentario.getComentario() + "', '" +
+	            		comentario.getLikes() + "', '" + comentario.getDataComentario() + "', '" + 
+	                    comentario.getIdProjeto()+ "', '" + comentario.getSentimentos() + "', '" + comentario. getIdUsuario()+  "');");
 
-			st.close();
-			saberVerdade = true;
-		} catch (SQLException u) {
-			throw new RuntimeException(u);
-		}
+	            st.close();
+	            saberVerdade = true;
+	        } catch (SQLException u) {
+	            throw new RuntimeException(u);
+	        }
 
-	}
+	    }
 
 //**********************************************************************************************************
 	// ira retornar os ultimos ids de usuarios
